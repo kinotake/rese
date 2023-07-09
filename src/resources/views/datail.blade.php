@@ -73,6 +73,18 @@
     </article>
     <div class="content_right">
         <h1 class="reserve_header">予約</h1>
+        <label for="date"></label>
+        <input type="date" id="date" name="date" value="" />
+        <select name="time">
+        @foreach ($worktimes as $worktime)
+        <option value="$worktime">{{$worktime}}</option>
+        @endforeach
+        </select>
+        <select name="num_of_guest">
+        @foreach ($people as $person)
+        <option value="$person">{{$person}}人</option>
+        @endforeach
+        </select>
     </div>
     </div>
 </body>

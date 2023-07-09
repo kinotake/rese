@@ -24,7 +24,7 @@ class Shop extends Model
     { 
       if (Auth::id() == null)
       {
-        $txt ="ログインされていないため、お気に入りの取得ができません。";
+        $txt ="ログインすると、いいねの登録が可能です。";
 
         return $txt;
       }

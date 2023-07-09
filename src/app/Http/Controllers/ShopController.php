@@ -18,8 +18,29 @@ class ShopController extends Controller
     {
         $shopId = $id;
         $shopData = Shop::where('id',$shopId)->first();
+        
+        // 可変（時間）
+        $start = 9;
+        $end = 22;
+        $worktimes = [];
+        for ($count = $start; $count <= $end; $count++)
+        {
 
-        return view('datail', compact('shopData'));
+            $zero = "%02d";
+            $hours=sprintf($zero, $count);
+            $item = $hours.":00";
+            $worktimes[] = $item;
+        }
+
+        // 可変（人数）
+        $min = 1;
+        $max = 15;
+        $people = [];
+        for ($count = $min; $count <= $max; $count++)
+        {
+            $people[] = $count;
+        }
+
+        return view('datail', compact('shopData','worktimes','people'));
     }
 }
-// Shop::with('')->first();
