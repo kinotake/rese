@@ -9,16 +9,17 @@ class ShopController extends Controller
 {
     public function index()
     {
-    $allShops = Shop::all();
+        $allShops = Shop::all();
     
-    return view('all', compact('allShops'));
+        return view('all', compact('allShops'));
     }
 
     public function detail($id)
     {
-    $shopId = $id;
-    $shopData = Shop::where('id',$shopId)->first();
-    return view('datail', compact('shopData'));
+        $shopId = $id;
+        $shopData = Shop::where('id',$shopId)->first();
+
+        return view('datail', compact('shopData'));
     }
 }
 // Shop::with('')->first();

@@ -41,7 +41,7 @@
     <h1 class="rese">Rese</h1>
     </header>
     <div class="under_contents">
-    @if (@isset($allShops))
+    
     @foreach ($allShops as $allShop)
     
         <div class="shop_content">
@@ -57,12 +57,25 @@
             </table>
             <a href="detail/{{$allShop->id}}" type="submit">詳しく見る</a>
             <div>
-                <img src="../../public/images/heart.png" alt="ハート" width="30" height="30">
+                <p class="content">{{$allShop->checkLike()}}</p>
+                @if ($allShop->checkLike() == 0)
+                <form method="POST" action="{{route('makeLike')}}">
+                @csrf
+                    <input type="hidden" name="shop_id" id="shop_id" value="{{$allShop->id}}">
+                    <input type="image" src="../../public/images/heart.png" alt="色なしハート" name="heart">
+                </form>
+                @else
+                <form method="POST" action="{{route('deleteLike')}}">
+                @csrf
+                    <input type="hidden" name="shop_id" id="shop_id" value="{{$allShop->id}}">
+                    <input type="image" src="../../public/images/paintedheart.png" alt="色つきハート" name="heart">
+                </form>
+                @endif
             </div>
         </div>
     
     @endforeach
-    @endif
+    
     </div>
 
     
