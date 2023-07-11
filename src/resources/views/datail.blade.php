@@ -12,10 +12,16 @@
       padding: 0;
     }
     .top{
+        margin-left : 130px;
+        display : flex;
         padding-top : 20px;
         padding-bottom : 20px;
     }
+    .icon{
+        box-shadow: 3px 3px 3px 0px gray;
+    }
     .rese{
+        margin-left : 20px;
         color: blue;
     }
     .under_content{
@@ -52,6 +58,7 @@
 </head>
 <body>
     <header class="top">
+    <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
     <h1 class="rese">Rese</h1>
     </header>
     <div class="under_content">
@@ -61,7 +68,7 @@
         <h1>{{$shopData->name}}</h1>
         </div>
             <div>
-                <img src="../../public/images/test.png" alt="店内画像" width="30" height="30">
+                <img src="{{ asset('/images/test.png') }}" alt="店内画像" width="500" height="300">
             </div>
             <table>
             <tr>

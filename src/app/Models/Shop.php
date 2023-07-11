@@ -24,7 +24,7 @@ class Shop extends Model
     { 
       if (Auth::id() == null)
       {
-        $txt ="ログインすると、いいねの登録が可能です。";
+        $txt ="ログインでいいねが可能です。";
 
         return $txt;
       }

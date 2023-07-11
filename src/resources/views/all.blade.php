@@ -12,19 +12,25 @@
       padding: 0;
     }
     .top{
+        margin-left : 130px;
+        display : flex;
         padding-top : 20px;
         padding-bottom : 20px;
     }
+    .icon{
+        box-shadow: 3px 3px 3px 0px gray;
+    }
     .rese{
+        margin-left : 20px;
         color: blue;
     }
     .shop_content{
         height: 220px;
         width: 220px;
-        box-shadow: 5px 5px 4px 0px gray;
-        padding-right : 20px;
-        padding-left : 20px;
-        padding-top : 20px;
+        box-shadow: 5px 5px 4px 2px gray;
+        margin-right : 20px;
+        margin-left : 20px;
+        margin-top : 20px;
         padding-bottom : 20px;
         border-radius: 5px;
     }
@@ -34,43 +40,68 @@
         justify-content: center;
 	    align-items: center;
     }
+    .shop_information{
+        margin-left : 10px;
+    }
+    .bottons{
+        display : flex;
+        justify-content: space-between;
+    }
+    .detail_button{
+        background: blue;
+        display: block;
+        height: 30px;
+        width: 100px;
+        color : white;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+        padding-top : 5px;
+        margin-left : 10px;
+    }
+    .like_error{
+        color : red;
+    }
     </style>
 </head>
 <body>
     <header class="top">
+    <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
     <h1 class="rese">Rese</h1>
+    <p class="like_error">{{session('message')}}</p>
     </header>
     <div class="under_contents">
     
     @foreach ($allShops as $allShop)
     
         <div class="shop_content">
-            <div>
-                <img src="../../public/images/test.png" alt="店内画像" width="200" height="200">
+            <div class="shop_image">
+                <img src="{{ asset('/images/test.png') }}"  alt="店内画像" width="220" height="110">
             </div>
-            <table>
+            <table class="shop_information">
             <th>{{$allShop->name}}</th>
             <tr>
                 <td>#{{$allShop->place}}</td>
                 <td>#{{$allShop->category}}</td>
             </tr>
             </table>
-            <a href="detail/{{$allShop->id}}" type="submit">詳しく見る</a>
-            <div>
-                <p class="content">{{$allShop->checkLike()}}</p>
-                @if ($allShop->checkLike() == 0)
-                <form method="POST" action="{{route('makeLike')}}">
-                @csrf
-                    <input type="hidden" name="shop_id" id="shop_id" value="{{$allShop->id}}">
-                    <input type="image" src="../../public/images/heart.png" alt="色なしハート" name="heart">
-                </form>
-                @else
-                <form method="POST" action="{{route('deleteLike')}}">
-                @csrf
-                    <input type="hidden" name="shop_id" id="shop_id" value="{{$allShop->id}}">
-                    <input type="image" src="../../public/images/paintedheart.png" alt="色つきハート" name="heart">
-                </form>
-                @endif
+            <div class="bottons">
+                <a href="detail/{{$allShop->id}}" type="submit" class="detail_button">詳しく見る</a>
+                <div>
+                    @if ($allShop->checkLike() == 0)
+                    <form method="POST" action="{{route('makeLike')}}">
+                    @csrf
+                        <input type="hidden" name="shop_id" id="shop_id" value="{{$allShop->id}}">                  
+                        <input type="image" src="{{ asset('/images/heart.png') }}" alt="色なしハート" name="heart" width="50" height="50">
+                    </form>
+                    @else
+                    <form method="POST" action="{{route('deleteLike')}}">
+                    @csrf
+                        <input type="hidden" name="shop_id" id="shop_id" value="{{$allShop->id}}">
+                        <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="40" height="40">
+                    </form>
+                    @endif
+                </div>
             </div>
         </div>
     

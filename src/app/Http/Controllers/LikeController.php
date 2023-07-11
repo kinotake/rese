@@ -10,6 +10,15 @@ class LikeController extends Controller
 {
     public function makeLike(Request $request)
     {
+        
+        if(Auth::check() == false)
+        {
+            $message = "ログイン処理をするといいね機能が利用できます。";
+
+            return redirect('/')->with(compact('message'));
+        }
+        else
+        {
         $post = $request->all();
         $selected_shop = $post['shop_id'];
         
@@ -19,6 +28,7 @@ class LikeController extends Controller
         $like->save();
 
         return redirect('/');
+        }
     }
     public function deleteLike(Request $request)
     {
