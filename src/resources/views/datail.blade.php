@@ -60,38 +60,44 @@
     <header class="top">
     <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
     <h1 class="rese">Rese</h1>
+    <p class="like_error">{{session('message')}}</p>
     </header>
     <div class="under_content">
     <article class="content_left">
         <div class="shop_header">
         <a href="/"><</a>
-        <h1>{{$shopData->name}}</h1>
+        <h1>{{$shopData->name??''}}</h1>
         </div>
             <div>
                 <img src="{{ asset('/images/test.png') }}" alt="店内画像" width="500" height="300">
             </div>
             <table>
             <tr>
-                <td>#{{$shopData->place}}</td>
-                <td>#{{$shopData->category}}</td>
+                <td>#{{$shopData->place??''}}</td>
+                <td>#{{$shopData->category??''}}</td>
             </tr>
             </table>
-            <p>{{$shopData->comment}}</p>
+            <p>{{$shopData->comment??''}}</p>
     </article>
     <div class="content_right">
         <h1 class="reserve_header">予約</h1>
+        <form action="/detail" method = "POST">
+        @csrf
+        <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$shopData->id??''}}">
         <label for="date"></label>
-        <input type="date" id="date" name="date" value="" />
+        <input type="date" id="date" name="date" value="date" />
         <select name="time">
         @foreach ($worktimes as $worktime)
-        <option value="$worktime">{{$worktime}}</option>
+        <option value="{{$worktime}}">{{$worktime}}</option>
         @endforeach
         </select>
         <select name="num_of_guest">
         @foreach ($people as $person)
-        <option value="$person">{{$person}}人</option>
+        <option value="{{$person}}">{{$person}}人</option>
         @endforeach
         </select>
+        <button class="form__button" type="submit">予約する</button>
+        </form>
     </div>
     </div>
 </body>

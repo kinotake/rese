@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\LikeController;
-
+use App\Http\Controllers\ReserveController;
 
 Route::get('/', [ShopController::class, 'index']);
 Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
 Route::post('/delete', [LikeController::class, 'deleteLike'])->name('deleteLike');
 Route::get('/detail/{id}', [ShopController::class, 'detail']);
+Route::post('/detail', [ReserveController::class, 'makeReserve']);
 Route::get('/register', [WorkController::class, '']);
 Route::get('/mypage', [WorkController::class, '']);
 
