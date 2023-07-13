@@ -11,16 +11,7 @@ class ReserveController extends Controller
 {
     public function makeReserve()
     {   
-        if(Auth::check() == false)
-        {
-            $shop_id = $_POST["shop_id"];
-            $shop_data = Shop::where('id',$shop_id)->first();
-            $message = "ログイン処理をすると予約機能が利用できます。";
-            
-            return redirect('detail/{$shop_id}')->with(compact('message','shop_data'));
-        }
-        else
-        {
+        
         $selected_date = $_POST["date"];
         $selected_time = $_POST["time"];
         $selected_shop_id = $_POST["shop_id"];
@@ -35,6 +26,6 @@ class ReserveController extends Controller
         $reserve->save();
 
         return redirect('/done');
-        }
+        
      }
 }

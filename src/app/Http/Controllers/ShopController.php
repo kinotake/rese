@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -18,6 +19,7 @@ class ShopController extends Controller
     {
         $shopId = $id;
         $shopData = Shop::where('id',$shopId)->first();
+        $check_login = Auth::check();
         
         // 可変（時間）
         $start = 9;
@@ -41,6 +43,6 @@ class ShopController extends Controller
             $people[] = $count;
         }
 
-        return view('datail', compact('shopData','worktimes','people'));
+        return view('datail', compact('shopData','worktimes','people','check_login'));
     }
 }
