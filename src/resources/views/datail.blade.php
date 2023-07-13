@@ -66,6 +66,7 @@
         width: 450px;
         box-shadow: 5px 5px 4px 0px gray;
         border-radius: 5px;
+        position: relative;
     }
     .reserve_header{
         color:white;
@@ -78,9 +79,14 @@
         margin-left : 30px;
     }
     .date{
-        display:block;
-        height: 30px;
-        width: 200px;
+        height: 25px;
+        width: 150px;
+        margin-bottom : 10px;
+    }
+    .time,.num_of_guest{
+        height: 25px;
+        width: 400px;
+        margin-bottom : 10px;
     }
     .select_contents{
         background: white;
@@ -94,13 +100,22 @@
     .select_content{
         display:flex;
         margin-top : 5px;
-        padding-top : 5px;
+        padding-top : 7px;
     }
     .label{
         margin-left : 30px;
     }
     .select_value{
         margin-left : 30px;
+    }
+    .form__button{
+        height: 50px;
+        width: 450px;
+        background: #0000cd;
+        color : white;
+        border:none;
+        position: absolute;
+        bottom: 0;
     }
     .error{
         display : inline-block;
@@ -141,60 +156,60 @@
         <p class="like_error">{{session('message')}}</p>
     </header>
     <div class="under_content">
-    <article class="content_left">
-        <div class="shop_header">
-        <div class="back_content">
-        <a href="/" class="back"><</a>
-        </div>
-        <h1 class="shop_name">{{$shopData->name??''}}</h1>
-        </div>
+        <article class="content_left">
+            <div class="shop_header">
+                <div class="back_content">
+                    <a href="/" class="back"><</a>
+                </div>
+                <h1 class="shop_name">{{$shopData->name??''}}</h1>
+            </div>
             <div>
                 <img src="{{ asset('/images/test.png') }}" alt="店内画像" width="500" height="300">
             </div>
             <table>
-            <tr>
-                <td>#{{$shopData->place??''}}</td>
-                <td>#{{$shopData->category??''}}</td>
-            </tr>
+                <tr>
+                    <td>#{{$shopData->place??''}}</td>
+                    <td>#{{$shopData->category??''}}</td>
+                </tr>
             </table>
             <p>{{$shopData->comment??''}}</p>
-    </article>
+        </article>
     <section class="content_right">
         <h1 class="reserve_header">予約</h1>
         @if ($check_login == true)
         <main class="input_contents">
-        <form action="/detail" method = "POST">
-        @csrf
-        <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$shopData->id??''}}">
-        <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()"></br>
-        <select name="time" id="time">
-        @foreach ($worktimes as $worktime)
-        <option value="{{$worktime}}">{{$worktime}}</option>
-        @endforeach
-        </select></br>
-        <select name="num_of_guest" id="num_of_guest">
-        @foreach ($people as $person)
-        <option value="{{$person}}">{{$person}}人</option>
-        @endforeach
-        </select>
+            <form action="/detail" method = "POST">
+                @csrf
+                <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$shopData->id??''}}">
+                <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()"></br>
+                <select name="time" id="time" class="time">
+                    @foreach ($worktimes as $worktime)
+                    <option value="{{$worktime}}">{{$worktime}}</option>
+                    @endforeach
+                </select></br>
+                <select name="num_of_guest" id="num_of_guest" class="num_of_guest">
+                    @foreach ($people as $person)
+                    <option value="{{$person}}">{{$person}}人</option>
+                    @endforeach
+                </select>
         </main>
         <aside class="select_contents">
-        <div class="select_content">
-        <label for="shop_label" class="label">Shop</label>
-        <p id="selectshop" class="select_value">{{$shopData->name??''}}</p>
-        </div>
-        <div class="select_content">
-        <label for="date_label" class="label">Date</label>
-        <p id="selectdate" class="select_value"></p>
-        </div>
-        <div class="select_content">
-        <label for="time_label" class="label">Time</label>
-        <p id="selecttime" class="select_value"></p>
-        </div>
-        <div class="select_content">
-        <label for="num_label" class="label">Number</label>
-        <p id="selectnum" class="select_value"></p>
-        </div>
+            <div class="select_content">
+                <label for="shop_label" class="label">Shop</label>
+                <p id="selectshop" class="select_value">{{$shopData->name??''}}</p>
+            </div>
+            <div class="select_content">
+                <label for="date_label" class="label">Date</label>
+                <p id="selectdate" class="select_value"></p>
+            </div>
+            <div class="select_content">
+                <label for="time_label" class="label">Time</label>
+                <p id="selecttime" class="select_value"></p>
+            </div>
+            <div class="select_content">
+                <label for="num_label" class="label">Number</label>
+                <p id="selectnum" class="select_value"></p>
+            </div>
         </aside>
         <script type="text/javascript">
             let date = document.getElementById('date');
@@ -230,8 +245,9 @@
             selectnum.textContent = num_of_guest.options[num_of_guest.selectedIndex].textContent;
             });
         </script>
-        <button class="form__button" type="submit">予約する</button>
-        </form>
+                <button class="form__button" type="submit">予約する</button>
+            </form>
+        </section>
         @else
         <div class="error_contents">
         <p class="error">ログインすると予約機能が利用できます。</p>
@@ -240,5 +256,4 @@
         <a href="/login" type="submit" class="login">ログインする</a>
         </div>
         @endif
-    </section>
 </body>
