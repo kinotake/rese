@@ -16,8 +16,8 @@ class CreateShopsTable extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('place');
-            $table->string('category');
+            $table->integer('place_id');
+            $table->integer('category_id');
             $table->text('comment');
             $table->integer('owner_id')->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();

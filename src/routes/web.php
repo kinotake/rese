@@ -7,6 +7,7 @@ use App\Http\Controllers\ReserveController;
 
 Route::get('/', [ShopController::class, 'index']);
 Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
+Route::post('/search', [ShopController::class, 'search']);
 Route::post('/delete', [LikeController::class, 'deleteLike'])->name('deleteLike');
 Route::get('/detail/{id}', [ShopController::class, 'detail']);
 Route::post('/detail', [ReserveController::class, 'makeReserve']);

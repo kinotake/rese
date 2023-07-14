@@ -168,8 +168,8 @@
             </div>
             <table>
                 <tr>
-                    <td>#{{$shopData->place??''}}</td>
-                    <td>#{{$shopData->category??''}}</td>
+                    <td>#{{$shopData->place->name??''}}</td>
+                    <td>#{{$shopData->category->name??''}}</td>
                 </tr>
             </table>
             <p>{{$shopData->comment??''}}</p>

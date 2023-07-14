@@ -19,6 +19,16 @@ class Shop extends Model
     return $this->hasManyThrough(User::class,Like::class);
     }
 
+    public function category()
+    {
+      return $this->belongsTo('App\Models\Category');
+    }
+
+    public function place()
+    {
+      return $this->belongsTo('App\Models\Place');
+    }
+
     // ログインしているユーザがつけている全いいねの取得
     public function checkLike()
     { 

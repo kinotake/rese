@@ -59,7 +59,7 @@
         padding-top : 5px;
         margin-left : 10px;
     }
-    .like_error{
+    .error{
         color : red;
     }
     </style>
@@ -68,10 +68,29 @@
     <header class="top">
     <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
     <h1 class="rese">Rese</h1>
-    <p class="like_error">{{session('message')}}</p>
+    <p class="error">{{session('message')}}</p>
+    <p class="error">{{$noPost??''}}</p>
+    <form action="/search" method = "POST">
+    @csrf
+    <select class="" name="place_id">
+        <option value="selected">All area</option>
+        @foreach ($places as $place)
+        <option value="{{$place->id}}">{{$place->name}}</option>
+        @endforeach
+    </select>
+    <select class="" name="category_id">
+        <option value="selected">All genre</option>
+        @foreach ($categories as $category)
+        <option value="{{$category->id}}">{{$category->name}}</option>
+        @endforeach
+    </select>
+    <input type="text" name="keyword">
+    <button class="form__button" type="submit">調べる</button>
+    </form>
+
     </header>
     <div class="under_contents">
-    
+    @if (@isset($allShops))
     @foreach ($allShops as $allShop)
     
         <div class="shop_content">
@@ -81,8 +100,8 @@
             <table class="shop_information">
             <th>{{$allShop->name}}</th>
             <tr>
-                <td>#{{$allShop->place}}</td>
-                <td>#{{$allShop->category}}</td>
+                <td>#{{$allShop->place->name}}</td>
+                <td>#{{$allShop->category->name}}</td>
             </tr>
             </table>
             <div class="bottons">
@@ -104,8 +123,8 @@
                 </div>
             </div>
         </div>
-    
     @endforeach
+    @endif
     
     </div>
 
