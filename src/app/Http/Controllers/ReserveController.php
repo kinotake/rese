@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reserve;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Shop;
 
 class ReserveController extends Controller
 {
@@ -28,4 +27,5 @@ class ReserveController extends Controller
         return redirect('/done');
         
      }
+
 }

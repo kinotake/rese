@@ -46,4 +46,13 @@ class User extends Authenticatable
     {
       return $this->hasMany('App\Models\Like');
     }
+
+    public function reserves()
+    {
+      return $this->hasMany('App\Models\Reserve');
+    }
+    public function shop()
+    {
+    return $this->hasManyThrough(Shop::class,Like::class);
+    }
 }

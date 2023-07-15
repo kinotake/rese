@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Category;
 use App\Models\Place;
+use App\Models\Like;
+use App\Models\Reserve;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
@@ -110,5 +113,16 @@ class ShopController extends Controller
         }
 
         return view('datail', compact('shopData','worktimes','people','check_login'));
+    }
+
+    public function getMypage()
+    {
+        $who= Auth::id();
+        $userData = User::where('id',$who)->first();
+        
+        $reserveDatas = Reserve::where('user_id',$who)->get();
+        $likeDatas = Like::where('user_id',$who)->get();
+    
+        return view('mypage')->with(compact('userData','reserveDatas','likeDatas'));
     }
 }

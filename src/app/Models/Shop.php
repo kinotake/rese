@@ -14,6 +14,11 @@ class Shop extends Model
       return $this->hasMany('App\Models\Like');
     }
 
+    public function reserves()
+    {
+      return $this->hasMany('App\Models\Reserve');
+    }
+
     public function user()
     {
     return $this->hasManyThrough(User::class,Like::class);
@@ -21,12 +26,12 @@ class Shop extends Model
 
     public function category()
     {
-      return $this->belongsTo('App\Models\Category');
+      return $this->hasOne('App\Models\Category');
     }
 
     public function place()
     {
-      return $this->belongsTo('App\Models\Place');
+      return $this->hasOne('App\Models\Place');
     }
 
     // ログインしているユーザがつけている全いいねの取得
@@ -51,5 +56,5 @@ class Shop extends Model
         return $no_like;
       }
     }
+
 }
-// 'App\Model\User', 'App\Order'
