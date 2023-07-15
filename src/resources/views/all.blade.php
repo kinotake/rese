@@ -93,7 +93,7 @@
     @if (@isset($allShops))
     @foreach ($allShops as $allShop)
     
-        <div class="shop_content">
+        <article class="shop_content">
             <div class="shop_image">
                 <img src="{{ asset('/images/test.png') }}"  alt="店内画像" width="220" height="110">
             </div>
@@ -122,7 +122,7 @@
                     @endif
                 </div>
             </div>
-        </div>
+        </article>
     @endforeach
     @endif
     
