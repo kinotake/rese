@@ -13,4 +13,8 @@ class Place extends Model
     {
       return $this->hasMany('App\Models\Shop');
     }
+    public function shop()
+    {
+      return $this->belongsTo('App\Models\Shop');
+    }
 }

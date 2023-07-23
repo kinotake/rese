@@ -26,12 +26,12 @@ class Shop extends Model
 
     public function category()
     {
-      return $this->hasOne('App\Models\Category');
+      return $this->belongsTo('App\Models\Category');
     }
 
     public function place()
     {
-      return $this->hasOne('App\Models\Place');
+      return $this->belongsTo('App\Models\Place');
     }
 
     // ログインしているユーザがつけている全いいねの取得

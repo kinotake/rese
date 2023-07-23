@@ -78,9 +78,10 @@ class ShopController extends Controller
         }
         else
         {
+            $allShops = Shop::all();
             $noPost = "検索欄に情報を入れてください。";
 
-            return view('all', compact('noPost','categories','places'));
+            return view('all', compact('allShops','noPost','categories','places'));
         }
     }
 

@@ -66,7 +66,15 @@
 </head>
 <body>
     <header class="top">
+    @if (Auth::check())
+    <a href="/menu/first">
     <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+    </a>
+    @else
+    <a href="/menu/second">
+    <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+    </a>
+    @endif
     <h1 class="rese">Rese</h1>
     <p class="error">{{session('message')}}</p>
     <p class="error">{{$noPost??''}}</p>
