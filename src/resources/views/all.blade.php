@@ -17,6 +17,26 @@
         padding-top : 20px;
         padding-bottom : 20px;
     }
+    .search_contents{
+        margin-left :400px;
+        height: 45px;
+        width: 450px;
+        border-radius: 5px;
+        box-shadow: 3px 3px 3px 3px gray;
+    }
+    .select{
+        border: none;
+        border-right: 1px solid gray;
+    }
+    .form__button{
+        margin-top:5px;
+        border: none;
+    }
+    .keyword{
+        height: 30px;
+        width: 250px;
+        border: none;
+    }
     .icon{
         box-shadow: 3px 3px 3px 0px gray;
     }
@@ -60,8 +80,10 @@
         margin-left : 10px;
     }
     .error{
+        margin-left : 150px;
         color : red;
     }
+    
     </style>
 </head>
 <body>
@@ -76,27 +98,30 @@
     </a>
     @endif
     <h1 class="rese">Rese</h1>
-    <p class="error">{{session('message')}}</p>
-    <p class="error">{{$noPost??''}}</p>
+    <div class="search_contents">
     <form action="/search" method = "POST">
     @csrf
-    <select class="" name="place_id">
+    <select class="select" name="place_id">
         <option value="selected">All area</option>
         @foreach ($places as $place)
         <option value="{{$place->id}}">{{$place->name}}</option>
         @endforeach
     </select>
-    <select class="" name="category_id">
+    <select class="select" name="category_id">
         <option value="selected">All genre</option>
         @foreach ($categories as $category)
         <option value="{{$category->id}}">{{$category->name}}</option>
         @endforeach
     </select>
-    <input type="text" name="keyword">
-    <button class="form__button" type="submit">調べる</button>
+    <button class="form__button" type="submit">
+        <img src="{{ asset('/images/search.png') }}"  alt="探すアイコン" width="25" height="25" class="search_icon">
+    </button>
+    <input type="text" name="keyword" class="keyword" placeholder="Search...">
     </form>
-
+    </div>
     </header>
+    <p class="error">{{session('message')}}</p>
+    <p class="error">{{$noPost??''}}</p>
     <div class="under_contents">
     @if (@isset($allShops))
     @foreach ($allShops as $allShop)
