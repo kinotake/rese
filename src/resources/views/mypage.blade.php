@@ -27,25 +27,52 @@
     .user_name{
       display:inline-block;
       font-size : 30px;
-      margin-left : 400px;
+      margin-left : 620px;
+    }
+    .header_reserve{
+      margin-left :100px;
+      font-size : 25px;
+    }
+    .header_like{
+      margin-left :420px;
+      font-size : 25px;
     }
     .headers{
       display : flex;
     }
+    .under_contents{
+      display : flex;
+    }
+    .left_content{
+      margin-left :100px;
+    }
     .reserved_content{
-      width :300px;
-      height: 200px;
+      width :400px;
+      height: 250px;
       background : blue;
       color : white ;
       margin-bottom :30px;
+      margin-top : 20px;
+      box-shadow: 5px 5px 4px 2px gray;
     }
     .row_content{
       display : flex;
+      padding-top : 20px;
+      margin-left :20px;
+    }
+    .close_icon{
+      margin-left :280px;
+    }
+    .reserved_detail{
+      margin-left :80px;
+    }
+    .reserved_guest{
+      margin-left :55px;
     }
     .right_contents{
-      background : pink;
-      width :300px;
-
+      display : flex;
+      flex-wrap: wrap;
+      margin-left :100px;
     }
     .shop_content{
       height: 220px;
@@ -73,7 +100,13 @@
       padding-top : 5px;
       margin-left : 10px;
     }
-    
+    .error_content{
+      width :400px;
+      height: 250px;
+    }
+    .error{
+      color : red;
+    }
     </style>
 </head>
 <body>
@@ -91,30 +124,43 @@
   </header>
   <p class="user_name">{{$userData->name}}さん</p>
     <div class="headers">
-      <h1>予約状況</h1>
-      <h2>お気に入り店舗</h2>
+      <h1 class="header_reserve">予約状況</h1>
+      <h2 class="header_like">お気に入り店舗</h2>
     </div>
     <div class="under_contents">
+      <div class="left_content">
+      @if ($reserveDatas->isNotEmpty())
       @foreach ($reserveDatas as $reserveData)
       <article class="reserved_content">
         <div class="row_content">
+        <img src="{{ asset('/images/time.png') }}"  alt="timeのアイコン" width="20" height="20" class="time_icon">
+        <p>予約</p>
+        <img src="{{ asset('/images/close.png') }}"  alt="closeのアイコン" width="20" height="20" class="close_icon">
+        </div>
+        <div class="row_content">
           <label for="shop_label" class="label">Shop</label>
-          <p>{{$reserveData->returnName()}}</p>
+          <p class="reserved_detail">{{$reserveData->returnName()}}</p>
         </div>
         <div class="row_content">
           <label for="date_label" class="label">Date</label>
-          <p>{{$reserveData->date}}</p>
+          <p class="reserved_detail">{{$reserveData->date}}</p>
         </div>
         <div class="row_content">
           <label for="time_label" class="label">Time</label>
-          <p>{{ Str::limit($reserveData->time,5,' ') }}</p>
+          <p class="reserved_detail">{{ Str::limit($reserveData->time,5,' ') }}</p>
         </div>
         <div class="row_content">
           <label for="num_label" class="label">Number</label>
-          <p>{{$reserveData->num_of_guest}}人</p>
+          <p class="reserved_guest">{{$reserveData->num_of_guest}}人</p>
         </div>
       </article>
       @endforeach
+      @else
+      <article class="error_content">
+        <p class="error">予約データがありません</p>
+      </article>
+      @endif
+      </div>
       <div class="right_contents">
         @foreach ($likeDatas as $likeData)
         <article class="shop_content">
