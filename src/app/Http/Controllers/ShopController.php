@@ -10,6 +10,7 @@ use App\Models\Like;
 use App\Models\Reserve;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ShopController extends Controller
 {
@@ -118,10 +119,11 @@ class ShopController extends Controller
 
     public function getMypage()
     {
+        $today = Carbon::now();
         $who= Auth::id();
         $userData = User::where('id',$who)->first();
         
-        $reserveDatas = Reserve::where('user_id',$who)->get();
+        $reserveDatas = Reserve::whereDate('date','>',$today)->get();
         $likeDatas = Like::where('user_id',$who)->get();
     
         return view('mypage')->with(compact('userData','reserveDatas','likeDatas'));
@@ -168,4 +170,23 @@ class ShopController extends Controller
 
         return view('cancel', compact('shopData','reservedData'));
     }
+    public function getWent()
+    {
+        $today = Carbon::now();
+        $wentReserveDatas = Reserve::whereDate('date','<',$today)->get();
+
+        $who= Auth::id();
+        $userData = User::where('id',$who)->first();
+
+        return view('went', compact('wentReserveDatas','userData'));
+    }
+    public function getAssessment($id)
+    {
+        $reserveId = $id;
+        $shopData = Shop::where('id',$shopId)->first();
+        
+
+        return view('datail', compact('shopData'));
+    }
+
 }

@@ -18,6 +18,8 @@ Route::get('/reschedule/{shop_id}/{id}', [ShopController::class, 'getReschedule'
 Route::post('/reschedule', [ReserveController::class, 'postReschedule']);
 Route::get('/cancel/{shop_id}/{id}', [ShopController::class, 'getCancel']);
 Route::post('/cancel', [ReserveController::class, 'postCancel']);
+Route::get('/went', [ShopController::class, 'getWent']);
+Route::get('/assessment/{id}', [ShopController::class, 'getAssessment']);
 
 Route::get('/menu/first', function () {
     return view('loginmenu');
