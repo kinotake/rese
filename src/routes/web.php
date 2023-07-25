@@ -14,6 +14,8 @@ Route::get('/detail/{id}', [ShopController::class, 'detail']);
 Route::post('/detail', [ReserveController::class, 'makeReserve']);
 Route::get('/register', [WorkController::class, '']);
 Route::get('/mypage', [ShopController::class, 'getMypage']);
+Route::get('/reschedule/{shop_id}/{id}', [ShopController::class, 'getReschedule']);
+Route::post('/reschedule', [Controller::class, '']);
 
 Route::get('/menu/first', function () {
     return view('loginmenu');

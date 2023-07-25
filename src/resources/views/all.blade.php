@@ -150,7 +150,7 @@
                     <form method="POST" action="{{route('deleteLike')}}">
                     @csrf
                         <input type="hidden" name="shop_id" id="shop_id" value="{{$allShop->id}}">
-                        <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="40" height="40">
+                        <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="50" height="50">
                     </form>
                     @endif
                 </div>

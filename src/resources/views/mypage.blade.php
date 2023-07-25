@@ -133,7 +133,9 @@
       @foreach ($reserveDatas as $reserveData)
       <article class="reserved_content">
         <div class="row_content">
-        <img src="{{ asset('/images/time.png') }}"  alt="timeのアイコン" width="20" height="20" class="time_icon">
+        <a href="reschedule/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="reschedule_button">
+          <img src="{{ asset('/images/time.png') }}"  alt="timeのアイコン" width="20" height="20" class="time_icon">
+        </a>
         <p>予約</p>
         <img src="{{ asset('/images/close.png') }}"  alt="closeのアイコン" width="20" height="20" class="close_icon">
         </div>

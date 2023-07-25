@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>タイトルを入力</title>
+  <title>店舗詳細ページ</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
 
     <style>
@@ -184,7 +184,7 @@
         </article>
     <section class="content_right">
         <h1 class="reserve_header">予約</h1>
-        @if ($check_login == true)
+        @if ($checkLogin == true)
         <main class="input_contents">
             <form action="/detail" method = "POST">
                 @csrf

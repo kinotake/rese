@@ -89,7 +89,7 @@ class ShopController extends Controller
     {
         $shopId = $id;
         $shopData = Shop::where('id',$shopId)->first();
-        $check_login = Auth::check();
+        $checkLogin = Auth::check();
         
         // 可変（時間）
         $start = 9;
@@ -113,7 +113,7 @@ class ShopController extends Controller
             $people[] = $count;
         }
 
-        return view('datail', compact('shopData','worktimes','people','check_login'));
+        return view('datail', compact('shopData','worktimes','people','checkLogin'));
     }
 
     public function getMypage()
@@ -125,5 +125,37 @@ class ShopController extends Controller
         $likeDatas = Like::where('user_id',$who)->get();
     
         return view('mypage')->with(compact('userData','reserveDatas','likeDatas'));
+    }
+
+    public function getReschedule($shop_id,$id)
+    {
+        $reserveId = $id;
+        $reservedData = Reserve::where('id',$reserveId)->first();
+        $shopId = $shop_id;
+        $shopData = Shop::where('id',$shopId)->first();
+        
+        // 可変（時間）
+        $start = 9;
+        $end = 22;
+        $worktimes = [];
+        for ($count = $start; $count <= $end; $count++)
+        {
+
+            $zero = "%02d";
+            $hours=sprintf($zero, $count);
+            $item = $hours.":00";
+            $worktimes[] = $item;
+        }
+
+        // 可変（人数）
+        $min = 1;
+        $max = 15;
+        $people = [];
+        for ($count = $min; $count <= $max; $count++)
+        {
+            $people[] = $count;
+        }
+
+        return view('reschedule', compact('shopData','worktimes','people','reservedData'));
     }
 }
