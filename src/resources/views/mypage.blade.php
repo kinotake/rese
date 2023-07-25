@@ -121,6 +121,7 @@
     </a>
     @endif
     <h1 class="rese">Rese</h1>
+    <p class="like_error">{{session('message'??'')}}</p>
   </header>
   <p class="user_name">{{$userData->name}}さん</p>
     <div class="headers">

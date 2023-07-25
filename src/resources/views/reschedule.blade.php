@@ -203,9 +203,10 @@
     <section class="content_right">
         <h1 class="reserve_header">予約変更</h1>
         <main class="input_contents">
-            <form action="/detail" method = "POST">
+            <form action="/reschedule" method = "POST">
                 @csrf
                 <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$shopData->id??''}}">
+                <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reservedData->id}}">
                 <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()"></br>
                 <select name="time" id="time" class="time">
                     @foreach ($worktimes as $worktime)
