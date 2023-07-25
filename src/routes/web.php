@@ -16,6 +16,8 @@ Route::get('/register', [WorkController::class, '']);
 Route::get('/mypage', [ShopController::class, 'getMypage']);
 Route::get('/reschedule/{shop_id}/{id}', [ShopController::class, 'getReschedule']);
 Route::post('/reschedule', [ReserveController::class, 'postReschedule']);
+Route::get('/cancel/{shop_id}/{id}', [ShopController::class, 'getCancel']);
+Route::post('/cancel', [ReserveController::class, 'postCancel']);
 
 Route::get('/menu/first', function () {
     return view('loginmenu');

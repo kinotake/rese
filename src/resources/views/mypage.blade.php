@@ -107,6 +107,14 @@
     .error{
       color : red;
     }
+    .message{
+      display: inline-block;
+      margin-left : 100px;
+      width :400px;
+      height: 40px;
+      color : red;
+      font-size : 25px;
+    }
     </style>
 </head>
 <body>
@@ -121,7 +129,7 @@
     </a>
     @endif
     <h1 class="rese">Rese</h1>
-    <p class="like_error">{{session('message'??'')}}</p>
+    <p class="message">{{session('message'??'')}}</p>
   </header>
   <p class="user_name">{{$userData->name}}さん</p>
     <div class="headers">
@@ -138,7 +146,9 @@
           <img src="{{ asset('/images/time.png') }}"  alt="timeのアイコン" width="20" height="20" class="time_icon">
         </a>
         <p>予約</p>
+        <a href="cancel/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="cancel_button">
         <img src="{{ asset('/images/close.png') }}"  alt="closeのアイコン" width="20" height="20" class="close_icon">
+        </a>
         </div>
         <div class="row_content">
           <label for="shop_label" class="label">Shop</label>

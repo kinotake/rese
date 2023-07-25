@@ -46,4 +46,14 @@ class ReserveController extends Controller
 
         return redirect('/mypage')->with(compact('message'));
     }
+    public function postCancel()
+    {   
+        $reserved_id = $_POST["reserve_id"];
+        
+        $reserve = Reserve::find($reserved_id)->delete();
+
+        $message="予約が削除されました。";
+
+        return redirect('/mypage')->with(compact('message'));
+    }
 }

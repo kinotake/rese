@@ -158,4 +158,14 @@ class ShopController extends Controller
 
         return view('reschedule', compact('shopData','worktimes','people','reservedData'));
     }
+    public function getCancel($shop_id,$id)
+    {
+        $reserveId = $id;
+        $reservedData = Reserve::where('id',$reserveId)->first();
+        $shopId = $shop_id;
+        $shopData = Shop::where('id',$shopId)->first();
+        
+
+        return view('cancel', compact('shopData','reservedData'));
+    }
 }
