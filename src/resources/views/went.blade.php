@@ -24,6 +24,11 @@
       margin-left : 20px;
       color: blue;
     }
+    .user_name{
+        display : block;
+        text-align : center;
+        font-size : 30px;
+    }
     .header_went{
         margin-left : 100px;
     }
@@ -71,6 +76,11 @@
       text-align: center;
       padding-top : 5px;
       margin-left : 180px;
+    }
+    .message{
+        display: block;
+        margin-left : 180px;
+        color : red;
     }
     </style>
 </head>

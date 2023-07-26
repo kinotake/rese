@@ -255,7 +255,7 @@
         </script>
                 <button class="form__button" type="submit">予約する</button>
             </form>
-        </section>
+    </section>
         @else
         <div class="error_contents">
         <p class="error">ログインすると予約機能が利用できます。</p>

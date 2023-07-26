@@ -5,6 +5,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', [ShopController::class, 'index']);
 Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
@@ -20,6 +21,7 @@ Route::get('/cancel/{shop_id}/{id}', [ShopController::class, 'getCancel']);
 Route::post('/cancel', [ReserveController::class, 'postCancel']);
 Route::get('/went', [ShopController::class, 'getWent']);
 Route::get('/assessment/{id}', [ShopController::class, 'getAssessment']);
+Route::post('/assessment', [PostController::class, 'postAssessment']);
 
 Route::get('/menu/first', function () {
     return view('loginmenu');

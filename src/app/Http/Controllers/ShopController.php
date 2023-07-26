@@ -183,10 +183,19 @@ class ShopController extends Controller
     public function getAssessment($id)
     {
         $reserveId = $id;
+        $shopData = Reserve::where('id',$reserveId)->first();
+        $shopId = $shopData->shop_id;
         $shopData = Shop::where('id',$shopId)->first();
-        
 
-        return view('datail', compact('shopData'));
+        $min = 1;
+        $max = 5;
+        $scores = [];
+        for ($count = $min; $count <= $max; $count++)
+        {
+            $scores[] = $count;
+        }
+
+        return view('assessment', compact('shopData','reserveId','scores'));
     }
 
 }

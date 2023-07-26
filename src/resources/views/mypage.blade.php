@@ -130,6 +130,7 @@
     @endif
     <h1 class="rese">Rese</h1>
     <p class="message">{{session('message'??'')}}</p>
+    <a href="/went" class="link">来店済み店舗一覧（仮）</a>
   </header>
   <p class="user_name">{{$userData->name}}さん</p>
     <div class="headers">
