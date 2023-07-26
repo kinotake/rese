@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
-    public function postAssessment()
+    public function postAssessment(PostRequest $request)
     {   
         
         $fulled_score = $_POST["score"];

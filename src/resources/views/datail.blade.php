@@ -147,6 +147,18 @@
         border-radius: 5px 5px 0px 0px;
         margin:auto;
     }
+    .input_error{
+        height: 30px;
+        width: 350px;
+        background: red;
+        margin-left : 50px;
+        border-radius: 5px;
+        margin-bottom : 5px;
+    }
+    .input_error_message{
+        color: white;
+        text-align: center;
+    }
     </style>
 </head>
 <body>
@@ -183,7 +195,12 @@
             <p>{{$shopData->comment??''}}</p>
         </article>
     <section class="content_right">
-        <h1 class="reserve_header">予約</h1>
+        <h1 class="reserve_header">予約</h1> 
+        @if (count($errors) > 0)
+        <div class="input_error">
+            <p class="input_error_message">必ず全ての欄を埋めてください</p>
+        </div>
+        @endif
         @if ($checkLogin == true)
         <main class="input_contents">
             <form action="/detail" method = "POST">
@@ -191,11 +208,13 @@
                 <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$shopData->id??''}}">
                 <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()"></br>
                 <select name="time" id="time" class="time">
+                    <option value="" selected>選択してください</option>
                     @foreach ($worktimes as $worktime)
                     <option value="{{$worktime}}">{{$worktime}}</option>
                     @endforeach
                 </select></br>
                 <select name="num_of_guest" id="num_of_guest" class="num_of_guest">
+                    <option value="" selected>選択してください</option>
                     @foreach ($people as $person)
                     <option value="{{$person}}">{{$person}}人</option>
                     @endforeach

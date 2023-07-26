@@ -62,7 +62,7 @@
     }
     .content_right{
         background: blue;
-        height: 300px;
+        height: 400px;
         width: 450px;
         box-shadow: 5px 5px 4px 0px gray;
         border-radius: 5px;
@@ -83,7 +83,7 @@
     }
     .score{
         height: 25px;
-        width: 50px;
+        width: 200px;
         margin-bottom : 10px;
     }
     .comment{
@@ -98,6 +98,18 @@
         border:none;
         position: absolute;
         bottom: 0;
+    }
+    .input_error{
+        height: 30px;
+        width: 350px;
+        background: red;
+        margin-left : 50px;
+        border-radius: 5px;
+        margin-bottom : 5px;
+    }
+    .input_error_message{
+        color: white;
+        text-align: center;
     }
     </style>
 </head>
@@ -135,12 +147,18 @@
         </article>
         <section class="content_right">
         <h1 class="assessment_header">評価</h1>
+        @if (count($errors) > 0)
+        <div class="input_error">
+            <p class="input_error_message">必ず全ての欄を埋めてください</p>
+        </div>
+        @endif
         <main class="input_contents">
             <form action="/assessment" method = "POST">
                 @csrf
                 <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reserveId}}">
                 <label for="score_label" class="label">Score</label>
                 <select name="score" id="score" class="score">
+                    <option value="" selected>選択してください</option>
                     @foreach ($scores as $score)
                     <option value="{{$score}}">{{$score}}</option>
                     @endforeach

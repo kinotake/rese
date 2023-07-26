@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reserve;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ReserveRequest;
 
 class ReserveController extends Controller
 {
-    public function makeReserve()
+    public function makeReserve(ReserveRequest $request)
     {   
         
         $selected_date = $_POST["date"];
