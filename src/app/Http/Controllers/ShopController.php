@@ -114,7 +114,7 @@ class ShopController extends Controller
             $people[] = $count;
         }
 
-        return view('datail', compact('shopData','worktimes','people','checkLogin'));
+        return view('detail', compact('shopData','worktimes','people','checkLogin'));
     }
 
     public function getMypage()

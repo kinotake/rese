@@ -44,6 +44,10 @@
         margin-left : 20px;
         color: blue;
     }
+    .shop_contents{
+        display : flex;
+        flex-wrap:wrap;
+    }
     .shop_content{
         height: 220px;
         width: 220px;
@@ -56,9 +60,11 @@
     }
     .under_contents{
         display : flex;
-        flex-wrap: wrap;
-        justify-content: center;
-	    align-items: center;
+    }
+    .left_padding_content{
+        height: 100%;
+        width: 100px;
+        flex-shrink: 0;
     }
     .shop_information{
         margin-left : 10px;
@@ -123,9 +129,11 @@
     <p class="error">{{session('message')}}</p>
     <p class="error">{{$noPost??''}}</p>
     <div class="under_contents">
+        <div class="left_padding_content">
+        </div>
     @if (@isset($allShops))
+        <div class="shop_contents">
     @foreach ($allShops as $allShop)
-    
         <article class="shop_content">
             <div class="shop_image">
                 <img src="{{ asset('/images/test.png') }}"  alt="店内画像" width="220" height="110">
@@ -157,6 +165,7 @@
             </div>
         </article>
     @endforeach
+    </div>
     @endif
     
     </div>
