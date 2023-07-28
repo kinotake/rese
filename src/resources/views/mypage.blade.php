@@ -33,6 +33,11 @@
       margin-left :100px;
       font-size : 25px;
     }
+    .link{
+      text-decoration: none;
+      color : grey;
+      margin-left : 20px;
+    }
     .header_like{
       margin-left :420px;
       font-size : 25px;
@@ -154,11 +159,11 @@
     @endif
     <h1 class="rese">Rese</h1>
     <p class="message">{{session('message'??'')}}</p>
-    <a href="/went" class="link">来店済み店舗一覧（仮）</a>
   </header>
   <p class="user_name">{{$userData->name}}さん</p>
     <div class="headers">
       <h1 class="header_reserve">予約状況</h1>
+      <a href="/went" class="link">来店済み店舗一覧</a>
       <h2 class="header_like">お気に入り店舗</h2>
     </div>
     <div class="under_contents">

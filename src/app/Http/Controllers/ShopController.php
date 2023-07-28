@@ -178,7 +178,9 @@ class ShopController extends Controller
         $who= Auth::id();
         $userData = User::where('id',$who)->first();
 
-        return view('went', compact('wentReserveDatas','userData'));
+        $likeDatas = Like::where('user_id',$who)->get();
+
+        return view('went', compact('wentReserveDatas','userData','likeDatas'));
     }
     public function getAssessment($id)
     {
