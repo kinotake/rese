@@ -55,6 +55,10 @@
       margin-top : 20px;
       box-shadow: 5px 5px 4px 2px gray;
     }
+    .row_contents{
+      width :340px;
+      height: 180px;
+    }
     .row_content{
       display : flex;
       padding-top : 20px;
@@ -68,6 +72,26 @@
     }
     .reserved_guest{
       margin-left :55px;
+    }
+    .schedule_buttons{
+      width :200px;
+      height: 150px;
+      padding-top: 100px;
+    }
+    .detail_botton_contents{
+      display : flex;
+    }
+    .schedule_button{
+      background: #0000cd;
+      display: block;
+      height: 30px;
+      width: 140px;
+      color : white;
+      border-radius: 5px;
+      padding-top :6px;
+      margin-top :6px;
+      text-decoration: none;
+      text-align: center;
     }
     .right_contents{
       display : flex;
@@ -143,14 +167,12 @@
       @foreach ($reserveDatas as $reserveData)
       <article class="reserved_content">
         <div class="row_content">
-        <a href="reschedule/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="reschedule_button">
           <img src="{{ asset('/images/time.png') }}"  alt="timeのアイコン" width="20" height="20" class="time_icon">
-        </a>
         <p>予約</p>
-        <a href="cancel/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="cancel_button">
         <img src="{{ asset('/images/close.png') }}"  alt="closeのアイコン" width="20" height="20" class="close_icon">
-        </a>
         </div>
+        <div class="detail_botton_contents">
+        <div class="row_contents">
         <div class="row_content">
           <label for="shop_label" class="label">Shop</label>
           <p class="reserved_detail">{{$reserveData->returnName()}}</p>
@@ -166,6 +188,12 @@
         <div class="row_content">
           <label for="num_label" class="label">Number</label>
           <p class="reserved_guest">{{$reserveData->num_of_guest}}人</p>
+        </div>
+        </div>
+        <div class="schedule_buttons">
+          <a href="reschedule/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="schedule_button">予約の変更</a>
+          <a href="cancel/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="schedule_button">予約のキャンセル</a>
+        </div>
         </div>
       </article>
       @endforeach

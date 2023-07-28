@@ -81,10 +81,29 @@
     .label{
         color :white;
     }
-    .score{
-        height: 25px;
-        width: 200px;
-        margin-bottom : 10px;
+    .rate-form {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+    .rate-form input[type=radio] {
+        display: none;
+    }
+    .rate-form label {
+        position: relative;
+        padding: 0 5px;
+        color: #ccc;
+        cursor: pointer;
+        font-size: 35px;
+    }
+    .rate-form label:hover {
+        color: #ffcc00;
+    }
+    .rate-form label:hover ~ label {
+        color: #ffcc00;
+    }
+    .rate-form input[type=radio]:checked ~ label {
+        color: #ffcc00;
     }
     .comment{
         height: 100px;
@@ -154,12 +173,18 @@
                 @csrf
                 <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reserveId}}">
                 <label for="score_label" class="label">Score</label>
-                <select name="score" id="score" class="score">
-                    <option value="" selected>選択してください</option>
-                    @foreach ($scores as $score)
-                    <option value="{{$score}}">{{$score}}</option>
-                    @endforeach
-                </select></br>
+                <div class="rate-form">
+                    <input id="star5" type="radio" name="score" value="5" id="score">
+                    <label for="star5">★</label>
+                    <input id="star4" type="radio" name="score" value="4" id="score">
+                    <label for="star4">★</label>
+                    <input id="star3" type="radio" name="score" value="3" id="score">
+                    <label for="star3">★</label>
+                    <input id="star2" type="radio" name="score" value="2" id="score">
+                    <label for="star2">★</label>
+                    <input id="star1" type="radio" name="score" value="1" id="score">
+                    <label for="star1">★</label>
+                </div>
                 <label for="score_label" class="label">Comment</label>
                 <textarea cols="30" rows="5"name="comment" class="comment" id="comment"></textarea>
         </main>
