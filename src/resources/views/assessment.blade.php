@@ -100,14 +100,16 @@
         bottom: 0;
     }
     .input_error{
+        display : block;
         height: 30px;
         width: 350px;
         background: red;
         margin-left : 50px;
         border-radius: 5px;
-        margin-bottom : 5px;
+        margin-top : 2px;
     }
     .input_error_message{
+        display : block;
         color: white;
         text-align: center;
     }
@@ -147,11 +149,6 @@
         </article>
         <section class="content_right">
         <h1 class="assessment_header">評価</h1>
-        @if (count($errors) > 0)
-        <div class="input_error">
-            <p class="input_error_message">必ず全ての欄を埋めてください</p>
-        </div>
-        @endif
         <main class="input_contents">
             <form action="/assessment" method = "POST">
                 @csrf
@@ -168,6 +165,16 @@
         </main>
                 <button class="form__button" type="submit">評価する</button>
             </form>
-    </section>
+            @error('score')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('score')}}</strong>
+            </span>
+            @enderror
+            @error('comment')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('comment')}}</strong>
+            </span>
+            @enderror
+        </section>
     </div>
 </body>

@@ -148,14 +148,16 @@
         margin:auto;
     }
     .input_error{
+        display : block;
         height: 30px;
         width: 350px;
         background: red;
         margin-left : 50px;
         border-radius: 5px;
-        margin-bottom : 5px;
+        margin-top : 2px;
     }
     .input_error_message{
+        display : block;
         color: white;
         text-align: center;
     }
@@ -195,12 +197,7 @@
             <p>{{$shopData->comment??''}}</p>
         </article>
     <section class="content_right">
-        <h1 class="reserve_header">予約</h1> 
-        @if (count($errors) > 0)
-        <div class="input_error">
-            <p class="input_error_message">必ず全ての欄を埋めてください</p>
-        </div>
-        @endif
+        <h1 class="reserve_header">予約</h1>
         @if ($checkLogin == true)
         <main class="input_contents">
             <form action="/detail" method = "POST">
@@ -274,6 +271,21 @@
         </script>
                 <button class="form__button" type="submit">予約する</button>
             </form>
+        @error('date')
+        <span class="input_error">
+            <strong class="input_error_message">{{$errors->first('date')}}</strong>
+        </span>
+        @enderror
+        @error('time')
+        <span class="input_error">
+            <strong class="input_error_message">{{$errors->first('time')}}</strong>
+        </span>
+        @enderror
+        @error('num_of_guest')
+        <span class="input_error">
+            <strong class="input_error_message">{{$errors->first('num_of_guest')}}</strong>
+        </span>
+        @enderror
     </section>
         @else
         <div class="error_contents">

@@ -24,8 +24,17 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'message' => 'required',
-            'score' => 'required'
+            'score' => 'required',
+            'comment' => 'required|max:1000',
        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'score.required' => 'スコアを入力してください',
+            'comment.required' => 'コメントを入力してください',
+            'comment.max' => 'コメントを1000文字以内で入力してください',
+        ];
     }
 }

@@ -49,7 +49,12 @@
 </div>
 <article class="links">
   <a href="/" class="link">Home</a>
-  <a href="" class="link">Logout</a>
+  <a class="link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById ('logout-form').submit();">
+    {{ __('Logout') }}
+  </a>
+  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+  @csrf
+  </form>
   <!-- 要確認↑ -->
   <a href="/mypage" class="link">Mypage</a>
 </article>
