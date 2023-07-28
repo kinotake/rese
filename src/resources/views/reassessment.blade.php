@@ -226,9 +226,10 @@
                 </div>
             </div>
         </aside>
-        <form action="" method = "POST">
+        <form action="/reassessment" method ="POST">
                 @csrf
-                <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$reserveId}}">
+                <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reserveId}}">
+                <input type="hidden" name="post_id" class="post_id" id="post_id" value="{{$postData->id}}">
                 <div class="score_contents">
                 <label for="score_label" class="label">Score</label>
                 <div class="rate-form">

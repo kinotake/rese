@@ -38,4 +38,21 @@ class PostController extends Controller
 
         return view('reassessment', compact('shopData','reserveId','postData'));
     }
+    public function postReassessment()
+    {   
+        $selectedScore = $_POST["score"];
+        $reassessmentComment = $_POST["comment"];
+        $selectedPostId = $_POST["post_id"];
+        $reserveId = $_POST["reserve_id"];
+        
+        $post = Post::find($selectedPostId);
+        $post->score=$selectedScore;
+        $post->comment=$reassessmentComment;
+        $post->reserve_id=$reserveId;
+        $post->save();
+
+        $message="評価が変更されました。";
+
+        return redirect('/went')->with(compact('message'));
+    }
 }
