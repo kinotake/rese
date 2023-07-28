@@ -246,7 +246,7 @@
                 </div>
                 <div class="input_contents">
                 <label for="comment_label" class="comment_label">Comment</label><br>
-                <textarea cols="30" rows="5"name="comment" class="comment" id="comment"></textarea>
+                <textarea cols="30" rows="5"name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
                 </div>
                 <button class="form__button" type="submit">評価を変更する</button>
             </form>
