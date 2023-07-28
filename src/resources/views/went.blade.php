@@ -163,7 +163,11 @@
       <article class="reserved_content">
         <div class="content_header">
         <p class="went_content_header">来店済み店舗</p>
+        @if ($wentReserveData->checkPost() == 0)
         <a href="assessment/{{$wentReserveData->id}}" type="submit" class="assessment_button">評価する</a>
+        @else
+        <a href="reassessment/{{$wentReserveData->id}}" type="submit" class="assessment_button">編集する</a>
+        @endif
         </div>
         <div class="row_content">
           <label for="shop_label" class="label">Shop</label>

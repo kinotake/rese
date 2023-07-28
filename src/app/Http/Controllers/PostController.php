@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Shop;
+use App\Models\Reserve;
 use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
@@ -24,5 +26,16 @@ class PostController extends Controller
         $message = "評価いただきありがとうございます。";
 
         return redirect('/went')->with(compact('message'));    
-     }
+    }
+
+    public function getReassessment($reserve_id)
+    {
+        $reserveId = $reserve_id;
+        $ReserveDatas = Reserve::where('id',$reserveId)->first();
+        $shopId = $ReserveDatas->shop_id;
+        $shopData = Shop::where('id',$shopId)->first();
+        $postData = Post::where('reserve_id',$reserveId)->first();
+
+        return view('reassessment', compact('shopData','reserveId','postData'));
+    }
 }

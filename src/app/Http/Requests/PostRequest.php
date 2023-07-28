@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
     {
         return [
             'score' => 'required',
-            'comment' => 'required|max:1000',
+            'comment' => 'required|max:115',
        ];
     }
 
@@ -34,7 +34,7 @@ class PostRequest extends FormRequest
         return [
             'score.required' => 'スコアを入力してください',
             'comment.required' => 'コメントを入力してください',
-            'comment.max' => 'コメントを1000文字以内で入力してください',
+            'comment.max' => 'コメントを115文字以内で入力してください',
         ];
     }
 }

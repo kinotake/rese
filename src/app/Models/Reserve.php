@@ -24,4 +24,19 @@ class Reserve extends Model
 
       return $name;
     }
+     public function checkPost()
+    { 
+      if (Post::where('reserve_id','=',$this->id)->exists())
+      {
+        $have_post = 1;
+
+        return $have_post;
+      }
+      else
+      {
+        $no_post = 0;
+
+        return $no_post;
+      }
+    }
 }

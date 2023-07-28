@@ -56,5 +56,4 @@ class Shop extends Model
         return $no_like;
       }
     }
-
 }

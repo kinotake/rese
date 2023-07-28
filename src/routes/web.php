@@ -22,6 +22,8 @@ Route::post('/cancel', [ReserveController::class, 'postCancel']);
 Route::get('/went', [ShopController::class, 'getWent']);
 Route::get('/assessment/{id}', [ShopController::class, 'getAssessment']);
 Route::post('/assessment', [PostController::class, 'postAssessment']);
+    // ↑idの形変えてないです
+Route::get('/reassessment/{reserve_id}', [PostController::class, 'getReassessment']);
 
 Route::get('/menu/first', function () {
     return view('loginmenu');
