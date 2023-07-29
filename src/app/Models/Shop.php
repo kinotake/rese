@@ -56,4 +56,20 @@ class Shop extends Model
         return $no_like;
       }
     }
+    public function getphoto()
+    { 
+      if (Photo::where('shop_id','=',$this->id)->exists())
+      {
+        $photoData = Photo::where('shop_id','=',$this->id)->first();
+        $photoPath = $photoData->path;
+
+        return $photoPath;
+      }
+       else
+      {
+        $noPhotoPath = '/images/test.png';
+
+        return $noPhotoPath;
+      }
+    }
 }

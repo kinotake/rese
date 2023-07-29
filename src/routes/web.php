@@ -6,6 +6,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PhotoController;
 
 Route::get('/', [ShopController::class, 'index']);
 Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
@@ -25,6 +26,12 @@ Route::post('/assessment', [PostController::class, 'postAssessment']);
     // ↑idの形変えてないです
 Route::get('/reassessment/{reserve_id}', [PostController::class, 'getReassessment']);
 Route::post('/reassessment', [PostController::class, 'postReassessment']);
+
+
+Route::get('/owner/upload', function () {
+    return view('owner/upload');
+});
+Route::post('/upload', [PhotoController::class, 'postUpload']);
 
 Route::get('/menu/first', function () {
     return view('loginmenu');

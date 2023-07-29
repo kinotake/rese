@@ -136,7 +136,7 @@
     @foreach ($allShops as $allShop)
         <article class="shop_content">
             <div class="shop_image">
-                <img src="{{ asset('/images/test.png') }}"  alt="店内画像" width="220" height="110">
+                <img src="{{ asset($allShop->getphoto()) }}"  alt="店内画像" width="220" height="110">
             </div>
             <table class="shop_information">
             <th>{{$allShop->name}}</th>
