@@ -18,27 +18,27 @@ class UsersTableSeeder extends Seeder
         [    
             'name' => '中村光',
             'email' => 'test@test',
-            'password' => 'qwertyui',
+            'password' => \Hash::make('qwertyui'),
         ],
         [    
             'name' => '木村昇',
             'email' => 'test2@test2',
-            'password' => 'qwertyui',
+            'password' => \Hash::make('qwertyui'),
         ],
         [    
             'name' => '向井和弘',
             'email' => 'test3@test3',
-            'password' => 'qwertyui',
+            'password' => \Hash::make('qwertyui'),
         ],
         [    
             'name' => '樋口一葉',
             'email' => 'test4@test4',
-            'password' => 'qwertyui',
+            'password' => \Hash::make('qwertyui'),
         ],
         [    
             'name' => '大林餅',
             'email' => 'test5@test5',
-            'password' => 'qwertyui',
+            'password' => \Hash::make('qwertyui'),
         ],
         ]);
     }

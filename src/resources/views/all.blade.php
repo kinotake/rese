@@ -58,6 +58,12 @@
         padding-bottom : 20px;
         border-radius: 5px;
     }
+    @media screen and (max-width: 768px) {
+   .shop_content{
+            height: 200px;
+            width: 200px;
+        }
+    }
     .under_contents{
         display : flex;
     }
@@ -89,7 +95,16 @@
         margin-left : 150px;
         color : red;
     }
-    
+    .shop_photo{
+        width : 220px;
+        height : 110px;
+    }
+    @media screen and (max-width: 768px) {
+    .shop_photo{
+            width : 200px;
+            height : 100px;
+        }
+    }
     </style>
 </head>
 <body>
@@ -136,7 +151,7 @@
     @foreach ($allShops as $allShop)
         <article class="shop_content">
             <div class="shop_image">
-                <img src="{{ asset($allShop->getphoto()) }}"  alt="店内画像" width="220" height="110">
+                <img src="{{ asset($allShop->getphoto()) }}"  alt="店内画像" class="shop_photo">
             </div>
             <table class="shop_information">
             <th>{{$allShop->name}}</th>
