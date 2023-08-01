@@ -12,10 +12,17 @@
       padding: 0;
     }
     .top{
-        margin-left : 130px;
         display : flex;
         padding-top : 20px;
         padding-bottom : 20px;
+    }
+    @media screen and (max-width: 768px) {
+   .top{
+        margin-left : -60px;
+        position: fixed;
+        height: 60px;
+        background: white;
+        }
     }
     .search_contents{
         margin-left :400px;
@@ -23,6 +30,11 @@
         width: 450px;
         border-radius: 5px;
         box-shadow: 3px 3px 3px 3px gray;
+    }
+    @media screen and (max-width: 768px) {
+   .search_contents{
+        margin-left : 20px;
+        }
     }
     .select{
         border: none;
@@ -38,6 +50,7 @@
         border: none;
     }
     .icon{
+        margin-left : 130px;
         box-shadow: 3px 3px 3px 0px gray;
     }
     .rese{
@@ -47,6 +60,12 @@
     .shop_contents{
         display : flex;
         flex-wrap:wrap;
+    }
+    @media screen and (max-width: 768px) {
+   .shop_contents{
+            margin-top : 100px;
+            margin-left : 40px;
+        }
     }
     .shop_content{
         height: 220px;
@@ -101,45 +120,45 @@
     }
     @media screen and (max-width: 768px) {
     .shop_photo{
-            width : 200px;
-            height : 100px;
-        }
+        width : 200px;
+        height : 100px;
+    }
     }
     </style>
 </head>
 <body>
     <header class="top">
-    @if (Auth::check())
-    <a href="/menu/first">
-    <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @else
-    <a href="/menu/second">
-    <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @endif
-    <h1 class="rese">Rese</h1>
-    <div class="search_contents">
-    <form action="/search" method = "POST">
-    @csrf
-    <select class="select" name="place_id">
-        <option value="selected">All area</option>
-        @foreach ($places as $place)
-        <option value="{{$place->id}}">{{$place->name}}</option>
-        @endforeach
-    </select>
-    <select class="select" name="category_id">
-        <option value="selected">All genre</option>
-        @foreach ($categories as $category)
-        <option value="{{$category->id}}">{{$category->name}}</option>
-        @endforeach
-    </select>
-    <button class="form__button" type="submit">
-        <img src="{{ asset('/images/search.png') }}"  alt="探すアイコン" width="25" height="25" class="search_icon">
-    </button>
-    <input type="text" name="keyword" class="keyword" placeholder="Search...">
-    </form>
-    </div>
+        @if (Auth::check())
+        <a href="/menu/first">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        </a>
+        @else
+        <a href="/menu/second">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        </a>
+        @endif
+        <h1 class="rese">Rese</h1>
+        <div class="search_contents">
+            <form action="/search" method = "POST">
+            @csrf
+                <select class="select" name="place_id">
+                    <option value="selected">All area</option>
+                    @foreach ($places as $place)
+                    <option value="{{$place->id}}">{{$place->name}}</option>
+                    @endforeach
+                </select>
+                <select class="select" name="category_id">
+                    <option value="selected">All genre</option>
+                    @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
+                <button class="form__button" type="submit">
+                    <img src="{{ asset('/images/search.png') }}"  alt="探すアイコン" width="25" height="25" class="search_icon">
+                </button>
+                <input type="text" name="keyword" class="keyword" placeholder="Search...">
+            </form>
+        </div>
     </header>
     <p class="error">{{session('message')}}</p>
     <p class="error">{{$noPost??''}}</p>
