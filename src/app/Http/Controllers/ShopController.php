@@ -175,7 +175,7 @@ class ShopController extends Controller
     public function getWent()
     {
         $today = Carbon::now();
-        $wentReserveDatas = Reserve::whereDate('date','<',$today)->get();
+        $wentReserveDatas = Reserve::whereDate('date','<',$today)->where('user_id','=',Auth::id())->get();
 
         $who= Auth::id();
         $userData = User::where('id',$who)->first();

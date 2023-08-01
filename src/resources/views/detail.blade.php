@@ -167,15 +167,21 @@
     }
     .post_contents{
         display:flex;
-        margin-left : 120px;
+        margin-left : 130px;
         margin-top : 20px;
+        height: 300px;
+        width : 1000px;
+        overflow-x:auto;
+        margin-bottom : 30px;
+        border : 1px solid gray;
     }
     .post_content{
+        margin-top : 30px;
         box-shadow: 3px 3px 3px 3px gray;
         height: 250px;
         width: 300px;
         margin-left : 30px;
-        margin-bottom : 50px;
+        flex-shrink: 0;
     }
     .star_contents{
         display:flex;
