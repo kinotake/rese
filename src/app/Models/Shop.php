@@ -72,4 +72,8 @@ class Shop extends Model
         return $noPhotoPath;
       }
     }
+    public function posts()
+    {
+        return $this->hasManyThrough(Post::class, Reserve::class);
+    }
 }

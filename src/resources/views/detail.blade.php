@@ -161,6 +161,34 @@
         color: white;
         text-align: center;
     }
+    .post_header{
+        margin-left : 140px;
+        margin-top : 30px
+    }
+    .post_contents{
+        display:flex;
+        margin-left : 120px;
+        margin-top : 20px;
+    }
+    .post_content{
+        box-shadow: 3px 3px 3px 3px gray;
+        height: 250px;
+        width: 300px;
+        margin-left : 30px;
+        margin-bottom : 50px;
+    }
+    .star_contents{
+        display:flex;
+        margin-left : 5px;
+        margin-top : 10px;
+        margin-bottom : 10px;
+    }
+    .star{
+        color: gold;
+    }
+    .comment_content{
+        margin-left : 5px;
+    }
     </style>
 </head>
 <body>
@@ -196,103 +224,124 @@
             </table>
             <p>{{$shopData->comment??''}}</p>
         </article>
-    <section class="content_right">
-        <h1 class="reserve_header">予約</h1>
-        @if ($checkLogin == true)
-        <main class="input_contents">
-            <form action="/detail" method = "POST">
-                @csrf
-                <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$shopData->id??''}}">
-                <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()"></br>
-                <select name="time" id="time" class="time">
-                    <option value="" selected>選択してください</option>
-                    @foreach ($worktimes as $worktime)
-                    <option value="{{$worktime}}">{{$worktime}}</option>
-                    @endforeach
-                </select></br>
-                <select name="num_of_guest" id="num_of_guest" class="num_of_guest">
-                    <option value="" selected>選択してください</option>
-                    @foreach ($people as $person)
-                    <option value="{{$person}}">{{$person}}人</option>
-                    @endforeach
-                </select>
-        </main>
-        <aside class="select_contents">
-            <div class="select_content">
-                <label for="shop_label" class="label">Shop</label>
-                <p id="selectshop" class="select_value">{{$shopData->name??''}}</p>
-            </div>
-            <div class="select_content">
-                <label for="date_label" class="label">Date</label>
-                <p id="selectdate" class="select_value"></p>
-            </div>
-            <div class="select_content">
-                <label for="time_label" class="label">Time</label>
-                <p id="selecttime" class="select_value"></p>
-            </div>
-            <div class="select_content">
-                <label for="num_label" class="label">Number</label>
-                <p id="selectnum" class="select_value"></p>
-            </div>
-        </aside>
-        <script type="text/javascript">
-            let date = document.getElementById('date');
-            let selectdate = document.getElementById('selectdate');
+        <section class="content_right">
+            <h1 class="reserve_header">予約</h1>
+            @if ($checkLogin == true)
+            <main class="input_contents">
+                <form action="/detail" method = "POST">
+                    @csrf
+                    <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$shopData->id??''}}">
+                    <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()"></br>
+                    <select name="time" id="time" class="time">
+                        <option value="" selected>選択してください</option>
+                        @foreach ($worktimes as $worktime)
+                        <option value="{{$worktime}}">{{$worktime}}</option>
+                        @endforeach
+                    </select></br>
+                    <select name="num_of_guest" id="num_of_guest" class="num_of_guest">
+                        <option value="" selected>選択してください</option>
+                        @foreach ($people as $person)
+                        <option value="{{$person}}">{{$person}}人</option>
+                        @endforeach
+                    </select>
+            </main>
+            <aside class="select_contents">
+                <div class="select_content">
+                    <label for="shop_label" class="label">Shop</label>
+                    <p id="selectshop" class="select_value">{{$shopData->name??''}}</p>
+                </div>
+                <div class="select_content">
+                    <label for="date_label" class="label">Date</label>
+                    <p id="selectdate" class="select_value"></p>
+                </div>
+                <div class="select_content">
+                    <label for="time_label" class="label">Time</label>
+                    <p id="selecttime" class="select_value"></p>
+                </div>
+                <div class="select_content">
+                    <label for="num_label" class="label">Number</label>
+                    <p id="selectnum" class="select_value"></p>
+                </div>
+            </aside>
+            <script type="text/javascript">
+                let date = document.getElementById('date');
+                let selectdate = document.getElementById('selectdate');
 
-            timestamp = 0;
+                timestamp = 0;
 
-            function update(){
+                function update(){
 	
-	            timestamp++;
-	            window.requestAnimationFrame(update);
+	                timestamp++;
+	                window.requestAnimationFrame(update);
 	
-	            if (timestamp % 10 == 0 )
-                {
-		            selectdate.innerHTML = date.value;
-	            }
+	                if (timestamp % 10 == 0 )
+                    {
+		                selectdate.innerHTML = date.value;
+	                }
 	
-            }
+                }
 
-            update();
-        </script>
-        <script type="text/javascript">
-            var time = document.getElementById('time');
-            time.addEventListener('change', (event) => {
-            var selecttime = document.getElementById('selecttime');
-            selecttime.textContent =  time.options[time.selectedIndex].textContent;
-            });
-        </script>
-        <script type="text/javascript">
-            var num_of_guest = document.getElementById('num_of_guest');
-            num_of_guest.addEventListener('change', (event) => {
-            var selectnum = document.getElementById('selectnum');
-            selectnum.textContent = num_of_guest.options[num_of_guest.selectedIndex].textContent;
-            });
-        </script>
-                <button class="form__button" type="submit">予約する</button>
-            </form>
-        @error('date')
-        <span class="input_error">
-            <strong class="input_error_message">{{$errors->first('date')}}</strong>
-        </span>
-        @enderror
-        @error('time')
-        <span class="input_error">
-            <strong class="input_error_message">{{$errors->first('time')}}</strong>
-        </span>
-        @enderror
-        @error('num_of_guest')
-        <span class="input_error">
-            <strong class="input_error_message">{{$errors->first('num_of_guest')}}</strong>
-        </span>
-        @enderror
-    </section>
-        @else
-        <div class="error_contents">
-        <p class="error">ログインすると予約機能が利用できます。</p>
-        </div>
-        <div class="login_button">
-        <a href="/login" type="submit" class="login">ログインする</a>
-        </div>
+                update();
+            </script>
+            <script type="text/javascript">
+                var time = document.getElementById('time');
+                time.addEventListener('change', (event) => {
+                var selecttime = document.getElementById('selecttime');
+                selecttime.textContent =  time.options[time.selectedIndex].textContent;
+                });
+            </script>
+            <script type="text/javascript">
+                var num_of_guest = document.getElementById('num_of_guest');
+                num_of_guest.addEventListener('change', (event) => {
+                var selectnum = document.getElementById('selectnum');
+                selectnum.textContent = num_of_guest.options[num_of_guest.selectedIndex].textContent;
+                });
+            </script>
+                    <button class="form__button" type="submit">予約する</button>
+                </form>
+            @error('date')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('date')}}</strong>
+            </span>
+            @enderror
+            @error('time')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('time')}}</strong>
+            </span>
+            @enderror
+            @error('num_of_guest')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('num_of_guest')}}</strong>
+            </span>
+            @enderror
+        </section>
+    </div>
+            @else
+            <div class="error_contents">
+            <p class="error">ログインすると予約機能が利用できます。</p>
+            </div>
+            <div class="login_button">
+            <a href="/login" type="submit" class="login">ログインする</a>
+            </div>
+        </section>
+    </div>
         @endif
+<h2 class="post_header">この店の評価</h2>
+<article class="post_contents">
+@if (@isset($shopPosts))
+    @foreach ($shopPosts as $shopPost)
+    <div class="post_content">
+        <div class="star_contents">
+    @for ($count = 1; $count <= $shopPost->score; $count++)
+            <p class="star">★</p>
+    @endfor
+            <p>({{$shopPost->score}})</p>
+        </div>
+        <div class="comment_content">
+            <p>{{$shopPost->comment}}</p>
+        </div>
+    </div>
+    @endforeach
+@endif
+</article>
 </body>
