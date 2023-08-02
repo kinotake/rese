@@ -175,6 +175,10 @@
       color : red;
       font-size : 25px;
     }
+    .shop_photo{
+      width :220px;
+      height: 110px;
+    }
     </style>
 </head>
 <body>
@@ -243,7 +247,7 @@
         @foreach ($likeDatas as $likeData)
         <article class="shop_content">
           <div class="shop_image">
-            <img src="{{ asset('/images/test.png') }}"  alt="店内画像" width="220" height="110">
+            <img src="{{ asset($likeData->getphoto()) }}"  alt="店内画像" class="shop_photo">
           </div>
           <table class="shop_information">
             <th>{{$likeData->shop->name}}</th>

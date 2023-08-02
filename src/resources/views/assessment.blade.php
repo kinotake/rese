@@ -158,6 +158,10 @@
         color: white;
         text-align: center;
     }
+    .shop_photo{
+        height: 300px;
+        width: 500px;
+    }
     </style>
 </head>
 <body>
@@ -182,7 +186,7 @@
                 <h1 class="shop_name">{{$shopData->name??''}}</h1>
             </div>
             <div>
-                <img src="{{ asset('/images/test.png') }}" alt="店内画像" width="500" height="300">
+                <img src="{{ asset($shopData->getPhoto()) }}"  alt="店内画像" class="shop_photo">
             </div>
             <table>
                 <tr>

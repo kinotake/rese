@@ -40,4 +40,20 @@ class Like extends Model
 
       return $place;
     }
+    public function getPhoto()
+    { 
+      if (Photo::where('shop_id','=',$this->shop_id)->exists())
+      {
+        $photoData = Photo::where('shop_id','=',$this->shop_id)->first();
+        $photoPath = $photoData->path;
+
+        return $photoPath;
+      }
+       else
+      {
+        $noPhotoPath = '/images/test.png';
+
+        return $noPhotoPath;
+      }
+    }
 }

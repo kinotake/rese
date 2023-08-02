@@ -56,7 +56,7 @@ class Shop extends Model
         return $no_like;
       }
     }
-    public function getphoto()
+    public function getPhoto()
     { 
       if (Photo::where('shop_id','=',$this->id)->exists())
       {

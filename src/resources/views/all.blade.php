@@ -170,7 +170,7 @@
     @foreach ($allShops as $allShop)
         <article class="shop_content">
             <div class="shop_image">
-                <img src="{{ asset($allShop->getphoto()) }}"  alt="店内画像" class="shop_photo">
+                <img src="{{ asset($allShop->getPhoto()) }}"  alt="店内画像" class="shop_photo">
             </div>
             <table class="shop_information">
             <th>{{$allShop->name}}</th>
