@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>店舗詳細ページ</title>
+  <title>店舗評価ページ</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
 
     <style>
@@ -12,12 +12,21 @@
       padding: 0;
     }
     .top{
-        margin-left : 130px;
         display : flex;
         padding-top : 20px;
         padding-bottom : 20px;
     }
+    @media screen and (max-width: 768px) {
+    .top{
+        margin-left : -60px;
+        position: fixed;
+        height: 60px;
+        width: 1024px;
+        background: white;
+        }
+    }
     .icon{
+        margin-left : 130px;
         box-shadow: 3px 3px 3px 0px gray;
     }
     .rese{
@@ -47,6 +56,13 @@
         justify-content: center;
 	    align-items: center;
     }
+    @media screen and (max-width: 768px) {
+    .under_content{
+            display:block;
+            margin-left : 100px;
+            padding-top : 150px;
+        }
+    }
     .shop_header{
         display:flex;
     }
@@ -67,6 +83,11 @@
         box-shadow: 5px 5px 4px 0px gray;
         border-radius: 5px;
         position: relative;
+    }
+    @media screen and (max-width: 768px) {
+    .content_right{
+            width: 540px;
+        }
     }
     .assessment_header{
         color :white;
@@ -118,6 +139,11 @@
         position: absolute;
         bottom: 0;
     }
+    @media screen and (max-width: 768px) {
+    .form__button{
+            width: 540px;
+        }
+    }
     .input_error{
         display : block;
         height: 30px;
@@ -146,7 +172,7 @@
     </a>
     @endif
         <h1 class="rese">Rese</h1>
-    </header>
+</header>
     <div class="under_content">
         <article class="content_left">
             <div class="shop_header">

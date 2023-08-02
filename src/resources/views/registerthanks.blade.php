@@ -12,12 +12,20 @@
       padding: 0;
     }
     .top{
-        margin-left : 130px;
         display : flex;
         padding-top : 20px;
         padding-bottom : 20px;
     }
+    @media screen and (max-width: 768px) {
+   .top{
+        margin-left : -60px;
+        height: 60px;
+        width :1000px;
+        background: white;
+        }
+    }
     .icon{
+        margin-left : 130px;
         box-shadow: 3px 3px 3px 0px gray;
     }
     .rese{
@@ -25,11 +33,12 @@
         color: blue;
     }
     .thanks{
+        margin: auto;
+        margin-top: 100px;
         height: 180px;
         width: 400px;
         box-shadow: 3px 3px 3px 2px gray;
         text-align: center;
-        margin: auto;
         padding-top: 80px;
     }
     .button{

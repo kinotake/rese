@@ -12,12 +12,21 @@
       padding: 0;
     }
     .top{
-      margin-left : 130px;
       display : flex;
       padding-top : 20px;
       padding-bottom : 20px;
     }
+    @media screen and (max-width: 768px) {
+    .top{
+      margin-left : -60px;
+      position: fixed;
+      height: 60px;
+      width :1000px;
+      background: white;
+      }
+    }
     .icon{
+      margin-left : 130px;
       box-shadow: 3px 3px 3px 0px gray;
     }
     .rese{
@@ -28,6 +37,13 @@
       display:inline-block;
       font-size : 30px;
       margin-left : 620px;
+      margin-bottom : 30px;
+    }
+    @media screen and (max-width: 768px) {
+    .user_name{
+      margin-left : 100px;
+      margin-top : 100px;
+      }
     }
     .header_reserve{
       margin-left :100px;
@@ -41,6 +57,11 @@
     .header_like{
       margin-left :420px;
       font-size : 25px;
+    }
+    @media screen and (max-width: 768px) {
+    .header_like{
+      margin-left : 120px;
+      }
     }
     .headers{
       display : flex;
@@ -59,6 +80,11 @@
       margin-bottom :30px;
       margin-top : 20px;
       box-shadow: 5px 5px 4px 2px gray;
+    }
+    @media screen and (max-width: 768px) {
+    .reserved_content{
+      margin-left : -60px;
+      }
     }
     .row_contents{
       width :340px;
@@ -102,6 +128,11 @@
       display : flex;
       flex-wrap: wrap;
       margin-left :100px;
+    }
+    @media screen and (max-width: 768px) {
+    .right_contents{
+      margin-left : 5px;
+      }
     }
     .shop_content{
       height: 220px;

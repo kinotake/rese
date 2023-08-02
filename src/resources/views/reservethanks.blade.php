@@ -17,6 +17,14 @@
         padding-top : 20px;
         padding-bottom : 20px;
     }
+    @media screen and (max-width: 768px) {
+    .top{
+        margin-left : 70px;
+        height: 60px;
+        width: 1000px;
+        background: white;
+        }
+    }
     .icon{
         box-shadow: 3px 3px 3px 0px gray;
     }
@@ -31,6 +39,11 @@
         text-align: center;
         margin: auto;
         padding-top: 80px;
+    }
+    @media screen and (max-width: 768px) {
+    .thanks{
+        margin-top: 80px;
+        }
     }
     .button{
         margin-top :30px;

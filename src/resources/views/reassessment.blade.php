@@ -12,12 +12,21 @@
       padding: 0;
     }
     .top{
-        margin-left : 130px;
         display : flex;
         padding-top : 20px;
         padding-bottom : 20px;
     }
+    @media screen and (max-width: 768px) {
+   .top{
+        margin-left : -60px;
+        position: fixed;
+        height: 60px;
+        width: 1000px;
+        background: white;
+        }
+    }
     .icon{
+        margin-left : 130px;
         box-shadow: 3px 3px 3px 0px gray;
     }
     .rese{
@@ -47,6 +56,13 @@
         justify-content: center;
 	    align-items: center;
     }
+    @media screen and (max-width: 768px) {
+    .under_content{
+            display:block;
+            margin-left : 100px;
+            padding-top : 150px;
+        }
+    }
     .shop_header{
         display:flex;
     }
@@ -67,6 +83,11 @@
         box-shadow: 5px 5px 4px 0px gray;
         border-radius: 5px;
         position: relative;
+    }
+    @media screen and (max-width: 768px) {
+    .content_right{
+            width: 540px;
+        }
     }
     .reserve_header{
         color:white;
@@ -162,6 +183,11 @@
         border:none;
         position: absolute;
         bottom: 0;
+    }
+    @media screen and (max-width: 768px) {
+    .form__button{
+            width: 540px;
+        }
     }
     .error{
         display : inline-block;

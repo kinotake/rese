@@ -12,12 +12,21 @@
       padding: 0;
     }
     .top{
-      margin-left : 130px;
       display : flex;
       padding-top : 20px;
       padding-bottom : 20px;
     }
+    @media screen and (max-width: 768px) {
+    .top{
+        margin-left : -60px;
+        position: fixed;
+        height: 60px;
+        width :1000px;
+        background: white;
+        }
+    }
     .icon{
+      margin-left : 130px;
       box-shadow: 3px 3px 3px 0px gray;
     }
     .rese{
@@ -28,10 +37,23 @@
       display:inline-block;
       font-size : 30px;
       margin-left : 620px;
+      margin-bottom :30px;
+    }
+    @media screen and (max-width: 768px) {
+    .user_name{
+      margin-left : 100px;
+      margin-top : 100px;
+      }
     }
     .header_went{
       font-size : 25px;
       margin-left : 20px;
+    }
+    @media screen and (max-width: 768px) {
+    .user_name{
+      margin-left : 100px;
+      margin-top : 100px;
+      }
     }
     .link{
       text-decoration: none;
@@ -42,6 +64,11 @@
       margin-left :420px;
       font-size : 25px;
     }
+    @media screen and (max-width: 768px) {
+    .header_like{
+      margin-left : 80px;
+      }
+    }
     .headers{
       display : flex;
     }
@@ -50,6 +77,11 @@
     }
     .left_content{
       margin-left :100px;
+    }
+    @media screen and (max-width: 768px) {
+    .left_content{
+      margin-left : 40px;
+      }
     }
     .reserved_content{
       width :400px;
@@ -100,6 +132,11 @@
       display : flex;
       flex-wrap: wrap;
       margin-left :100px;
+    }
+     @media screen and (max-width: 768px) {
+    .right_contents{
+      margin-left : 5px;
+      }
     }
     .shop_content{
       height: 220px;
