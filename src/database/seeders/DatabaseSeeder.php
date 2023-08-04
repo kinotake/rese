@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
           CategoriesTableSeeder::class,
           PlacesTableSeeder::class,
           ReservesTableSeeder::class,
-          PostsTableSeeder::class
+          PostsTableSeeder::class,
+          OwnersTableSeeder::class,
         ]);
     }
 }

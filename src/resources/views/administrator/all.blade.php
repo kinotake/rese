@@ -66,12 +66,18 @@
         border : none;
         border-radius: 5px;
     }
+    .owner_header{
+        margin-left : 50px;
+        margin-top : 30px;
+        margin-bottom : 5px;
+    }
     .owner_contents{
         width: 1200px;
+        margin-left : 50px; 
     }
     .message{
         margin-top : 5px;
-        margin-left : 200px; 
+        margin-left : 50px; 
         color : red;
     }
     .detail_button{
@@ -115,9 +121,8 @@
                 </form>
             </div>
     </div>
-        <article>
         <h2 class="owner_header">店舗管理者一覧</h2>
-        <table class="owner_contents">
+        <table class="owner_contents" border="1">
             <tr>
                 <th>店舗管理者名</th> 
                 <th>メールアドレス</th>
@@ -128,7 +133,7 @@
                 <td class="name">{{$allOwner->name}}様</td> 
                 <td class="email">{{$allOwner->email}}</td>
                 <td class="num">まだです</td>
-                <td><a href="make/shop/{{$allOwner->id}}" type="submit" class="detail_button">店舗の管理</a></td>
+                <td><a href="adiministrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">店舗の管理</a></td>
             </tr>
             @endforeach
         </table>
