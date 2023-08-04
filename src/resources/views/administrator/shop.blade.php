@@ -81,6 +81,11 @@
         margin-left : 30px;
         font-size : 30px;
     }
+    .message{
+        margin-top : 5px;
+        margin-left : 50px; 
+        color : red;
+    }
     </style>
 </head>
 <body>
@@ -89,7 +94,7 @@
         <img src="{{ asset('/images/adiministrator.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
     </a>
         <h1 class="rese">Rese</h1>
-        <p class="">{{session('message')}}</p>
+        <p class="message">{{$message??''}}</p>
     </header>
     <div class="under_content">
         <div class="content_left">
@@ -104,7 +109,7 @@
             @if (@isset($allShops))
             @foreach ($allShops as $allShop)
             <tr>
-                <td class="name">{{$allShop->name}}様</td> 
+                <td class="name">{{$allShop->name}}</td> 
                 <td class="email">ああ</td>
                 <td class="num">まだです</td>
                 <td>{{$allShop->updated_at}}</td>

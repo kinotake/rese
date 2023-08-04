@@ -9,6 +9,7 @@ use App\Models\Place;
 use App\Models\Like;
 use App\Models\Reserve;
 use App\Models\User;
+use App\Models\Owner;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -211,10 +212,16 @@ class ShopController extends Controller
         $shop->name = $postName;
         $shop->category_id = $categoryId;
         $shop->place_id = $placeId;
+        $shop->comment = "コメントが入力されていません。";
         $shop->save();
 
         $message = "店舗が追加されました。";
 
-        return redirect('/adiministrator/shop/$ownerId')->with(compact('message'));
+        $allShops =  Shop::where('owner_id',$ownerId)->get();
+        $ownerData = Owner::find($ownerId);
+        $categories = Category::all();
+        $places = Place::all();
+
+        return view('administrator/shop', compact('allShops','ownerData','categories','places','message'));
     }
 }

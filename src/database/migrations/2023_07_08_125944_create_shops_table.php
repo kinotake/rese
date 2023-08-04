@@ -18,7 +18,7 @@ class CreateShopsTable extends Migration
             $table->string('name');
             $table->integer('place_id');
             $table->integer('category_id');
-            $table->text('comment')->nullable();
+            $table->text('comment');
             $table->integer('owner_id')->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();

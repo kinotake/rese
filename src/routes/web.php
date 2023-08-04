@@ -30,9 +30,9 @@ Route::post('/reassessment', [PostController::class, 'postReassessment']);
 //  ★管理者権限
 
 Route::get('/administrator', [OwnerController::class, 'getOwner']);
-Route::post('/administrator/register', [OwnerController::class, 'postOwner'])->name('makeOwner');
+Route::post('/administrator/register', [OwnerController::class, 'postOwner']);
 Route::get('adiministrator/shop/{owner_id}', [OwnerController::class, 'getShop']);
-Route::post('/administrator/register', [ShopController::class, 'makeShop'])->name('makeShop');
+Route::post('/administrator/shop/register', [ShopController::class, 'makeShop'])->name('makeShop');
 
 Route::get('/owner/upload', function () {
     return view('owner/upload');

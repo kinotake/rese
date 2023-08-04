@@ -107,7 +107,7 @@
                 <p class="register-header">Owner-Register</p>
             </div>
             <div class="card-body">
-                <form action="{{ route('makeOwner') }}" method="POST">
+                <form action="/administrator/register" method="POST">
                 @csrf
                     <div>
                         <img src="{{ asset('/images/person.png') }}"  alt="personのアイコン" width="22" height="22" class="person_icon">
