@@ -55,7 +55,6 @@
   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
   @csrf
   </form>
-  <!-- 要確認↑ -->
   <a href="/mypage" class="link">Mypage</a>
 </article>
 </body>

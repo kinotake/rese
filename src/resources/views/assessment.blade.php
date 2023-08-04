@@ -216,7 +216,7 @@
                     <label for="star1">★</label>
                 </div>
                 <label for="score_label" class="label">Comment</label>
-                <textarea cols="30" rows="5"name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
+                <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
         </main>
                 <button class="form__button" type="submit">評価する</button>
             </form>
