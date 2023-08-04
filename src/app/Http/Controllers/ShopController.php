@@ -162,6 +162,7 @@ class ShopController extends Controller
 
         return view('reschedule', compact('shopData','worktimes','people','reservedData'));
     }
+
     public function getCancel($shop_id,$id)
     {
         $reserveId = $id;
@@ -172,6 +173,7 @@ class ShopController extends Controller
 
         return view('cancel', compact('shopData','reservedData'));
     }
+
     public function getWent()
     {
         $today = Carbon::now();
@@ -184,6 +186,7 @@ class ShopController extends Controller
 
         return view('went', compact('wentReserveDatas','userData','likeDatas'));
     }
+
     public function getAssessment($id)
     {
         $reserveId = $id;
@@ -194,4 +197,24 @@ class ShopController extends Controller
         return view('assessment', compact('shopData','reserveId'));
     }
 
+    public function makeShop(Request $request)
+    {
+        $post = $request->all();
+
+        $ownerId = $_POST["owner_id"];
+        $postName = $_POST["new_shop_name"];
+        $categoryId = $_POST["category_id"];
+        $placeId = $_POST["place_id"];
+        
+        $shop = new Shop();
+        $shop->owner_id = $ownerId;
+        $shop->name = $postName;
+        $shop->category_id = $categoryId;
+        $shop->place_id = $placeId;
+        $shop->save();
+
+        $message = "店舗が追加されました。";
+
+        return redirect('/adiministrator/shop/$ownerId')->with(compact('message'));
+    }
 }

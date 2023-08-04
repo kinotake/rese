@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
           PlacesTableSeeder::class,
           ReservesTableSeeder::class,
           PostsTableSeeder::class,
-          OwnersTableSeeder::class,
+          OwnersTableSeeder::class
         ]);
     }
 }

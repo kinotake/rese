@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Owner;
 use App\Models\Shop;
+use App\Models\Category;
+use App\Models\Place;
 
 class OwnerController extends Controller
 {
@@ -37,9 +39,10 @@ class OwnerController extends Controller
         $ownerId = $owner_id;
         $allShops =  Shop::where('owner_id',$ownerId)->get();
         $ownerData = Owner::find($ownerId);
-        dd($ownerData);
-        $name = $ownerData->name;
+
+        $categories = Category::all();
+        $places = Place::all();
         
-        return view('administrator/shop', compact('allShops','name'));
+        return view('administrator/shop', compact('allShops','ownerData','categories','places'));
     }
 }

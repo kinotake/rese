@@ -32,6 +32,7 @@ Route::post('/reassessment', [PostController::class, 'postReassessment']);
 Route::get('/administrator', [OwnerController::class, 'getOwner']);
 Route::post('/administrator/register', [OwnerController::class, 'postOwner'])->name('makeOwner');
 Route::get('adiministrator/shop/{owner_id}', [OwnerController::class, 'getShop']);
+Route::post('/administrator/register', [ShopController::class, 'makeShop'])->name('makeShop');
 
 Route::get('/owner/upload', function () {
     return view('owner/upload');
