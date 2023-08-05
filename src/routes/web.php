@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\OwnerLoginController;
 
 Route::get('/', [ShopController::class, 'index']);
 Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
@@ -55,6 +56,10 @@ Route::get('/owner/register', function () {
     return view('owner/register');
 });
 Route::post('/owner/register', [OwnerController::class, 'updateOwner']);
+Route::get('/owner/login', function () {
+    return view('owner/login');
+});
+Route::post('/owner/login', [OwnerLoginController::class, 'login']);
 
 Route::get('/owner/upload', function () {
     return view('owner/upload');

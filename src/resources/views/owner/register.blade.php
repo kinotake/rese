@@ -77,8 +77,6 @@
         <h1 class="rese">Rese</h1>
         <p class="">{{session('message')}}</p>
     </header>
-    <div class="under_content">
-    </div>
     <div class="container">
             <div class="card-header">
                 <p class="register-header">First-Owner-Register</p>

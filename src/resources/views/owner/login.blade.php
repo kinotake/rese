@@ -28,7 +28,7 @@
         justify-content: center;
         margin: auto;
         box-shadow: 5px 5px 4px 2px gray;
-        height: 230px;
+        height: 200px;
         width: 300px;
         border-radius: 5px;
     }
@@ -76,24 +76,23 @@
         <h1 class="rese">Rese</h1>
         <p class="">{{session('message')}}</p>
     </header>
-    <div class="under_content">
+    <div class="container">
+        <div class="card-header">
+            <p class="register-header">Owner-Login</p>
+        </div>
         <div class="card-body">
-                <form action="" method="POST">
-                @csrf
-                    <div>
-                        <img src="{{ asset('/images/person.png') }}"  alt="personのアイコン" width="22" height="22" class="person_icon">
-                                <input id="user_name" type="text" class="form" placeholder="UserName" name="user_name">
-                    </div>
-                    <div>
+            <form action="" method="POST">
+            @csrf
+                <div>
                         <img src="{{ asset('/images/mail.png') }}"  alt="mailのアイコン" width="20" height="20" class="email_icon">
-                                <input id="email" type="email" placeholder="Email(提示済みメールアドレス）" class="form" name="email">
-                    </div>
-                    <div>
-                        <img src="{{ asset('/images/key.png') }}"  alt="keyのアイコン" width="20" height="20" class="key_icon">
+                                <input id="email" type="email" placeholder="Email" class="form" name="email">
+                </div>
+                <div>
+                    <img src="{{ asset('/images/key.png') }}"  alt="keyのアイコン" width="20" height="20" class="key_icon">
                                 <input id="password" type="password" class="form" placeholder="Password" name="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">登録</button>
-                </form>
-            </div>
+                </div>
+                <button type="submit" class="btn btn-primary">登録</button>
+            </form>
+        </div>
     </div>
 </body>
