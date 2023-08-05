@@ -73,15 +73,31 @@
     }
     .owner_contents{
         width: 1200px;
-        margin-left : 50px; 
+        margin-left : 50px;
+        margin-bottom : 100px;
     }
     .message{
         margin-top : 5px;
         margin-left : 50px; 
         color : red;
     }
+    .buttons{
+        display : flex;
+    }
     .detail_button{
         background: #32b39e;
+        display: block;
+        height: 30px;
+        width: 100px;
+        color : white;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+        padding-top : 5px;
+        margin-left : 10px;
+    }
+    .mail_button{
+        background: #40e0d0;
         display: block;
         height: 30px;
         width: 100px;
@@ -126,15 +142,15 @@
             <tr>
                 <th>店舗管理者名</th> 
                 <th>メールアドレス</th>
-                <th>管理店舗数</th>
             </tr>
             @foreach ($allOwners as $allOwner)
             <tr>
                 <td class="name">{{$allOwner->name}}様</td> 
                 <td class="email">{{$allOwner->email}}</td>
-                <td class="num">まだです</td>
-                <td><a href="adiministrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">店舗の管理</a></td>
-            </tr>
+                <td class="buttons"><a href="adiministrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">店舗の管理</a>
+                <a href="" type="submit" class="mail_button">メールの送信</a>
+                </td>
+                </tr>
             @endforeach
         </table>
 </body>

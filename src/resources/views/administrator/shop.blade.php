@@ -110,8 +110,8 @@
             @foreach ($allShops as $allShop)
             <tr>
                 <td class="name">{{$allShop->name}}</td> 
-                <td class="email">ああ</td>
-                <td class="num">まだです</td>
+                <td class="email">{{$allShop->category->name}}</td>
+                <td class="num">{{$allShop->place->name}}</td>
                 <td>{{$allShop->updated_at}}</td>
             </tr>
             @endforeach
