@@ -224,4 +224,49 @@ class ShopController extends Controller
 
         return view('administrator/shop', compact('allShops','ownerData','categories','places','message'));
     }
+
+    public function editCategory(Request $request)
+    {   
+        $shopId = $_POST["num"];
+        $categoryId = $_POST["category_id"];
+
+        Shop::where('id','=',$shopId)->update([
+            'category_id' => $categoryId,
+        ]);
+
+        $message="ジャンルが変更されました。";
+
+        return redirect('/owner')->with(compact('message'));
+        
+    }
+
+    public function editPlace(Request $request)
+    {   
+        $shopId = $_POST["num"];
+        $placeId = $_POST["place_id"];
+
+        Shop::where('id','=',$shopId)->update([
+            'place_id' => $placeId,
+        ]);
+
+        $message="エリアが変更されました。";
+
+        return redirect('/owner')->with(compact('message'));
+        
+    }
+
+    public function editComment(Request $request)
+    {   
+        $shopId = $_POST["num"];
+        $postComment = $_POST["comment"];
+
+        Shop::where('id','=',$shopId)->update([
+            'comment' => $postComment,
+        ]);
+
+        $message="コメントが変更されました。";
+
+        return redirect('/owner')->with(compact('message'));
+        
+    }
 }

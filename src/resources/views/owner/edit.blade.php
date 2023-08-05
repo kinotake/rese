@@ -88,23 +88,23 @@
         font-size :20px;
     }
     .select_place{
-        margin-left : 175px;
+        margin-left : 202px;
     }
     .select_category{
-        margin-left : 135px;
+        margin-left : 162px;
     }
     .comment{
-        margin-left : 15px;
+        margin-left : 10px;
+        width: 250px;
     }
     .num{
         margin-left : 10px;
         width: 200px;
     }
     .image{
-        margin-left : 115px;
+        background: white;
     }
     .form__button{
-        margin-left : 20px;
         height: 40px;
         width: 80px;
         background: #0000cd;
@@ -114,7 +114,7 @@
         border-radius: 5px;
     }
     .form__button_image{
-        margin-left : -20px;
+        margin-left : 0px;
         height: 40px;
         width: 80px;
         background: #0000cd;
@@ -162,9 +162,10 @@
             <header class="assessment_header">店舗情報の変更</header>
         <main class="">
             <div class="select_contents">
-            <form action="" method = "POST">
-                @csrf
+            <form action="/owner/edit/place" method = "POST">
+            @csrf
                 <label for="label" class="label">エリア</label>
+                <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
             <select class="select_place" name="place_id">
                     <option value="selected">All area</option>
                     @foreach ($places as $place)
@@ -175,8 +176,10 @@
             </form>
             </div>
             <div class="select_contents">
-            <form action="" method = "POST">
+            <form action="/owner/edit/category" method = "POST">
+            @csrf
                 <label for="label" class="label">ジャンル</label>
+                <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
                 <select class="select_category" name="category_id">
                     <option value="selected">All genre</option>
                     @foreach ($categories as $category)
@@ -186,18 +189,24 @@
             <button class="form__button" type="submit">変更する</button>
             </form>
             </div>
-            <form action="" method = "POST" class="select_contents_comment">
+            <div class="select_contents">
+            <form action="/owner/edit/comment" method = "POST" class="select_contents_comment">
+            @csrf
                 <label for="label" class="label">コメント</label>
+                <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
                 <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
                 <button class="form__button" type="submit">変更する</button>
             </form>
-            <form method="POST" action="/upload" enctype="multipart/form-data">
+            </div>
+            <div class="select_contents">
+            <form method="POST" action="/owner/upload" enctype="multipart/form-data">
             @csrf
                 <label for="label" class="label">画像変更</label>
-                <input type="text" name="num" class="num" id="num">
-                <input type="file" name="image" class="image">
+                <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
+                <input type="file" value="{{$shopId}}" name="image" class="image">
                 <button class="form__button_image">アップロード</button>
             </form>
+            </div>
         </main>
                 
             

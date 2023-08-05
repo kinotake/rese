@@ -92,7 +92,7 @@ class OwnerController extends Controller
 
         $categories = Category::all();
         $places = Place::all();
-
-        return view('owner/edit', compact('shopData','categories','places'));
+        
+        return view('owner/edit', compact('shopData','categories','places','shopId'));
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\OwnerLoginController;
 
+
 Route::get('/', [ShopController::class, 'index']);
 Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
 Route::post('/search', [ShopController::class, 'search']);
@@ -65,18 +66,14 @@ Route::get('/owner/menu', function () {
 });
 Route::get('/owner', [OwnerController::class, 'getAll']);
 Route::post('/owner/logout', [OwnerLoginController::class, 'logout']);
-Route::get('/owner/detail/{shop_id}', [OwnerController::class, 'getEdit']);
-
-
-
-
-Route::get('/owner/upload', function () {
-    return view('owner/upload');
-});
-Route::post('/upload', [PhotoController::class, 'postUpload']);
+Route::get('/owner/edit/{shop_id}', [OwnerController::class, 'getEdit']);
+Route::post('/owner/edit/category', [ShopController::class, 'editCategory']);
+Route::post('/owner/edit/category', [ShopController::class, 'editCategory']);
+Route::post('/owner/edit/place', [ShopController::class, 'editPlace']);
+Route::post('/owner/edit/comment', [ShopController::class, 'editComment']);
+Route::post('owner/upload', [PhotoController::class, 'postUpload']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 

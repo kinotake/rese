@@ -103,7 +103,7 @@
             </tr>
             </table>
             <div class="bottons">
-                <a href="owner/detail/{{$allShop->id}}" type="submit" class="detail_button">編集する</a>
+                <a href="owner/edit/{{$allShop->id}}" type="submit" class="detail_button">編集する</a>
             </div>
         </article>
     @endforeach
