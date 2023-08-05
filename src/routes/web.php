@@ -60,6 +60,15 @@ Route::get('/owner/login', function () {
     return view('owner/login');
 });
 Route::post('/owner/login', [OwnerLoginController::class, 'login']);
+Route::get('/owner/menu', function () {
+    return view('owner/menu');
+});
+Route::get('/owner', [OwnerController::class, 'getAll']);
+Route::post('/owner/logout', [OwnerLoginController::class, 'logout']);
+Route::get('/owner/detail/{shop_id}', [OwnerController::class, 'getEdit']);
+
+
+
 
 Route::get('/owner/upload', function () {
     return view('owner/upload');

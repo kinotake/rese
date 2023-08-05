@@ -8,6 +8,7 @@ use App\Models\Shop;
 use App\Models\Category;
 use App\Models\Place;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerController extends Controller
 {
@@ -73,5 +74,25 @@ class OwnerController extends Controller
 
             return redirect('/owner/login')->with(compact('message'));
         }
+    }
+
+    public function getAll()
+    {
+        $ownerId =Auth::guard('owners')->user()->id;
+        
+        $allShops =  Shop::where('owner_id','=',$ownerId)->get();
+        
+        return view('owner/all', compact('allShops'));
+    }
+
+    public function getEdit($shop_id)
+    {
+        $shopId = $shop_id;
+        $shopData = Shop::where('id',$shopId)->first();
+
+        $categories = Category::all();
+        $places = Place::all();
+
+        return view('owner/edit', compact('shopData','categories','places'));
     }
 }

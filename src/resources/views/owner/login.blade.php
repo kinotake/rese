@@ -91,7 +91,7 @@
                     <img src="{{ asset('/images/key.png') }}"  alt="keyのアイコン" width="20" height="20" class="key_icon">
                                 <input id="password" type="password" class="form" placeholder="Password" name="password">
                 </div>
-                <button type="submit" class="btn btn-primary">登録</button>
+                <button type="submit" class="btn btn-primary">ログイン</button>
             </form>
         </div>
     </div>

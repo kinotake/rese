@@ -14,7 +14,7 @@ class OwnerLoginController extends Controller
     {
         $credentials = $request->only(['email', 'password']);
 
-        if (Auth::guard('owner')->attempt($credentials)) {
+        if (Auth::guard('owners')->attempt($credentials)) {
             
             $message = "ログインしました。";
 
@@ -25,5 +25,15 @@ class OwnerLoginController extends Controller
         $message = "ログインに失敗しました。";
 
         return redirect('/owner/login')->with(compact('message'));
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('owners')->logout();
+        $request->session()->regenerateToken();
+
+         $message = "ログアウトしました。";
+
+        return redirect('owner/login')->with(compact('message'));
     }
 }
