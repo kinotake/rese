@@ -76,6 +76,10 @@
         margin-left : 50px;
         margin-bottom : 100px;
     }
+    .buttons{
+        width: 250px;
+        margin-right : 0px; 
+    }
     .message{
         margin-top : 5px;
         margin-left : 50px; 
@@ -142,15 +146,18 @@
             <tr>
                 <th>店舗管理者名</th> 
                 <th>メールアドレス</th>
+                <th>何か</th>
             </tr>
             @foreach ($allOwners as $allOwner)
-            <tr>
+            <tr class="row">
                 <td class="name">{{$allOwner->name}}様</td> 
                 <td class="email">{{$allOwner->email}}</td>
-                <td class="buttons"><a href="adiministrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">店舗の管理</a>
-                <a href="" type="submit" class="mail_button">メールの送信</a>
+                <td class="email">初期ログイン済み</td>
+                <td class="buttons">
+                    <a href="adiministrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">店舗の管理</a>
+                    <a href="" type="submit" class="mail_button">メールの送信</a>
                 </td>
-                </tr>
+            </tr>
             @endforeach
         </table>
 </body>

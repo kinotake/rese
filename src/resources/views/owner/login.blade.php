@@ -22,7 +22,49 @@
     }
     .rese{
         margin-left : 20px;
-        color: #40e0d0;
+        color: #00bfff;
+    }
+    .container{
+        justify-content: center;
+        margin: auto;
+        box-shadow: 5px 5px 4px 2px gray;
+        height: 230px;
+        width: 300px;
+        border-radius: 5px;
+    }
+    .card-header{
+        border-radius: 5px 5px 0px 0px;
+        background: #00bfff;
+        height: 50px;
+        width: 300px;
+        color : white;
+    }
+    
+    .register-header{
+        padding-top : 10px;
+        margin-left : 25px;
+    }
+    .form{
+        margin-top : 10px;
+        height: 20px;
+        width: 220px;
+        border : none;
+        border-bottom: 1px solid grey;
+    }
+    .key_icon,.email_icon,.person_icon{
+        display : inline-block;
+        padding-top : 10px;
+        margin-left : 25px;
+    }
+    .btn-primary{
+        height: 30px;
+        width: 70px;
+        margin-left : 200px; 
+        margin-top : 10px;
+        color : white;
+        background: #00bfff;
+        border : none;
+        border-radius: 5px;
     }
     </style>
 </head>
@@ -35,5 +77,23 @@
         <p class="">{{session('message')}}</p>
     </header>
     <div class="under_content">
+        <div class="card-body">
+                <form action="" method="POST">
+                @csrf
+                    <div>
+                        <img src="{{ asset('/images/person.png') }}"  alt="personのアイコン" width="22" height="22" class="person_icon">
+                                <input id="user_name" type="text" class="form" placeholder="UserName" name="user_name">
+                    </div>
+                    <div>
+                        <img src="{{ asset('/images/mail.png') }}"  alt="mailのアイコン" width="20" height="20" class="email_icon">
+                                <input id="email" type="email" placeholder="Email(提示済みメールアドレス）" class="form" name="email">
+                    </div>
+                    <div>
+                        <img src="{{ asset('/images/key.png') }}"  alt="keyのアイコン" width="20" height="20" class="key_icon">
+                                <input id="password" type="password" class="form" placeholder="Password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">登録</button>
+                </form>
+            </div>
     </div>
 </body>

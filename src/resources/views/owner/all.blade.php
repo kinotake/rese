@@ -22,7 +22,7 @@
     }
     .rese{
         margin-left : 20px;
-        color: #40e0d0;
+        color: #00bfff;
     }
     </style>
 </head>

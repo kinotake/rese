@@ -27,18 +27,6 @@ Route::post('/assessment', [PostController::class, 'postAssessment']);
 Route::get('/reassessment/{reserve_id}', [PostController::class, 'getReassessment']);
 Route::post('/reassessment', [PostController::class, 'postReassessment']);
 
-//  ★管理者権限
-
-Route::get('/administrator', [OwnerController::class, 'getOwner']);
-Route::post('/administrator/register', [OwnerController::class, 'postOwner']);
-Route::get('adiministrator/shop/{owner_id}', [OwnerController::class, 'getShop']);
-Route::post('/administrator/shop/register', [ShopController::class, 'makeShop'])->name('makeShop');
-
-Route::get('/owner/upload', function () {
-    return view('owner/upload');
-});
-Route::post('/upload', [PhotoController::class, 'postUpload']);
-
 Route::get('/menu/first', function () {
     return view('loginmenu');
 });
@@ -54,6 +42,24 @@ Route::get('/thanks', function () {
 Route::get('/done', function () {
     return view('reservethanks');
 });
+
+//  ★管理者権限
+
+Route::get('/administrator', [OwnerController::class, 'getOwner']);
+Route::post('/administrator/register', [OwnerController::class, 'postOwner']);
+Route::get('/adiministrator/shop/{owner_id}', [OwnerController::class, 'getShop']);
+Route::post('/administrator/shop/register', [ShopController::class, 'makeShop'])->name('makeShop');
+
+//  ★店舗管理者権限
+Route::get('/owner/register', function () {
+    return view('owner/register');
+});
+Route::post('/owner/register', [OwnerController::class, 'updateOwner']);
+
+Route::get('/owner/upload', function () {
+    return view('owner/upload');
+});
+Route::post('/upload', [PhotoController::class, 'postUpload']);
 
 Auth::routes();
 
