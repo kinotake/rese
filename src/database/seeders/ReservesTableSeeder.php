@@ -193,38 +193,74 @@ class ReservesTableSeeder extends Seeder
         [    
             'user_id' => 1,
             'shop_id' => 4,
-            'date' => '2023-7-14',
+            'date' => '2023-07-14',
             'time' => '13:00:00',
             'num_of_guest' => 2
         ],
         [    
             'user_id' => 1,
             'shop_id' => 4,
-            'date' => '2023-7-11',
+            'date' => '2023-08-06',
             'time' => '16:00:00',
             'num_of_guest' => 1
         ],
         [    
             'user_id' => 1,
             'shop_id' => 4,
-            'date' => '2023-7-27',
+            'date' => '2023-07-27',
             'time' => '19:00:00',
             'num_of_guest' => 3
         ],
         [    
             'user_id' => 1,
             'shop_id' => 4,
-            'date' => '2023-7-16',
+            'date' => '2023-07-16',
             'time' => '21:00:00',
             'num_of_guest' => 3
         ],
         [    
             'user_id' => 1,
             'shop_id' => 4,
-            'date' => '2023-7-02',
+            'date' => '2023-07-02',
             'time' => '15:00:00',
+            'num_of_guest' => 3
+        ],
+        [    
+            'user_id' => 1,
+            'shop_id' => 4,
+            'date' => '2023-08-06',
+            'time' => '20:00:00',
             'num_of_guest' => 4 
         ],
+        [    
+            'user_id' => 3,
+            'shop_id' => 4,
+            'date' => '2023-08-06',
+            'time' => '15:00:00',
+            'num_of_guest' => 6 
+        ],
+        [    
+            'user_id' => 2,
+            'shop_id' => 4,
+            'date' => '2023-08-06',
+            'time' => '11:00:00',
+            'num_of_guest' => 5 
+        ],
+        [    
+            'user_id' => 4,
+            'shop_id' => 4,
+            'date' => '2023-08-06',
+            'time' => '12:00:00',
+            'num_of_guest' => 2
+        ],
+        [    
+            'user_id' => 5,
+            'shop_id' => 4,
+            'date' => '2023-08-06',
+            'time' => '13:00:00',
+            'num_of_guest' => 2 
+        ],
+        
         ]);
     }
 }

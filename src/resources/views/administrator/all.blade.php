@@ -77,16 +77,13 @@
         margin-bottom : 100px;
     }
     .buttons{
-        width: 250px;
+        display : flex;
         margin-right : 0px; 
     }
     .message{
         margin-top : 5px;
         margin-left : 50px; 
         color : red;
-    }
-    .buttons{
-        display : flex;
     }
     .detail_button{
         background: #32b39e;
@@ -98,7 +95,7 @@
         text-decoration: none;
         text-align: center;
         padding-top : 5px;
-        margin-left : 10px;
+        margin-left : 5px;
     }
     .mail_button{
         background: #40e0d0;
@@ -147,6 +144,7 @@
                 <th>店舗管理者名</th> 
                 <th>メールアドレス</th>
                 <th>何か</th>
+                <th>管理・メール</th>
             </tr>
             @foreach ($allOwners as $allOwner)
             <tr class="row">

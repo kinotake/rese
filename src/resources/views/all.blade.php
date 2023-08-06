@@ -17,11 +17,25 @@
         padding-bottom : 20px;
     }
     @media screen and (max-width: 768px) {
-   .top{
+    .top{
+        display : block;
         margin-left : -60px;
+        padding-top : 0px;
         position: fixed;
-        height: 60px;
+        height: 18vw;
+        width: 120vw;
         background: white;
+        }
+    }
+    .link{
+            display : flex;
+            text-decoration: none;
+        }
+    @media screen and (max-width: 768px) {
+        .link{
+            width: 120vw;
+            height: 10vw;
+            background: #eeeeee;
         }
     }
     .search_contents{
@@ -32,9 +46,24 @@
         box-shadow: 3px 3px 3px 3px gray;
     }
     @media screen and (max-width: 768px) {
-   .search_contents{
-        margin-left : 20px;
+        .search_contents{
+            margin-top : 1vw;
+            margin-left : 20vw;
+            height: 9vw;
+            width: 90vw;
         }
+    }
+    .form{
+            display : flex;
+        }
+    @media screen and (max-width: 768px) {
+        .form{
+            height: 9vw;
+            width: 80vw;
+        }
+    }
+    .form_button_contents{
+        display : flex;
     }
     .select{
         border: none;
@@ -49,21 +78,49 @@
         width: 250px;
         border: none;
     }
+    @media screen and (max-width: 768px) {
+        .keyword{
+            width: 40vw;
+        }
+    }
     .icon{
         margin-left : 130px;
         box-shadow: 3px 3px 3px 0px gray;
     }
+    @media screen and (max-width: 768px) {
+    .icon{
+        margin-top : 1vw;
+        height: 8vw;
+        width: 8vw;
+        margin-left : 20vw;
+        box-shadow: 3px 3px 3px 0px gray;
+        }
+    }
     .rese{
-        margin-left : 20px;
+        margin-left : 23px;
         color: blue;
+    }
+    @media screen and (max-width: 768px) {
+    .rese{
+            margin-left : 4vw;
+            font-size: 8vw;
+        }
+    }
+    .rese_contents{
+            display : flex;
+    }
+    @media screen and (max-width: 768px) {
+    .under_contents{
+            margin-left : -6vw;
+        }
     }
     .shop_contents{
         display : flex;
         flex-wrap:wrap;
     }
     @media screen and (max-width: 768px) {
-   .shop_contents{
-            margin-top : 100px;
+    .shop_contents{
+            margin-top : 20vw;
             margin-left : 40px;
         }
     }
@@ -79,8 +136,10 @@
     }
     @media screen and (max-width: 768px) {
    .shop_content{
-            height: 200px;
-            width: 200px;
+            height: 40vw;
+            width: 40vw;
+            margin-right : 1vw;
+            margin-left : 1vw;
         }
     }
     .under_contents{
@@ -91,8 +150,20 @@
         width: 100px;
         flex-shrink: 0;
     }
+    @media screen and (max-width: 768px) {
+    .left_padding_content{
+            height: 100%;
+            width: 3vw;
+            flex-shrink: 0;
+        }
+    }
     .shop_information{
         margin-left : 10px;
+    }
+    @media screen and (max-width: 768px) {
+    .information{
+            font-size: 3vw;
+        }
     }
     .bottons{
         display : flex;
@@ -110,6 +181,20 @@
         padding-top : 5px;
         margin-left : 10px;
     }
+    @media screen and (max-width: 768px) {
+    .detail_button{
+            height: 6vw;
+            width: 20vw;
+            font-size: 3vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+    .heart{
+            height: 14vw;
+            width: 14vw;
+            margin-top : -4vw;
+        }
+    }
     .error{
         margin-left : 150px;
         color : red;
@@ -120,26 +205,29 @@
     }
     @media screen and (max-width: 768px) {
     .shop_photo{
-        width : 200px;
-        height : 100px;
+        width : 40vw;
+        height : 20vw;
     }
     }
     </style>
 </head>
 <body>
     <header class="top">
+        <div class="rese_contents">
         @if (Auth::check())
-        <a href="/menu/first">
+        <a href="/menu/first" class="link">
             <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
         </a>
         @else
-        <a href="/menu/second">
+        <a href="/menu/second" class="link">
             <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
         </a>
         @endif
-        <h1 class="rese">Rese</h1>
+        </div>
         <div class="search_contents">
-            <form action="/search" method = "POST">
+            <form action="/search" method = "POST" class="form">
             @csrf
                 <select class="select" name="place_id">
                     <option value="selected">All area</option>
@@ -153,10 +241,12 @@
                     <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                 </select>
-                <button class="form__button" type="submit">
-                    <img src="{{ asset('/images/search.png') }}"  alt="探すアイコン" width="25" height="25" class="search_icon">
-                </button>
-                <input type="text" name="keyword" class="keyword" placeholder="Search...">
+                <div class="form_button_contents">
+                    <button class="form__button" type="submit">
+                        <img src="{{ asset('/images/search.png') }}"  alt="探すアイコン" width="25" height="25" class="search_icon">
+                    </button>
+                    <input type="text" name="keyword" class="keyword" placeholder="Search...">
+                </div>
             </form>
         </div>
     </header>
@@ -173,10 +263,10 @@
                 <img src="{{ asset($allShop->getPhoto()) }}"  alt="店内画像" class="shop_photo">
             </div>
             <table class="shop_information">
-            <th>{{$allShop->name}}</th>
+            <th class="information">{{$allShop->name}}</th>
             <tr>
-                <td>#{{$allShop->place->name}}</td>
-                <td>#{{$allShop->category->name}}</td>
+                <td class="information">#{{$allShop->place->name}}</td>
+                <td class="information">#{{$allShop->category->name}}</td>
             </tr>
             </table>
             <div class="bottons">
@@ -186,13 +276,13 @@
                     <form method="POST" action="{{route('makeLike')}}">
                     @csrf
                         <input type="hidden" name="shop_id" id="shop_id" value="{{$allShop->id}}">                  
-                        <input type="image" src="{{ asset('/images/heart.png') }}" alt="色なしハート" name="heart" width="50" height="50">
+                        <input type="image" src="{{ asset('/images/heart.png') }}" alt="色なしハート" name="heart" width="50" height="50" class="heart">
                     </form>
                     @else
                     <form method="POST" action="{{route('deleteLike')}}">
                     @csrf
                         <input type="hidden" name="shop_id" id="shop_id" value="{{$allShop->id}}">
-                        <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="50" height="50">
+                        <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="50" height="50" class="heart">
                     </form>
                     @endif
                 </div>
