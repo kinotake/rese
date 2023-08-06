@@ -51,19 +51,18 @@
     }
     .bottons{
         display : flex;
-        justify-content: space-between;
     }
     .detail_button{
         background: blue;
-        display: block;
+        display: inline-block;
         height: 30px;
-        width: 100px;
+        width: 90px;
         color : white;
         border-radius: 5px;
         text-decoration: none;
         text-align: center;
         padding-top : 5px;
-        margin-left : 10px;
+        margin-left : 15px;
     }
     .message{
         margin-left : 150px;
@@ -104,6 +103,7 @@
             </table>
             <div class="bottons">
                 <a href="owner/edit/{{$allShop->id}}" type="submit" class="detail_button">編集する</a>
+                <a href="owner/reserve/{{$allShop->id}}" type="submit" class="detail_button">予約一覧</a>
             </div>
         </article>
     @endforeach

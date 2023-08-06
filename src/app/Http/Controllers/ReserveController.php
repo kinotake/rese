@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Reserve;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ReserveRequest;
+use Carbon\Carbon;
 
 class ReserveController extends Controller
 {
@@ -56,5 +57,15 @@ class ReserveController extends Controller
         $message="予約が削除されました。";
 
         return redirect('/mypage')->with(compact('message'));
+    }
+
+    public function getReserve($shop_id)
+    {
+        $shopId = $shop_id;
+
+        $today = Carbon::now();
+        $reserveDatas = Reserve::where('shop_id','=',$shopId)->whereDate('date','>',$today)->get();
+        
+        return view('owner/reserve')->with(compact('reserveDatas'));
     }
 }

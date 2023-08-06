@@ -72,6 +72,7 @@ Route::post('/owner/edit/category', [ShopController::class, 'editCategory']);
 Route::post('/owner/edit/place', [ShopController::class, 'editPlace']);
 Route::post('/owner/edit/comment', [ShopController::class, 'editComment']);
 Route::post('owner/upload', [PhotoController::class, 'postUpload']);
+Route::get('/owner/reserve/{shop_id}', [ReserveController::class, 'getReserve']);
 
 Auth::routes();
 
