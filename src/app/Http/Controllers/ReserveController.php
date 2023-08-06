@@ -7,6 +7,7 @@ use App\Models\Reserve;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ReserveRequest;
 use Carbon\Carbon;
+use App\Models\Shop;
 
 class ReserveController extends Controller
 {
@@ -64,8 +65,33 @@ class ReserveController extends Controller
         $shopId = $shop_id;
 
         $today = Carbon::now();
-        $reserveDatas = Reserve::where('shop_id','=',$shopId)->whereDate('date','>',$today)->get();
+        $reserveDatas = Reserve::where('shop_id','=',$shopId)->whereDate('date','>',$today)->latest('date')->get();
+
+        $shopData = Shop::find($shopId);
         
-        return view('owner/reserve')->with(compact('reserveDatas'));
+        return view('owner/reserve')->with(compact('reserveDatas','shopData'));
+    }
+    public function getReserveToday($shop_id)
+    {
+        $shopId = $shop_id;
+
+        $today = Carbon::now();
+        $reserveDatas = Reserve::where('shop_id','=',$shopId)->whereDate('date','=',$today)->latest('date')->get();
+
+        $shopData = Shop::find($shopId);
+        
+        return view('owner/today')->with(compact('reserveDatas','shopData'));
+    }
+
+    public function getReserveWent($shop_id)
+    {
+        $shopId = $shop_id;
+
+        $today = Carbon::now();
+        $reserveDatas = Reserve::where('shop_id','=',$shopId)->whereDate('date','<',$today)->latest('date')->get();
+
+        $shopData = Shop::find($shopId);
+        
+        return view('owner/went')->with(compact('reserveDatas','shopData'));
     }
 }

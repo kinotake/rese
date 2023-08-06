@@ -70,7 +70,7 @@
 </head>
 <body>
     <header class="top">
-    <a href="/menu/first">
+    <a href="/owner/menu">
         <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
     </a>
         <h1 class="rese">Rese</h1>

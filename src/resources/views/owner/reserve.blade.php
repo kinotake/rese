@@ -24,6 +24,23 @@
         margin-left : 20px;
         color: #00bfff;
     }
+    .shop_header{
+        font-size : 30px;
+        width: 200px;
+        margin-left : 600px;
+    }
+    .middle_contents{
+        display : flex;
+        margin-left : 100px;
+    }
+    .main_link{
+        font-size : 25px;
+    }
+    .link{
+        text-decoration: none;
+        color : grey;
+        margin-left : 20px;
+    }
     .reserve_contents{
         margin : auto;
         width: 1200px;
@@ -44,12 +61,18 @@
 </head>
 <body>
     <header class="top">
-    <a href="/menu/first">
+    <a href="/owner/menu">
         <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
     </a>
         <h1 class="rese">Rese</h1>
         <p class="">{{session('message')}}</p>
     </header>
+    <h2 class="shop_header">{{$shopData->name}}</h2>
+    <div class="middle_contents">
+        <p class="main_link">これからの予約情報</p>
+        <a href="/owner/reserve/today/{{$shopData->id}}" type="submit" class="link">本日の予約情報</a>
+        <a href="/owner/reserve/went/{{$shopData->id}}" type="submit" class="link">過去の予約情報</a>
+    </div>
     <table class="reserve_contents" border="1">
         <tr>
             <th>日付</th> 
