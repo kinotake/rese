@@ -178,19 +178,19 @@
     </style>
 </head>
 <body>
-  <header class="top">
-    @if (Auth::check())
-    <a href="/menu/first">
-      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @else
-    <a href="/menu/second">
-      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @endif
-    <h1 class="rese">Rese</h1>
-    <p class="message">{{session('message'??'')}}</p>
-  </header>
+  <header class="rese_contents">
+        @if (Auth::check())
+        <a href="/menu/first" class="link">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
+        </a>
+        @else
+        <a href="/menu/second" class="link">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
+        </a>
+        @endif
+    </header>
   <p class="user_name">{{$userData->name}}さん</p>
     <div class="headers">
       <a href="/mypage" class="link">予約状況</a>

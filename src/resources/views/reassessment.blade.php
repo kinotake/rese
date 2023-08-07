@@ -11,27 +11,39 @@
       margin: 0;
       padding: 0;
     }
-    .top{
-        display : flex;
-        padding-top : 20px;
-        padding-bottom : 20px;
-    }
-    @media screen and (max-width: 768px) {
-   .top{
-        margin-left : -60px;
-        position: fixed;
-        height: 60px;
-        width: 1000px;
-        background: white;
-        }
-    }
     .icon{
         margin-left : 130px;
         box-shadow: 3px 3px 3px 0px gray;
     }
+    @media screen and (max-width: 768px) {
+    .icon{
+        margin-top : 1vw;
+        height: 8vw;
+        width: 8vw;
+        margin-left : 5vw;
+        box-shadow: 3px 3px 3px 0px gray;
+        }
+    }
+    .link{
+        display : flex;
+        text-decoration: none;
+    }
+    @media screen and (max-width: 768px) {
+    .link{
+        width: 100vw;
+        height: 12vw;
+        background: #eeeeee;
+      }
+    }
     .rese{
         margin-left : 20px;
         color: blue;
+    }
+    @media screen and (max-width: 768px) {
+    .rese{
+            margin-left : 4vw;
+            font-size: 8vw;
+        }
     }
     .back_content{
         height: 30px;
@@ -42,6 +54,12 @@
         margin-bottom : 5px;
         text-align: center;
     }
+    @media screen and (max-width: 768px) {
+        .back_content{
+            height: 6vw;
+            width: 6vw;;   
+        }
+    }
     .back{
         text-decoration: none;
         color :black;
@@ -51,6 +69,12 @@
         display:block;
         margin-left : 20px;
     }
+    @media screen and (max-width: 768px) {
+        .shop_name{
+            margin-left : 4vw;
+            font-size : 6vw;
+        }
+    }
     .under_content{
         display:flex;
         justify-content: center;
@@ -59,8 +83,8 @@
     @media screen and (max-width: 768px) {
     .under_content{
             display:block;
-            margin-left : 100px;
-            padding-top : 150px;
+            margin-left : 0vw;
+            padding-top :5vw;
         }
     }
     .shop_header{
@@ -76,6 +100,16 @@
         padding-bottom : 20px;
         border-radius: 5px;
     }
+    @media screen and (max-width: 768px) {
+        .content_left{
+            height: 100vw;;
+            width: 90vw;
+            padding-right : 4vw;
+            padding-left : 4vw;
+            padding-top : 4vw;
+            padding-bottom : 20vw;
+        }
+    }
     .content_right{
         background: blue;
         height: 500px;
@@ -86,14 +120,23 @@
     }
     @media screen and (max-width: 768px) {
     .content_right{
-            width: 540px;
+            height: 150vw;
+            width: 100vw;
         }
     }
-    .reserve_header{
+    .reassessment_header{
         color:white;
         padding-top : 20px;
         margin-left : 30px;
         font-size : 30px;
+    }
+    @media screen and (max-width: 768px) {
+        .reassessment_header{
+            padding-top : 4vw;
+            margin-bottom : 4vw;
+            margin-left : 6vw;
+            font-size : 6vw;
+        }
     }
     .updated_at_label{
         margin-left : 175px;
@@ -106,6 +149,13 @@
         background: #0075e8;
         border-radius: 5px;
         display:flex;
+    }
+    @media screen and (max-width: 768px) {
+    .assesment_contents{
+        height: 60vw;
+        width: 99vw;
+        margin-left : 0px;
+        }
     }
     .heckle{
         margin-top : 55px;
@@ -121,10 +171,29 @@
         margin-left : 30px;
         color : white;
     }
+    @media screen and (max-width: 768px) {
+        .label{
+            margin-left : 5vw;
+            font-size: 5vw;
+        }
+    }
     .comment_label{
         margin-left : 30px;
         color : white;
         margin-bottom : 70px;
+    }
+    .comment_value{
+        margin-left : 30px;
+    }
+    @media screen and (max-width: 768px) {
+        .comment_label{
+            margin-left : 2vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .comment_value{
+            font-size: 4vw;;
+        }
     }
     .post_content{
         display:flex;
@@ -136,9 +205,6 @@
     .score_value{
         margin-left : 32px;
         display:flex;
-    }
-    .comment_value{
-        margin-left : 30px;
     }
     .updated_at_value{
         margin-left : 10px;
@@ -175,6 +241,13 @@
         width: 350px;
         margin-left : 30px;
     }
+    @media screen and (max-width: 768px) {
+        .comment{
+            height: 20vw;
+            width: 85vw;
+            font-size : 4vw;
+        }
+    }
     .form__button{
         height: 50px;
         width: 450px;
@@ -186,7 +259,9 @@
     }
     @media screen and (max-width: 768px) {
     .form__button{
-            width: 540px;
+            height: 10vw;
+            width: 100vw;
+            font-size : 3vw;
         }
     }
     .error{
@@ -198,21 +273,32 @@
         height: 300px;
         width: 500px;
     }
+    @media screen and (max-width: 768px) {
+        .shop_photo{
+            height: 50vw;
+            width: 90vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .font,.score_value,.comment_label,.updated_at_label,.updated_at_value,.back{
+            font-size : 4vw;
+        }
+    }
     </style>
 </head>
 <body>
-    <header class="top">
-    @if (Auth::check())
-    <a href="/menu/first">
-        <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @else
-    <a href="/menu/second">
-        <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @endif
-        <h1 class="rese">Rese</h1>
-        <p class="like_error">{{session('message')}}</p>
+    <header class="rese_contents">
+        @if (Auth::check())
+        <a href="/menu/first" class="link">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
+        </a>
+        @else
+        <a href="/menu/second" class="link">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
+        </a>
+        @endif
     </header>
     <div class="under_content">
         <article class="content_left">
@@ -227,14 +313,14 @@
             </div>
             <table>
                 <tr>
-                    <td>#{{$shopData->place->name??''}}</td>
-                    <td>#{{$shopData->category->name??''}}</td>
+                    <td class="font">#{{$shopData->place->name??''}}</td>
+                    <td class="font">#{{$shopData->category->name??''}}</td>
                 </tr>
             </table>
-            <p>{{$shopData->comment??''}}</p>
+            <p class="font">{{$shopData->comment??''}}</p>
         </article>
     <section class="content_right">
-        <h1 class="reserve_header">店舗評価の変更</h1>
+        <h1 class="reassessment_header">店舗評価の変更</h1>
         <div class="post_content">
             <label for="update_label" class="updated_at_label">投稿時間</label>
             <p id="selectshop" class="updated_at_value">{{$postData->updated_at}}</p>

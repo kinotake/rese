@@ -50,7 +50,7 @@
             margin-top : 1vw;
             margin-left : 20vw;
             height: 9vw;
-            width: 90vw;
+            width: 80vw;
         }
     }
     .form{
@@ -93,7 +93,7 @@
         height: 8vw;
         width: 8vw;
         margin-left : 20vw;
-        box-shadow: 3px 3px 3px 0px gray;
+        box-shadow: 1vw 1vw 1vw 1vw gray;
         }
     }
     .rese{
@@ -121,7 +121,7 @@
     @media screen and (max-width: 768px) {
     .shop_contents{
             margin-top : 20vw;
-            margin-left : 40px;
+            margin-left : 10vw;
         }
     }
     .shop_content{
@@ -135,7 +135,7 @@
         border-radius: 5px;
     }
     @media screen and (max-width: 768px) {
-   .shop_content{
+    .shop_content{
             height: 40vw;
             width: 40vw;
             margin-right : 1vw;
@@ -162,6 +162,11 @@
     }
     @media screen and (max-width: 768px) {
     .information{
+            font-size: 3vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+    .name{
             font-size: 3vw;
         }
     }
@@ -263,7 +268,7 @@
                 <img src="{{ asset($allShop->getPhoto()) }}"  alt="店内画像" class="shop_photo">
             </div>
             <table class="shop_information">
-            <th class="information">{{$allShop->name}}</th>
+            <th class="name">{{$allShop->name}}</th>
             <tr>
                 <td class="information">#{{$allShop->place->name}}</td>
                 <td class="information">#{{$allShop->category->name}}</td>

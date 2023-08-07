@@ -11,20 +11,6 @@
       margin: 0;
       padding: 0;
     }
-    .top{
-      display : flex;
-      padding-top : 20px;
-      padding-bottom : 20px;
-    }
-    @media screen and (max-width: 768px) {
-    .top{
-      margin-left : -60px;
-      position: fixed;
-      height: 60px;
-      width :1000px;
-      background: white;
-      }
-    }
     .icon{
       margin-left : 130px;
       box-shadow: 3px 3px 3px 0px gray;
@@ -49,10 +35,16 @@
       margin-left :100px;
       font-size : 25px;
     }
-    .link{
+    .link_top{
+      display : flex;
       text-decoration: none;
-      color : grey;
-      margin-left : 20px;
+    }
+    @media screen and (max-width: 768px) {
+        .link_top{
+            width: 120vw;
+            height: 15vw;
+            background: #eeeeee;
+        }
     }
     .header_like{
       margin-left :420px;
@@ -71,6 +63,10 @@
     }
     .left_content{
       margin-left :100px;
+    }
+    .link{
+      color: gray;
+      text-decoration: none;
     }
     .reserved_content{
       width :400px;
@@ -182,19 +178,19 @@
     </style>
 </head>
 <body>
-  <header class="top">
-    @if (Auth::check())
-    <a href="/menu/first">
-      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @else
-    <a href="/menu/second">
-      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @endif
-    <h1 class="rese">Rese</h1>
-    <p class="message">{{session('message'??'')}}</p>
-  </header>
+  <header class="rese_contents">
+        @if (Auth::check())
+        <a href="/menu/first" class="link_top">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
+        </a>
+        @else
+        <a href="/menu/second" class="link_top">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
+        </a>
+        @endif
+    </header>
   <p class="user_name">{{$userData->name}}さん</p>
     <div class="headers">
       <h1 class="header_reserve">予約状況</h1>

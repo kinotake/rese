@@ -29,9 +29,38 @@
         margin-left : 130px;
         box-shadow: 3px 3px 3px 0px gray;
     }
+    @media screen and (max-width: 768px) {
+    .icon{
+        margin-top : 1vw;
+        height: 8vw;
+        width: 8vw;
+        margin-left : 20vw;
+        box-shadow: 3px 3px 3px 0px gray;
+        }
+    }
+    .rese_contents{
+        display : flex;
+    }
+    .link{
+        text-decoration: none;
+        display : flex;
+    }
+     @media screen and (max-width: 768px) {
+        .link{
+            width: 100vw;
+            height: 10vw;
+            background: #eeeeee;
+        }
+    }
     .rese{
         margin-left : 20px;
         color: blue;
+    }
+    @media screen and (max-width: 768px) {
+    .rese{
+            margin-left : 4vw;
+            font-size: 8vw;
+        }
     }
     .back_content{
         height: 30px;
@@ -42,6 +71,12 @@
         margin-bottom : 5px;
         text-align: center;
     }
+    @media screen and (max-width: 768px) {
+        .back_content{
+            height: 6vw;
+            width: 6vw;;   
+        }
+    }
     .back{
         text-decoration: none;
         color :black;
@@ -51,6 +86,12 @@
         display:block;
         margin-left : 20px;
     }
+    @media screen and (max-width: 768px) {
+        .shop_name{
+            margin-left : 4vw;
+            font-size : 6vw;
+        }
+    }
     .under_content{
         display:flex;
         justify-content: center;
@@ -59,8 +100,8 @@
     @media screen and (max-width: 768px) {
     .under_content{
             display:block;
-            margin-left : 100px;
-            padding-top : 150px;
+            margin-left : 0vw;
+            padding-top :5vw;
         }
     }
     .shop_header{
@@ -76,6 +117,16 @@
         padding-bottom : 20px;
         border-radius: 5px;
     }
+    @media screen and (max-width: 768px) {
+        .content_left{
+            height: 90vw;;
+            width: 95vw;
+            padding-right : 4vw;
+            padding-left : 4vw;
+            padding-top : 4vw;
+            padding-bottom : 20vw;
+        }
+    }
     .content_right{
         background: blue;
         height: 400px;
@@ -86,7 +137,8 @@
     }
     @media screen and (max-width: 768px) {
     .content_right{
-            width: 540px;
+            height: 70vw;
+            width: 100vw;
         }
     }
     .assessment_header{
@@ -96,11 +148,29 @@
         margin-left : 30px;
         font-size : 30px;
     }
+    @media screen and (max-width: 768px) {
+        .assessment_header{
+            padding-top : 4vw;
+            margin-bottom : 4vw;
+            margin-left : 6vw;
+            font-size : 6vw;
+        }
+    }
     .input_contents{
         margin-left : 30px;
     }
+    @media screen and (max-width: 768px) {
+        .input_contents{
+            margin-left : 6vw;
+        }
+    }
     .label{
         color :white;
+    }
+    @media screen and (max-width: 768px) {
+        .label{
+            font-size: 5vw;;
+        }
     }
     .rate-form {
         display: flex;
@@ -130,6 +200,12 @@
         height: 100px;
         width: 400px;
     }
+    @media screen and (max-width: 768px) {
+        .comment{
+            height: 20vw;
+            width: 85vw;
+        }
+    }
     .form__button{
         height: 50px;
         width: 450px;
@@ -141,7 +217,9 @@
     }
     @media screen and (max-width: 768px) {
     .form__button{
-            width: 540px;
+            height: 10vw;
+            width: 100vw;
+            font-size : 3vw;
         }
     }
     .input_error{
@@ -162,20 +240,32 @@
         height: 300px;
         width: 500px;
     }
+    @media screen and (max-width: 768px) {
+        .shop_photo{
+        height: 60vw;
+        width: 95vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .font{
+            font-size : 4vw;
+        }
+    }
     </style>
 </head>
 <body>
-<header class="top">
+<header class="rese_contents">
     @if (Auth::check())
-    <a href="/menu/first">
+    <a href="/menu/first" class="link">
         <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        <h1 class="rese">Rese</h1>
     </a>
     @else
-    <a href="/menu/second">
+    <a href="/menu/second" class="link">
         <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        <h1 class="rese">Rese</h1>
     </a>
     @endif
-        <h1 class="rese">Rese</h1>
 </header>
     <div class="under_content">
         <article class="content_left">
@@ -190,11 +280,11 @@
             </div>
             <table>
                 <tr>
-                    <td>#{{$shopData->place->name??''}}</td>
-                    <td>#{{$shopData->category->name??''}}</td>
+                    <td class="font">#{{$shopData->place->name??''}}</td>
+                    <td class="font">#{{$shopData->category->name??''}}</td>
                 </tr>
             </table>
-            <p>{{$shopData->comment??''}}</p>
+            <p class="font">{{$shopData->comment??''}}</p>
         </article>
         <section class="content_right">
         <h1 class="assessment_header">評価</h1>
@@ -205,17 +295,17 @@
                 <label for="score_label" class="label">Score</label>
                 <div class="rate-form">
                     <input id="star5" type="radio" name="score" value="5" id="score">
-                    <label for="star5">★</label>
+                    <label for="star5" class="font">★</label>
                     <input id="star4" type="radio" name="score" value="4" id="score">
-                    <label for="star4">★</label>
+                    <label for="star4" class="font">★</label>
                     <input id="star3" type="radio" name="score" value="3" id="score">
-                    <label for="star3">★</label>
+                    <label for="star3" class="font">★</label>
                     <input id="star2" type="radio" name="score" value="2" id="score">
-                    <label for="star2">★</label>
+                    <label for="star2" class="font">★</label>
                     <input id="star1" type="radio" name="score" value="1" id="score">
-                    <label for="star1">★</label>
+                    <label for="star1" class="font">★</label>
                 </div>
-                <label for="score_label" class="label">Comment</label>
+                <label for="comment_label" class="label">Comment</label>
                 <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
         </main>
                 <button class="form__button" type="submit">評価する</button>

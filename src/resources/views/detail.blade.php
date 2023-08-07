@@ -11,27 +11,41 @@
       margin: 0;
       padding: 0;
     }
-    .top{
-        display : flex;
-        padding-top : 20px;
-        padding-bottom : 20px;
-    }
-    @media screen and (max-width: 768px) {
-   .top{
-        margin-left : -60px;
-        position: fixed;
-        height: 60px;
-        width: 900px;
-        background: white;
-        }
-    }
     .icon{
         margin-left : 130px;
         box-shadow: 3px 3px 3px 0px gray;
     }
+    @media screen and (max-width: 768px) {
+    .icon{
+        margin-top : 1vw;
+        height: 8vw;
+        width: 8vw;
+        margin-left : 5vw;
+        }
+    }
+    .rese_contents{
+        display : flex;
+    }
+    .link{
+        text-decoration: none;
+        display : flex;
+    }
+    @media screen and (max-width: 768px) {
+        .link{
+            width: 100vw;
+            height: 12vw;
+            background: #eeeeee;
+        }
+    }
     .rese{
         margin-left : 20px;
         color: blue;
+    }
+    @media screen and (max-width: 768px) {
+    .rese{
+            margin-left : 4vw;
+            font-size: 8vw;
+        }
     }
     .back_content{
         height: 30px;
@@ -42,6 +56,12 @@
         margin-bottom : 5px;
         text-align: center;
     }
+    @media screen and (max-width: 768px) {
+        .back_content{
+            height: 6vw;
+            width: 6vw;;   
+        }
+    }
     .back{
         text-decoration: none;
         color :black;
@@ -51,6 +71,12 @@
         display:block;
         margin-left : 20px;
     }
+    @media screen and (max-width: 768px) {
+        .shop_name{
+            margin-left : 5vw;
+            font-size : 5vw;
+        }
+    }
     .under_content{
         display:flex;
         justify-content: center;
@@ -59,8 +85,8 @@
     @media screen and (max-width: 768px) {
     .under_content{
             display:block;
-            margin-left : 100px;
-            padding-top : 150px;
+            margin-left : 0vw;
+            padding-top :5vw;
         }
     }
     .shop_header{
@@ -76,6 +102,16 @@
         padding-bottom : 20px;
         border-radius: 5px;
     }
+    @media screen and (max-width: 768px) {
+        .content_left{
+            height: 90vw;;
+            width: 95vw;
+            padding-right : 4vw;
+            padding-left : 4vw;
+            padding-top : 4vw;
+            padding-bottom : 20vw;
+        }
+    }
     .content_right{
         background: blue;
         height: 500px;
@@ -86,7 +122,9 @@
     }
     @media screen and (max-width: 768px) {
     .content_right{
-            width: 540px;
+            height: 70vw;
+            width: 100vw;
+            margin-top : 4vw;
         }
     }
     .reserve_header{
@@ -96,18 +134,45 @@
         margin-left : 30px;
         font-size : 30px;
     }
+    @media screen and (max-width: 768px) {
+        .reserve_header{
+            padding-top : 4vw;
+            margin-bottom : 4vw;
+            margin-left : 6vw;
+            font-size : 6vw;
+        }
+    }
     .input_contents{
         margin-left : 30px;
+    }
+    @media screen and (max-width: 768px) {
+        .input_contents{
+            margin-left : 6vw;
+        }
     }
     .date{
         height: 25px;
         width: 150px;
         margin-bottom : 10px;
     }
+    @media screen and (max-width: 768px) {
+        .date{
+            height: 5vw;
+            width: 30vw;
+            margin-bottom : 2vw;
+        }
+    }
     .time,.num_of_guest{
         height: 25px;
         width: 400px;
         margin-bottom : 10px;
+    }
+    @media screen and (max-width: 768px) {
+        .time,.num_of_guest{
+            height: 5vw;
+            width: 80vw;
+            margin-bottom : 2vw;
+        }
     }
     .select_contents{
         background: white;
@@ -118,16 +183,38 @@
         border-radius: 5px;
         color : white;
     }
+    @media screen and (max-width: 768px) {
+        .select_contents{
+            height: 40vw;
+            width: 90vw;
+        }
+    }
     .select_content{
         display:flex;
         margin-top : 5px;
         padding-top : 7px;
     }
+    @media screen and (max-width: 768px) {
+        .select_content{
+            margin-top : 1vw;
+            padding-top : 2vw;
+        }
+    }
     .label{
         margin-left : 30px;
     }
+    @media screen and (max-width: 768px) {
+        .label{
+            margin-left : 6vw;
+        }
+    }
     .select_value{
         margin-left : 30px;
+    }
+    @media screen and (max-width: 768px) {
+        .select_value{
+            margin-left : 5vw;
+        }
     }
     .form__button{
         height: 50px;
@@ -140,7 +227,9 @@
     }
     @media screen and (max-width: 768px) {
     .form__button{
-            width: 540px;
+            height: 10vw;
+            width: 100vw;
+            font-size : 3vw;
         }
     }
     .error{
@@ -166,12 +255,25 @@
         margin:auto;
         box-shadow: 2px 2px 2px 0px white;
     }
+    @media screen and (max-width: 768px) {
+    .login_button{
+            height: 10vw;
+            width: 100vw;
+            font-size : 3vw;
+        }
+    }
     .error_contents{
         background: white;
         height: 150px;
         width: 400px;
         border-radius: 5px 5px 0px 0px;
         margin:auto;
+    }
+    @media screen and (max-width: 768px) {
+    .error_contents{
+            height: 40vw;
+            width: 90vw;
+        }
     }
     .input_error{
         display : block;
@@ -191,6 +293,12 @@
         margin-left : 140px;
         margin-top : 30px
     }
+    @media screen and (max-width: 768px) {
+    .post_header{
+            margin-left : 5vw;
+            font-size : 7vw;
+        }
+    }
     .post_contents{
         display:flex;
         margin-left : 130px;
@@ -203,7 +311,9 @@
     }
     @media screen and (max-width: 768px) {
     .post_contents{
-            width : 500px;
+            width : 95vw;
+            height: 65vw;
+            margin-left : 5vw;
             overflow-x:auto;
         }
     }
@@ -214,6 +324,12 @@
         width: 300px;
         margin-left : 30px;
         flex-shrink: 0;
+    }
+    @media screen and (max-width: 768px) {
+        .post_content{
+        height: 60vw;
+        width: 75vw;
+        }
     }
     .star_contents{
         display:flex;
@@ -231,21 +347,32 @@
         height: 300px;
         width: 500px;
     }
+    @media screen and (max-width: 768px) {
+        .shop_photo{
+        height: 60vw;
+        width: 95vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .font,.login,.error,.star{
+            font-size : 4vw;
+        }
+    }
     </style>
 </head>
 <body>
-    <header class="top">
-    @if (Auth::check())
-    <a href="/menu/first">
-        <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @else
-    <a href="/menu/second">
-        <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @endif
-        <h1 class="rese">Rese</h1>
-        <p class="like_error">{{session('message')}}</p>
+    <header class="rese_contents">
+        @if (Auth::check())
+        <a href="/menu/first" class="link">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
+        </a>
+        @else
+        <a href="/menu/second" class="link">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
+        </a>
+        @endif
     </header>
     <div class="under_content">
         <article class="content_left">
@@ -260,11 +387,11 @@
             </div>
             <table>
                 <tr>
-                    <td>#{{$shopData->place->name??''}}</td>
-                    <td>#{{$shopData->category->name??''}}</td>
+                    <td class="font">#{{$shopData->place->name??''}}</td>
+                    <td class="font">#{{$shopData->category->name??''}}</td>
                 </tr>
             </table>
-            <p>{{$shopData->comment??''}}</p>
+            <p class="font">{{$shopData->comment??''}}</p>
         </article>
         <section class="content_right">
             <h1 class="reserve_header">予約</h1>
@@ -377,10 +504,10 @@
     @for ($count = 1; $count <= $shopPost->score; $count++)
             <p class="star">★</p>
     @endfor
-            <p>({{$shopPost->score}})</p>
+            <p class="font">({{$shopPost->score}})</p>
         </div>
         <div class="comment_content">
-            <p>{{$shopPost->comment}}</p>
+            <p class="font">{{$shopPost->comment}}</p>
         </div>
     </div>
     @endforeach

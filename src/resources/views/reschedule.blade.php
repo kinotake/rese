@@ -11,27 +11,39 @@
       margin: 0;
       padding: 0;
     }
-    .top{
+    .link{
         display : flex;
-        padding-top : 20px;
-        padding-bottom : 20px;
+        text-decoration: none;
     }
     @media screen and (max-width: 768px) {
-    .top{
-        margin-left : -60px;
-        position: fixed;
-        height: 60px;
-        width: 1000px;
-        background: white;
-        }
+    .link{
+        width: 100vw;
+        height: 12vw;
+        background: #eeeeee;
+      }
     }
     .icon{
         margin-left : 130px;
         box-shadow: 3px 3px 3px 0px gray;
     }
+    @media screen and (max-width: 768px) {
+    .icon{
+        margin-top : 1vw;
+        height: 8vw;
+        width: 8vw;
+        margin-left : 5vw;
+        box-shadow: 3px 3px 3px 0px gray;
+        }
+    }
     .rese{
         margin-left : 20px;
         color: blue;
+    }
+    @media screen and (max-width: 768px) {
+    .rese{
+            margin-left : 4vw;
+            font-size: 8vw;
+        }
     }
     .back_content{
         height: 30px;
@@ -42,6 +54,12 @@
         margin-bottom : 5px;
         text-align: center;
     }
+    @media screen and (max-width: 768px) {
+        .back_content{
+            height: 6vw;
+            width: 6vw;;   
+        }
+    }
     .back{
         text-decoration: none;
         color :black;
@@ -51,6 +69,12 @@
         display:block;
         margin-left : 20px;
     }
+    @media screen and (max-width: 768px) {
+        .shop_name{
+            margin-left : 4vw;
+            font-size : 6vw;
+        }
+    }
     .under_content{
         display:flex;
         justify-content: center;
@@ -59,8 +83,8 @@
     @media screen and (max-width: 768px) {
     .under_content{
             display:block;
-            margin-left : 100px;
-            padding-top : 150px;
+            margin-left : 0vw;
+            padding-top :5vw;
         }
     }
     .shop_header{
@@ -76,6 +100,16 @@
         padding-bottom : 20px;
         border-radius: 5px;
     }
+    @media screen and (max-width: 768px) {
+        .content_left{
+            height: 100vw;;
+            width: 90vw;
+            padding-right : 4vw;
+            padding-left : 4vw;
+            padding-top : 4vw;
+            padding-bottom : 20vw;
+        }
+    }
     .content_right{
         background: blue;
         height: 500px;
@@ -86,7 +120,8 @@
     }
     @media screen and (max-width: 768px) {
     .content_right{
-            width: 540px;
+            height: 150vw;
+            width: 100vw;
         }
     }
     .reserve_header{
@@ -96,6 +131,14 @@
         margin-left : 30px;
         font-size : 30px;
     }
+    @media screen and (max-width: 768px) {
+        .reserve_header{
+            padding-top : 4vw;
+            margin-bottom : 4vw;
+            margin-left : 6vw;
+            font-size : 6vw;
+        }
+    }
     .input_contents{
         margin-left : 30px;
     }
@@ -104,10 +147,22 @@
         width: 150px;
         margin-bottom : 10px;
     }
+    @media screen and (max-width: 768px) {
+        .date{
+            height: 5vw;
+            width: 30vw;
+        }
+    }
     .time,.num_of_guest{
         height: 25px;
         width: 400px;
         margin-bottom : 10px;
+    }
+    @media screen and (max-width: 768px) {
+        .time,.num_of_guest{
+            height: 5vw;
+            width: 70vw;
+        }
     }
     .select_contents{
         background: white;
@@ -118,6 +173,13 @@
         border-radius: 5px;
         color : white;
         display:flex;
+    }
+    @media screen and (max-width: 768px) {
+        .select_contents{
+            margin-left: 6vw;
+            height: auto;
+            width: 80vw;
+        }
     }
     .select_content{
         display:flex;
@@ -147,6 +209,12 @@
     .label{
         margin-left : 30px;
     }
+    @media screen and (max-width: 768px) {
+        .label{
+            margin-left : 5vw;
+            font-size: 5vw;
+        }
+    }
     .form__button{
         height: 50px;
         width: 450px;
@@ -158,7 +226,9 @@
     }
     @media screen and (max-width: 768px) {
     .form__button{
-            width: 540px;
+            height: 10vw;
+            width: 100vw;
+            font-size : 3vw;
         }
     }
     .error{
@@ -166,50 +236,36 @@
         margin-top : 30px;
         margin-left : 30px;
     }
-    .login{
-        display: inlie-block;
-        height: 30px;
-        width: 100px;
-        text-decoration: none;
-        color:white;
-    }
-    .login_button{
-        background: #0000cd;
-        height: 30px;
-        width: 400px;
-        border-radius: 5px;
-        text-align: center;
-        padding-top : 5px;
-        margin-left : 10px;
-        margin:auto;
-        box-shadow: 2px 2px 2px 0px white;
-    }
-    .error_contents{
-        background: white;
-        height: 150px;
-        width: 400px;
-        border-radius: 5px 5px 0px 0px;
-        margin:auto;
-    }
     .shop_photo{
         height: 300px;
         width: 500px;
     }
+    @media screen and (max-width: 768px) {
+        .shop_photo{
+            height: 50vw;
+            width: 90vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .font,.reserved_value,.heckle,.select_value{
+            font-size : 4vw;
+        }
+    }
     </style>
 </head>
 <body>
-    <header class="top">
-    @if (Auth::check())
-    <a href="/menu/first">
-        <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @else
-    <a href="/menu/second">
-        <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
-    @endif
-        <h1 class="rese">Rese</h1>
-        <p class="like_error">{{session('message')}}</p>
+    <header class="rese_contents">
+        @if (Auth::check())
+        <a href="/menu/first" class="link">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
+        </a>
+        @else
+        <a href="/menu/second" class="link">
+            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese">Rese</h1>
+        </a>
+        @endif
     </header>
     <div class="under_content">
         <article class="content_left">
@@ -224,11 +280,11 @@
             </div>
             <table>
                 <tr>
-                    <td>#{{$shopData->place->name??''}}</td>
-                    <td>#{{$shopData->category->name??''}}</td>
+                    <td class="font">#{{$shopData->place->name??''}}</td>
+                    <td class="font">#{{$shopData->category->name??''}}</td>
                 </tr>
             </table>
-            <p>{{$shopData->comment??''}}</p>
+            <p class="font">{{$shopData->comment??''}}</p>
         </article>
     <section class="content_right">
         <h1 class="reserve_header">予約変更</h1>
