@@ -87,6 +87,12 @@
         color :white;
         font-size :20px;
     }
+    .label_image{
+        margin-left : 20px;
+        color :white;
+        font-size :20px;
+        margin-right : 40px;
+    }
     .select_place{
         margin-left : 202px;
     }
@@ -201,7 +207,7 @@
             <div class="select_contents">
             <form method="POST" action="/owner/upload" enctype="multipart/form-data">
             @csrf
-                <label for="label" class="label">画像変更</label>
+                <label for="label" class="label_image">画像</label>
                 <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
                 <input type="file" value="{{$shopId}}" name="image" class="image">
                 <button class="form__button_image">アップロード</button>

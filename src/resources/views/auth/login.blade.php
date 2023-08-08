@@ -91,7 +91,7 @@
 @error('email')
     <span class="invalid-feedback" role="alert">
         <strong class="error-message">{{ $message }}</strong>
-    </span></br>
+    </span>
 @enderror
 @error('password')
     <span class="invalid-feedback" role="alert">

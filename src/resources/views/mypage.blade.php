@@ -15,6 +15,15 @@
       margin-left : 130px;
       box-shadow: 3px 3px 3px 0px gray;
     }
+    @media screen and (max-width: 768px) {
+    .icon{
+        margin-top : 1vw;
+        height: 8vw;
+        width: 8vw;
+        margin-left : 5vw;
+        box-shadow: 1vw 1vw 1vw 0vw gray;
+      }
+    }
     .rese{
       margin-left : 20px;
       color: blue;
@@ -27,24 +36,28 @@
     }
     @media screen and (max-width: 768px) {
     .user_name{
-      margin-left : 100px;
-      margin-top : 100px;
+      margin-left : 10vw;
       }
     }
     .header_reserve{
       margin-left :100px;
       font-size : 25px;
     }
+    @media screen and (max-width: 768px) {
+    .header_reserve{
+        margin-left : 20vw;;
+      }
+    }
     .link_top{
       display : flex;
       text-decoration: none;
     }
     @media screen and (max-width: 768px) {
-        .link_top{
-            width: 120vw;
-            height: 15vw;
-            background: #eeeeee;
-        }
+      .link_top{
+        width: 120vw;
+        height: 15vw;
+        background: #eeeeee;
+      }
     }
     .header_like{
       margin-left :420px;
@@ -52,7 +65,21 @@
     }
     @media screen and (max-width: 768px) {
     .header_like{
-      margin-left : 120px;
+        display : none;
+      }
+    }
+    .header_like_junp{
+      display : none;
+    }
+    @media screen and (max-width: 768px) {
+    .header_like_junp{
+        margin-left :2vw;
+        display : block;
+        font-size : 3vw;
+        color: gray;
+        text-decoration: none;
+        width: 15vw;
+        height: 7vw;
       }
     }
     .headers{
@@ -61,12 +88,25 @@
     .under_contents{
       display : flex;
     }
+    @media screen and (max-width: 768px) {
+      .under_contents{
+        display : block;
+      }
+    }
     .left_content{
       margin-left :100px;
+    }
+    @media screen and (max-width: 768px) {
+      .left_content{
+        margin-left :5vw;
+      }
     }
     .link{
       color: gray;
       text-decoration: none;
+      width: 15vw;
+      height: 7vw;
+      margin-left : 2vw;;
     }
     .reserved_content{
       width :400px;
@@ -78,8 +118,9 @@
       box-shadow: 5px 5px 4px 2px gray;
     }
     @media screen and (max-width: 768px) {
-    .reserved_content{
-      margin-left : -60px;
+      .reserved_content{
+        width :90vw;
+        height: 50vw;
       }
     }
     .row_contents{
@@ -87,7 +128,7 @@
       height: 180px;
     }
     .row_content{
-      display : flex;
+      display : fle80
       padding-top : 20px;
       margin-left :20px;
     }
@@ -196,6 +237,7 @@
       <h1 class="header_reserve">予約状況</h1>
       <a href="/went" class="link">来店済み店舗一覧</a>
       <h2 class="header_like">お気に入り店舗</h2>
+      <a class="header_like_junp" href="#like_contents">お気に入り店舗一覧</a>
     </div>
     <div class="under_contents">
       <div class="left_content">
@@ -239,7 +281,7 @@
       </article>
       @endif
       </div>
-      <div class="right_contents">
+      <div class="right_contents" id="like_contents">
         @foreach ($likeDatas as $likeData)
         <article class="shop_content">
           <div class="shop_image">
