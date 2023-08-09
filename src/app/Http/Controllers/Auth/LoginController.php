@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo ='/';
+    // protected $redirectTo ='/';
 
     /**
      * Create a new controller instance.
@@ -55,16 +55,15 @@ class LoginController extends Controller
 
     public function redirectPath()
     {
-        if (Auth::user()->role_id == 2) 
-        { 
-            return redirect('/owner');
+        $role = Auth::user()->role_id;
+        if($role == 1){
+            return '/';
         }
-        elseif(Auth::user()->role_id == 3){
-
-            return redirect('/administrator');
+        if($role == 2){
+            return '/owner';
         }
-        else{
-            return redirect('/');
+        if($role == 3){
+            return '/administrator';
         }
     }
 }

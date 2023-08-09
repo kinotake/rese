@@ -34,8 +34,7 @@ class RedirectIfAuthenticated
         else{
             return redirect('/');
         }    
-
-         
         return $next($request);
+        
     }
 }
