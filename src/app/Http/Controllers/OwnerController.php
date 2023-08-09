@@ -7,6 +7,7 @@ use App\Models\Owner;
 use App\Models\Shop;
 use App\Models\Category;
 use App\Models\Place;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,10 +27,12 @@ class OwnerController extends Controller
         $postName = $_POST["user_name"];
         $postEmail = $_POST["email"];
         
-        $owner = new Owner();
-        $owner->name = $postName;
-        $owner->email = $postEmail;
-        $owner->save();
+        $user = new User();
+        $user->name = $postName;
+        $user->email = $postEmail;
+        $user->password = Hash::make('qwertyui');
+        $user->role_id = 2;
+        $user->save();
 
         $message = "店舗管理者が追加されました。";
 
