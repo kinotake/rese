@@ -19,14 +19,23 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect('/');
-            }
+        if(Auth::user() == null)
+        {
+            return $next($request);
         }
+        elseif (Auth::user()->role_id == 2) 
+        { 
+            return redirect('/owner');
+        }
+        elseif(Auth::user()->role_id == 3){
 
+            return redirect('/administrator');
+        }
+        else{
+            return redirect('/');
+        }    
+
+         
         return $next($request);
     }
 }

@@ -46,13 +46,32 @@ Route::get('/done', function () {
 });
 
 //  ★管理者権限
-
-Route::get('/administrator', [OwnerController::class, 'getOwner']);
-Route::post('/administrator/register', [OwnerController::class, 'postOwner']);
-Route::get('/adiministrator/shop/{owner_id}', [OwnerController::class, 'getShop']);
-Route::post('/administrator/shop/register', [ShopController::class, 'makeShop'])->name('makeShop');
-
+Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'can:admin']], function () 
+{
+Route::get('/', [OwnerController::class, 'getOwner']);
+Route::post('/register', [OwnerController::class, 'postOwner']);
+Route::get('/shop/{owner_id}', [OwnerController::class, 'getShop']);
+Route::post('/shop/register', [ShopController::class, 'makeShop'])->name('makeShop');
+});
 //  ★店舗管理者権限
+Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner']], function () 
+{
+    Route::get('/', [OwnerController::class, 'getAll']);
+    Route::post('/logout', [OwnerLoginController::class, 'logout']);
+    Route::get('/edit/{shop_id}', [OwnerController::class, 'getEdit']); 
+    Route::post('/edit/category', [ShopController::class, 'editCategory']);
+    Route::post('/edit/category', [ShopController::class, 'editCategory']);
+    Route::post('/edit/place', [ShopController::class, 'editPlace']);
+    Route::post('/edit/comment', [ShopController::class, 'editComment']);
+    Route::post('/upload', [PhotoController::class, 'postUpload']);
+    Route::get('/reserve/{shop_id}', [ReserveController::class, 'getReserve']);
+    Route::get('/reserve/today/{shop_id}', [ReserveController::class, 'getReserveToday']);
+    Route::get('/reserve/went/{shop_id}', [ReserveController::class, 'getReserveWent']);
+    Route::get('/menu', function () {
+    return view('owner/menu');
+    });
+});
+
 Route::get('/owner/register', function () {
     return view('owner/register');
 });
@@ -61,20 +80,6 @@ Route::get('/owner/login', function () {
     return view('owner/login');
 });
 Route::post('/owner/login', [OwnerLoginController::class, 'login']);
-Route::get('/owner/menu', function () {
-    return view('owner/menu');
-});
-Route::get('/owner', [OwnerController::class, 'getAll']);
-Route::post('/owner/logout', [OwnerLoginController::class, 'logout']);
-Route::get('/owner/edit/{shop_id}', [OwnerController::class, 'getEdit']);
-Route::post('/owner/edit/category', [ShopController::class, 'editCategory']);
-Route::post('/owner/edit/category', [ShopController::class, 'editCategory']);
-Route::post('/owner/edit/place', [ShopController::class, 'editPlace']);
-Route::post('/owner/edit/comment', [ShopController::class, 'editComment']);
-Route::post('owner/upload', [PhotoController::class, 'postUpload']);
-Route::get('/owner/reserve/{shop_id}', [ReserveController::class, 'getReserve']);
-Route::get('/owner/reserve/today/{shop_id}', [ReserveController::class, 'getReserveToday']);
-Route::get('/owner/reserve/went/{shop_id}', [ReserveController::class, 'getReserveWent']);
 
 Auth::routes();
 

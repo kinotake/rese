@@ -15,7 +15,7 @@ class CreateOwnersTable extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->id();
-            $table->integer('administrator_id')->nullable();;
+            $table->integer('administrator_id')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password')->nullable();;
