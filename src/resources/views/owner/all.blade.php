@@ -24,6 +24,26 @@
         margin-left : 20px;
         color: #00bfff;
     }
+    .name_content{
+        text-align: center;
+    }
+    .user_name{
+        font-size :30px;
+    }
+    .links{
+        margin-left : 120px;
+        display : flex;
+    }
+    .content_name{
+        font-weight : bold;
+        font-size :25px;
+    }
+    .link{
+        margin-top : 10px;
+        margin-left : 25px;
+        text-decoration: none;
+        color : grey;       
+    }
     .shop_contents{
         display : flex;
         flex-wrap:wrap;
@@ -82,9 +102,17 @@
         <h1 class="rese">Rese</h1>
         <p class="message">{{session('message')}}</p>
     </header>
-    <div class="under_content">
+    <div class ="name_content">
+        <p class="user_name">{{$ownerData->name}}さん</p>
+    </div>
+    <nav class="links">
+        <p class="content_name">管理店舗一覧</p>
+        <a href="/owner/add/{{$ownerData->id}}" class="link">新規店舗作成</a>
+        <a href="" class="link">連絡機能</a>
+    </nav>
+    <main class="under_content">
     <p class="error">{{$noPost??''}}</p>
-    <div class="under_contents">
+    <main class="under_contents">
         <div class="left_padding_content">
         </div>
     @if (@isset($allShops))
@@ -110,9 +138,7 @@
     </div>
     @endif
     
-    </div>
+</main>
 
     
-</body>
-    </div>
 </body>

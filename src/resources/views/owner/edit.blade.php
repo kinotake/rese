@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>入力してください</title>
+  <title>店舗情報変更ページ</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
 
     <style>

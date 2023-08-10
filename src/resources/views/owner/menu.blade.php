@@ -55,10 +55,11 @@
 </div>
 <article class="links">
   <a href="/owner" class="link">Home</a>
-  <form action="/owner/logout" method="POST">
+  <a class="link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById ('logout-form').submit();">
+    {{ __('Logout') }}
+  </a>
+  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
   @csrf
-  <button type="submit" class="logout_botton">{{ __('Logout') }}</button>
-  <!-- 要確認 -->
   </form>
 </article>
 </body>
