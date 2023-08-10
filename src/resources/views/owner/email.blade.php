@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>新規店舗作成ページ</title>
+  <title>メール作成ページ</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
 
     <style>
@@ -61,9 +61,6 @@
     .label{
         color : white;
     }
-    .label_genre{
-        color : white;
-    }
     .form__button{
         height: 50px;
         width: 450px;
@@ -88,38 +85,24 @@
     </div>
     <nav class="links">
         <a href="/owner" class="link">管理店舗一覧</a>
-        <p class="content_name">新規店舗作成</p>
-        <a href="/owner/send/" class="link">連絡機能</a>
+        <a href="/owner/add" class="link">新規店舗作成</a>
+        <p class="content_name">連絡機能</p>
     </nav>
     
         <div class="all_input_contents">
             <h1 class="shop_header">新規店舗作成</h1>
             <main class="input_contents">
-                <form action="{{ route('makeShop')}}" method = "POST">
+                <form action="" method = "POST">
                 @csrf
                 <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">
-                <label for="label" class="label">新規店舗名</label>
+                <label for="label" class="label">新規メール作成</label>
                 <input id="new_shop_name" type="text" class="form" name="new_shop_name">
                 <div class ="select_contents">
-                <label for="label" class="label">エリア</label>
-                <select class="select" name="place_id">
-                    <option value="selected">All area</option>
-                    @foreach ($places as $place)
-                    <option value="{{$place->id}}">{{$place->name}}</option>
-                    @endforeach
-                </select>
-                <label for="label" class="label_genre">ジャンル</label>
-                <select class="select" name="category_id">
-                    <option value="selected">All genre</option>
-                    @foreach ($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
-                </select>
                 <label for="label" class="label">コメント</label>
                 <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
                 </div>
             </main>
-                <button class="form__button" type="submit">作成する</button>
+                <button class="form__button" type="submit">送信する</button>
             </form>
         </div>
 </body>
