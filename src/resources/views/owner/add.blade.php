@@ -114,6 +114,8 @@
                     <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                 </select>
+                <label for="label" class="label">コメント</label>
+                <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
                 </div>
             </main>
                 <button class="form__button" type="submit">作成する</button>
