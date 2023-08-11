@@ -57,12 +57,32 @@
     }
     .shop_header{
         color : white;
+        margin-left : 20px;
+    }
+    .form{
+        margin-left : 10px;
+    }
+    .select{
+        margin-left : 40px;
+    }
+    .select_contents{
+        margin-top : 20px;
     }
     .label{
         color : white;
+        margin-left : 20px;  
+    }
+    .label_comment{
+        color : white;
+        margin-left : 20px;
     }
     .label_genre{
         color : white;
+        margin-left : 20px;
+    }
+    .comment{
+        margin-left : 22px;
+        width: 280px;
     }
     .form__button{
         height: 50px;
@@ -98,8 +118,10 @@
                 <form action="{{ route('makeShop')}}" method = "POST">
                 @csrf
                 <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">
+                <div class ="select_contents">
                 <label for="label" class="label">新規店舗名</label>
                 <input id="new_shop_name" type="text" class="form" name="new_shop_name">
+                </div>
                 <div class ="select_contents">
                 <label for="label" class="label">エリア</label>
                 <select class="select" name="place_id">
@@ -115,7 +137,9 @@
                     <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                 </select>
-                <label for="label" class="label">コメント</label>
+                </div>
+                <div class ="select_contents">
+                <label for="label" class="label_comment">コメント</label>
                 <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
                 </div>
             </main>

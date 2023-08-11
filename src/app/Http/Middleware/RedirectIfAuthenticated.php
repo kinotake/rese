@@ -19,22 +19,34 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        if(Auth::user() == null)
-        {
-            return $next($request);
-        }
-        elseif (Auth::user()->role_id == 2) 
-        { 
-            return redirect('/owner');
-        }
-        elseif(Auth::user()->role_id == 3){
+        $guards = empty($guards) ? [null] : $guards;
+        
 
-            return redirect('/administrator');
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+                return redirect(RouteServiceProvider::HOME);
+            }
         }
-        else{
-            return redirect('/');
-        }    
+
         return $next($request);
+        // 動くが、新規登録後のみAuthの情報が取得できない
+        // if(Auth::id() != null && Auth::user()->role_id == 1)
+        // {
+        //     return redirect('/');
+        // }  
+        // elseif(Auth::id() != null && Auth::user()->role_id == 2) 
+        // { 
+        //     return redirect('/owner');
+        // }
+        // elseif(Auth::id() != null && Auth::user()->role_id == 3){
+
+        //     return redirect('/administrator');
+        // }
+        // else
+        // {
+        //     return $next($request);
+        // }  
+        // return $next($request);
         
     }
 }

@@ -65,7 +65,7 @@ class ReserveController extends Controller
         $shopId = $shop_id;
 
         $today = Carbon::now();
-        $reserveDatas = Reserve::where('shop_id','=',$shopId)->whereDate('date','>',$today)->latest('date')->get();
+        $reserveDatas = Reserve::where('shop_id','=',$shopId)->whereDate('date','>=',$today)->latest('date')->get();
 
         $shopData = Shop::find($shopId);
         

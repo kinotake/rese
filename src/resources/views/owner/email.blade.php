@@ -57,9 +57,11 @@
     }
     .shop_header{
         color : white;
+        margin-left : 20px;
     }
     .label{
         color : white;
+        margin-left : 20px;  
     }
     .form__button{
         height: 50px;

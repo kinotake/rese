@@ -113,7 +113,7 @@
 </head>
 <body>
     <header class="top">
-    <a href="">
+    <a href="/administrator/menu">
         <img src="{{ asset('/images/adiministrator.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
     </a>
         <h1 class="rese">Rese</h1>
@@ -152,7 +152,7 @@
                 <td class="email">{{$allOwner->email}}</td>
                 <td class="email">初期ログイン済み</td>
                 <td class="buttons">
-                    <a href="adiministrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">店舗の管理</a>
+                    <a href="administrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">店舗の管理</a>
                     <a href="" type="submit" class="mail_button">メールの送信</a>
                 </td>
             </tr>

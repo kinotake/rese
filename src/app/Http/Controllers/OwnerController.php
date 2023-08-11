@@ -15,7 +15,7 @@ class OwnerController extends Controller
 {
     public function getOwner(Request $request)
     {
-        $allOwners = Owner::all();
+        $allOwners = User::where('role_id','=',2)->get();
 
         return view('administrator/all', compact('allOwners'));
     }
@@ -39,11 +39,11 @@ class OwnerController extends Controller
         return redirect('/administrator')->with(compact('message'));
     }
 
-    public function getShop($owner_id)
+    public function getShop($user_id)
     {
-        $ownerId = $owner_id;
-        $allShops =  Shop::where('owner_id',$ownerId)->get();
-        $ownerData = Owner::find($ownerId);
+        $UserId = $owner_id;
+        $allShops =  Shop::where('user_id',$UserId)->get();
+        $ownerData = User::find($UserId);
 
         $categories = Category::all();
         $places = Place::all();
@@ -81,11 +81,12 @@ class OwnerController extends Controller
 
     public function getAll()
     {
-        $ownerId =Auth::guard('owners')->user()->id;
+        $ownerId = Auth::id();
         
-        $allShops =  Shop::where('owner_id','=',$ownerId)->get();
-        
-        return view('owner/all', compact('allShops'));
+        $allShops =  Shop::where('user_id','=',$ownerId)->get();
+        $ownerData = User::find($ownerId);
+
+        return view('owner/all', compact('allShops','ownerData'));
     }
 
     public function getEdit($shop_id)
@@ -97,5 +98,13 @@ class OwnerController extends Controller
         $places = Place::all();
         
         return view('owner/edit', compact('shopData','categories','places','shopId'));
+    }
+
+    public function getSend()
+    {
+        $ownerId = Auth::id();
+        $ownerData = User::find($ownerId);
+        
+        return view('owner/email', compact('ownerData'));
     }
 }

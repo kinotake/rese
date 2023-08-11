@@ -202,27 +202,23 @@ class ShopController extends Controller
     {
         $post = $request->all();
 
-        $ownerId = $_POST["owner_id"];
+        $userId = $_POST["owner_id"];
         $postName = $_POST["new_shop_name"];
         $categoryId = $_POST["category_id"];
         $placeId = $_POST["place_id"];
+        $comment = $_POST["comment"];
         
         $shop = new Shop();
-        $shop->owner_id = $ownerId;
+        $shop->user_id = $userId;
         $shop->name = $postName;
         $shop->category_id = $categoryId;
         $shop->place_id = $placeId;
-        $shop->comment = "コメントが入力されていません。";
+        $shop->comment = $comment;
         $shop->save();
 
         $message = "店舗が追加されました。";
 
-        $allShops =  Shop::where('owner_id',$ownerId)->get();
-        $ownerData = Owner::find($ownerId);
-        $categories = Category::all();
-        $places = Place::all();
-
-        return view('administrator/shop', compact('allShops','ownerData','categories','places','message'));
+        return redirect('/owner')->with(compact('message'));
     }
 
     public function editCategory(Request $request)
@@ -268,5 +264,15 @@ class ShopController extends Controller
 
         return redirect('/owner')->with(compact('message'));
         
+    }
+    public function getAdd()
+    {
+        $UserId = Auth::id();
+        $ownerData = User::find($UserId);
+
+        $categories = Category::all();
+        $places = Place::all();
+        
+        return view('owner/add', compact('ownerData','categories','places'));
     }
 }
