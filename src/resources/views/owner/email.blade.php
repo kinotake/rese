@@ -49,13 +49,27 @@
         margin-top : 20px;
         margin-left : 140px;
         background: #00bfff;
-        height: 300px;
-        width: 450px;
+        height: 500px;
+        width: 1000px;
         box-shadow: 5px 5px 4px 0px gray;
         border-radius: 5px;
         position: relative;
     }
-    .shop_header{
+    .all_to_contents{
+        display : flex;
+    }
+    .to_contents{
+        display : flex;
+    }
+    .to_contents{
+        height: 25px;
+        margin-left : 20px;
+        color : white;
+    }
+    .form{
+
+    }
+    .mail_header{
         color : white;
         margin-left : 20px;
     }
@@ -63,9 +77,16 @@
         color : white;
         margin-left : 20px;  
     }
+    .content{
+        margin-left : 22px;  
+    }
+    .title{
+        margin-left : 30px; 
+        width: 450px;
+    }
     .form__button{
         height: 50px;
-        width: 450px;
+        width: 1000px;
         background: #00a0e4;
         color : white;
         border:none;
@@ -92,19 +113,30 @@
     </nav>
     
         <div class="all_input_contents">
-            <h1 class="shop_header">新規メール作成</h1>
+            <h1 class="mail_header">新規メール作成</h1>
             <main class="input_contents">
                 <form action="/owner/send" method = "POST">
                 @csrf
-                <input type="radio" name="num_of_inq" value="はじめて">はじめて
-		        <input type="radio" name="num_of_inq" value="２回目">２回目
-		        <input type="radio" name="num_of_inq" value="３回以上">３回以上
+                <div class ="all_to_contents">
+                <label for="label" class="label">送信先</label>
+                <div class ="to_contents">
+                    <select class="select" name="shop_id">
+                        <option value="selected">Shop Name</option>
+                        @foreach ($allShops as $allShop)
+                        <option value="{{$allShop->id}}">{{$allShop->name}}</option>
+                        @endforeach
+                    </select>
+                    <p>で</p>
+                    <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()">
+                    <p>の来店者全員（予定含む）</p>
+                </div>
+                </div>
                 <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">
                 <label for="label" class="label">件名</label>
-                <input id="title" type="text" class="form" name="title">
-                <div class ="select_contents">
-                <label for="label" class="label">コメント</label>
-                <textarea cols="30" rows="5" name="content" class="content" id="content">{{ old('content') }}</textarea>
+                <input id="title" type="text" class="title" name="title">
+                <div class ="comment_contents">
+                <label for="label" class="label">内容</label>
+                <textarea cols="140" rows="22" name="content" class="content" id="content">{{ old('content') }}</textarea>
                 </div>
             </main>
                 <button class="form__button" type="submit">送信する</button>

@@ -104,7 +104,8 @@ class OwnerController extends Controller
     {
         $ownerId = Auth::id();
         $ownerData = User::find($ownerId);
+        $allShops =  Shop::where('user_id','=',$ownerId)->get();
         
-        return view('owner/email', compact('ownerData'));
+        return view('owner/email', compact('ownerData','allShops'));
     }
 }
