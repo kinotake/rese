@@ -99,10 +99,27 @@ class ReserveController extends Controller
 
     public function postSend(Request $request)
     {   
-        $content = $_POST["content"];
-        $title = $_POST["title"];
+        // $content = $_POST["content"];
+        // $title = $_POST["title"];
+        // $shopId = $_POST["shop_id"];
+        // $day = $_POST["day"];
 
-        Mail::send(new SendMail($content,$title));
+        $content = $request->input('content');
+        $title = $request->input('title');
+        $shopId = $request->input('shop_id');
+        $date = $request->input('date');
+
+        $reserveDatas = Reserve::where('shop_id','=',$shopId)->whereDate('date','=',$date)->get();
+
+        $userDatas = array();
+        foreach($reserveDatas as $reserveData)
+        {
+            $userDatas[] = $reserveData->user->email;
+        }
+        
+        $unique_emails = array_unique($userDatas);
+
+        Mail::to($unique_emails)->send(new SendMail($content,$title));
 
         $message="メールが送信されました。";
 
