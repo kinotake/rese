@@ -96,6 +96,9 @@
             <main class="input_contents">
                 <form action="/owner/send" method = "POST">
                 @csrf
+                <input type="radio" name="num_of_inq" value="はじめて">はじめて
+		        <input type="radio" name="num_of_inq" value="２回目">２回目
+		        <input type="radio" name="num_of_inq" value="３回以上">３回以上
                 <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">
                 <label for="label" class="label">件名</label>
                 <input id="title" type="text" class="form" name="title">

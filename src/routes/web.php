@@ -63,24 +63,24 @@ Route::get('/menu', function () {
 Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner']], function () 
 {
     Route::get('/', [OwnerController::class, 'getAll']);
-});
-Route::get('/owner/add/', [ShopController::class, 'getAdd']); 
-Route::post('/owner/register', [ShopController::class, 'makeShop'])->name('makeShop');
-Route::get('/owner/send', [OwnerController::class, 'getSend']);
-Route::post('/owner/send', [ReserveController::class, 'postSend']); 
-Route::get('/owner/edit/{shop_id}', [OwnerController::class, 'getEdit']); 
-Route::post('/owner/edit/category', [ShopController::class, 'editCategory']);
-Route::post('/owner/edit/category', [ShopController::class, 'editCategory']);
-Route::post('/owner/edit/place', [ShopController::class, 'editPlace']);
-Route::post('/owner/edit/comment', [ShopController::class, 'editComment']);
-Route::post('/owner/upload', [PhotoController::class, 'postUpload']);
-Route::get('/owner/reserve/{shop_id}', [ReserveController::class, 'getReserve']);
-Route::get('/owner/reserve/today/{shop_id}', [ReserveController::class, 'getReserveToday']);
-Route::get('/owner/reserve/went/{shop_id}', [ReserveController::class, 'getReserveWent']);
-
-Route::get('/owner/menu', function () {
+    Route::get('/add', [ShopController::class, 'getAdd']); 
+    Route::post('/register', [ShopController::class, 'makeShop'])->name('makeShop');
+    Route::get('/send', [OwnerController::class, 'getSend']);
+    Route::post('/send', [ReserveController::class, 'postSend']); 
+    Route::get('/edit/{shop_id}', [OwnerController::class, 'getEdit']); 
+    Route::post('/edit/category', [ShopController::class, 'editCategory']);
+    Route::post('/edit/category', [ShopController::class, 'editCategory']);
+    Route::post('/edit/place', [ShopController::class, 'editPlace']);
+    Route::post('/edit/comment', [ShopController::class, 'editComment']);
+    Route::post('/upload', [PhotoController::class, 'postUpload']);
+    Route::get('/reserve/{shop_id}', [ReserveController::class, 'getReserve']);
+    Route::get('/reserve/today/{shop_id}', [ReserveController::class, 'getReserveToday']);
+    Route::get('/reserve/went/{shop_id}', [ReserveController::class, 'getReserveWent']);
+    Route::get('/menu', function () {
     return view('owner/menu');
 });
+});
+
 // Route::post('owner/logout', [OwnerLoginController::class, 'logout']);
 
 // Route::get('/owner/register', function () {

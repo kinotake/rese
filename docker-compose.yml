@@ -39,4 +39,12 @@ services:
         depends_on:
             - mysql
         ports:
-            - 8080:80           
+            - 8080:80
+    
+    container_mailhog:
+        image: mailhog/mailhog
+        ports:
+        - target: 8025
+          published: ${MAILHOG_PUBLISHED_PORT:-8025}
+          protocol: tcp
+          mode: host
