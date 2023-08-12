@@ -92,16 +92,16 @@
     </nav>
     
         <div class="all_input_contents">
-            <h1 class="shop_header">新規店舗作成</h1>
+            <h1 class="shop_header">新規メール作成</h1>
             <main class="input_contents">
-                <form action="" method = "POST">
+                <form action="/owner/send" method = "POST">
                 @csrf
                 <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">
-                <label for="label" class="label">新規メール作成</label>
-                <input id="new_shop_name" type="text" class="form" name="new_shop_name">
+                <label for="label" class="label">件名</label>
+                <input id="title" type="text" class="form" name="title">
                 <div class ="select_contents">
                 <label for="label" class="label">コメント</label>
-                <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
+                <textarea cols="30" rows="5" name="content" class="content" id="content">{{ old('content') }}</textarea>
                 </div>
             </main>
                 <button class="form__button" type="submit">送信する</button>

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ReserveRequest;
 use Carbon\Carbon;
 use App\Models\Shop;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 
 class ReserveController extends Controller
 {
@@ -93,5 +95,17 @@ class ReserveController extends Controller
         $shopData = Shop::find($shopId);
         
         return view('owner/went')->with(compact('reserveDatas','shopData'));
+    }
+
+    public function postSend(Request $request)
+    {   
+        $content = $_POST["content"];
+        $title = $_POST["title"];
+
+        Mail::send(new SendMail($content,$title));
+
+        $message="メールが送信されました。";
+
+        return redirect('/owner/send')->with(compact('message'));
     }
 }

@@ -71,7 +71,7 @@ class UsersTableSeeder extends Seeder
         ],
         [    
             'name' => '篠塚亜依',
-            'email' => 'owner5@owner5',
+            'email' => 'kinot523@gmail.com',
             'password' => \Hash::make('qwertyui'),
             'role_id' => 2,
         ],
