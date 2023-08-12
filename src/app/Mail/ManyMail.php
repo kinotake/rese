@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendMail extends Mailable
+class ManyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,11 +16,11 @@ class SendMail extends Mailable
      *
      * @return void
      */
-    public function __construct($content,$title,$email)
+    public function __construct($content,$title,$unique_emails)
     {
         $this->content = $content;
         $this->title = $title;
-        $this->email = $email;
+        $this->unique_emails = $unique_emails;
     }
 
     /**
@@ -30,7 +30,7 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->to($this->email)
+        return $this->to($this->unique_emails)
         ->subject($this->title)
         ->view('send.make_send')
         ->with(['content' => $this->content]);

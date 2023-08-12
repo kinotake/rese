@@ -88,7 +88,7 @@
             <th>{{$reserveData->time}}</th>
             <th>{{$reserveData->num_of_guest}}人</th>
             <th>{{$reserveData->user->name}}様</th>
-            <th><a href="" type="submit" class="detail_button">お問い合わせ</a></th>
+            <th><a href="/owner/user/send/{{$reserveData->id}}" type="submit" class="detail_button">お問い合わせ</a></th>
         </tr>
     @endforeach
     @endif

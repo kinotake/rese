@@ -8,6 +8,7 @@ use App\Models\Shop;
 use App\Models\Category;
 use App\Models\Place;
 use App\Models\User;
+use App\Models\Reserve;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -107,5 +108,14 @@ class OwnerController extends Controller
         $allShops =  Shop::where('user_id','=',$ownerId)->get();
         
         return view('owner/email', compact('ownerData','allShops'));
+    }
+
+    public function getUserSend($reserve_id)
+    {
+        $ownerId = Auth::id();
+        $ownerData = User::find($ownerId);
+        $reserveData = Reserve::find($reserve_id);
+        
+        return view('owner/user_email', compact('ownerData','reserveData'));
     }
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>メール作成ページ</title>
+  <title>ユーザー別メール作成ページ</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
 
     <style>
@@ -66,8 +66,8 @@
         margin-left : 20px;
         color : white;
     }
-    .form{
-
+    .date{
+        margin-left : 20px;
     }
     .mail_header{
         color : white;
@@ -120,23 +120,16 @@
         <div class="all_input_contents">
             <h1 class="mail_header">新規メール作成</h1>
             <main class="input_contents">
-                <form action="/owner/send" method = "POST">
+                <form action="/owner/user/send" method = "POST">
                 @csrf
                 <div class ="all_to_contents">
                 <label for="label" class="label">送信先</label>
                 <div class ="to_contents">
-                    <select class="select" name="shop_id">
-                        <option value="selected">Shop Name</option>
-                        @foreach ($allShops as $allShop)
-                        <option value="{{$allShop->id}}">{{$allShop->name}}</option>
-                        @endforeach
-                    </select>
-                    <p>で</p>
-                    <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()">
-                    <p>の来店者全員（予定含む）</p>
+                    <p>{{$reserveData->user->name}}様</p>
+                    <p class ="date">({{$reserveData->date}},{{$reserveData->time}}にご予約)</p>
                 </div>
                 </div>
-                <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">
+                <input type="hidden" name="user_id" class="user_id" id="user_id" value="{{$reserveData->user->id}}">
                 <label for="label" class="label">件名</label>
                 <input id="title" type="text" class="title" name="title">
                 <div class ="comment_contents">

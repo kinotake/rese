@@ -9,7 +9,7 @@ use App\Http\Requests\ReserveRequest;
 use Carbon\Carbon;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMail;
+use App\Mail\ManyMail;
 
 class ReserveController extends Controller
 {
@@ -99,11 +99,6 @@ class ReserveController extends Controller
 
     public function postSend(Request $request)
     {   
-        // $content = $_POST["content"];
-        // $title = $_POST["title"];
-        // $shopId = $_POST["shop_id"];
-        // $day = $_POST["day"];
-
         $content = $request->input('content');
         $title = $request->input('title');
         $shopId = $request->input('shop_id');
@@ -116,13 +111,22 @@ class ReserveController extends Controller
         {
             $userDatas[] = $reserveData->user->email;
         }
-        
         $unique_emails = array_unique($userDatas);
+        
+        if($unique_emails == null){
 
-        Mail::to($unique_emails)->send(new SendMail($content,$title));
+            $message="該当する送信相手が存在しません。";
 
-        $message="メールが送信されました。";
+            return redirect('/owner/send')->with(compact('message'));
+        }
+        else{
+
+            Mail::to($unique_emails)->send(new ManyMail($content,$title,$unique_emails));
+
+            $message="メールが送信されました。";
 
         return redirect('/owner/send')->with(compact('message'));
+
+        }
     }
 }

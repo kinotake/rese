@@ -51,12 +51,12 @@ Route::middleware(['verified'])->group(function(){
 //  ★管理者権限
 Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'can:admin']], function () 
 {
-Route::get('/', [OwnerController::class, 'getOwner']);
-Route::get('/shop/{user_id}', [OwnerController::class, 'getShop']);
-Route::post('/register', [OwnerController::class, 'postOwner']);
-Route::get('/menu', function () {
-    return view('administrator/menu');
- });
+    Route::get('/', [OwnerController::class, 'getOwner']);
+    Route::get('/shop/{user_id}', [OwnerController::class, 'getShop']);
+    Route::post('/register', [OwnerController::class, 'postOwner']);
+    Route::get('/menu', function () {
+        return view('administrator/menu');
+    });
 });
 
 //  ★店舗管理者権限
@@ -66,7 +66,9 @@ Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner']], funct
     Route::get('/add', [ShopController::class, 'getAdd']); 
     Route::post('/register', [ShopController::class, 'makeShop'])->name('makeShop');
     Route::get('/send', [OwnerController::class, 'getSend']);
-    Route::post('/send', [ReserveController::class, 'postSend']); 
+    Route::post('/send', [ReserveController::class, 'postSend']);
+    Route::get('/user/send/{reserve_id}', [OwnerController::class, 'getUserSend']); 
+    Route::post('/user/send', [UserController::class, 'postUserSend']); 
     Route::get('/edit/{shop_id}', [OwnerController::class, 'getEdit']); 
     Route::post('/edit/category', [ShopController::class, 'editCategory']);
     Route::post('/edit/category', [ShopController::class, 'editCategory']);
