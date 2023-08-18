@@ -118,33 +118,5 @@
             @endif
         </table>
         </div>
-        <section class="content_right">
-        <h1 class="shop_header">新規店舗作成</h1>
-        <main class="input_contents">
-            <form action="{{ route('makeShop')}}" method = "POST">
-                @csrf
-                <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">
-                <label for="label" class="label">新規店舗名</label>
-                <input id="new_shop_name" type="text" class="form" name="new_shop_name">
-                <div class ="select_contents">
-                <label for="label" class="label">エリア</label>
-                <select class="select" name="place_id">
-                    <option value="selected">All area</option>
-                    @foreach ($places as $place)
-                    <option value="{{$place->id}}">{{$place->name}}</option>
-                    @endforeach
-                </select>
-                <label for="label" class="label_genre">ジャンル</label>
-                <select class="select" name="category_id">
-                    <option value="selected">All genre</option>
-                    @foreach ($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
-                </select>
-                </div>
-        </main>
-                <button class="form__button" type="submit">作成する</button>
-            </form>
-        </section>
     </div>
 </body>

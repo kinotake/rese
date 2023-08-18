@@ -120,7 +120,7 @@
     }
     @media screen and (max-width: 768px) {
     .content_right{
-            height: 150vw;
+            height: 100vw;
             width: 100vw;
         }
     }

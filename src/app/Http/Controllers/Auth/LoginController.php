@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo ='/';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -56,6 +56,7 @@ class LoginController extends Controller
     public function redirectPath()
     {
         $role = Auth::user()->role_id;
+
         if($role == 1){
             return '/';
         }

@@ -11,27 +11,40 @@
       margin: 0;
       padding: 0;
     }
-    .top{
-      display : flex;
-      padding-top : 20px;
-      padding-bottom : 20px;
-    }
-    @media screen and (max-width: 768px) {
-    .top{
-        margin-left : -60px;
-        position: fixed;
-        height: 60px;
-        width :1000px;
-        background: white;
-        }
-    }
+    
     .icon{
       margin-left : 130px;
       box-shadow: 3px 3px 3px 0px gray;
     }
+    @media screen and (max-width: 768px) {
+    .icon{
+        margin-top : 1vw;
+        height: 8vw;
+        width: 8vw;
+        margin-left : 5vw;
+        box-shadow: 1vw 1vw 1vw 0vw gray;
+      }
+    }
     .rese{
       margin-left : 20px;
       color: blue;
+    }
+    @media screen and (max-width: 768px) {
+    .rese{
+            margin-left : 4vw;
+            font-size: 8vw;
+        }
+    }
+    .link_top{
+      display : flex;
+      text-decoration: none;
+    }
+    @media screen and (max-width: 768px) {
+      .link_top{
+        width: 120vw;
+        height: 15vw;
+        background: #eeeeee;
+      }
     }
     .user_name{
       display:inline-block;
@@ -41,8 +54,8 @@
     }
     @media screen and (max-width: 768px) {
     .user_name{
-      margin-left : 100px;
-      margin-top : 100px;
+        margin-left : 5vw;
+        font-size : 5vw;
       }
     }
     .header_went{
@@ -50,9 +63,22 @@
       margin-left : 20px;
     }
     @media screen and (max-width: 768px) {
+    .header_went{
+        margin-left : 1vw;
+        font-size : 5vw;
+      }
+    }
+    @media screen and (max-width: 768px) {
     .user_name{
-      margin-left : 100px;
-      margin-top : 100px;
+        margin-top : 0vw;
+        margin-left : 5vw;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .link_top{
+        width: 120vw;
+        height: 15vw;
+        background: #eeeeee;
       }
     }
     .link{
@@ -60,13 +86,34 @@
       color : grey;
       margin-left : 100px;
     }
+    @media screen and (max-width: 768px) {
+      .link{
+        display : block;
+        font-size : 3vw;
+      }
+    }
     .header_like{
       margin-left :420px;
       font-size : 25px;
     }
     @media screen and (max-width: 768px) {
     .header_like{
-      margin-left : 80px;
+        display : none;
+        font-size : 3vw;
+      }
+    }
+    .header_like_junp{
+      display : none;
+    }
+    @media screen and (max-width: 768px) {
+    .header_like_junp{
+        margin-left :2vw;
+        display : block;
+        font-size : 3vw;
+        color: gray;
+        text-decoration: none;
+        width: 15vw;
+        height: 7vw;
       }
     }
     .headers{
@@ -75,12 +122,17 @@
     .under_contents{
       display : flex;
     }
+    @media screen and (max-width: 768px) {
+      .under_contents{
+        display : block;
+      }
+    }
     .left_content{
       margin-left :100px;
     }
     @media screen and (max-width: 768px) {
-    .left_content{
-      margin-left : 40px;
+      .left_content{
+        margin-left :5vw;
       }
     }
     .reserved_content{
@@ -92,6 +144,12 @@
       margin-top : 20px;
       box-shadow: 5px 5px 4px 2px gray;
     }
+    @media screen and (max-width: 768px) {
+      .reserved_content{
+        width :90vw;
+        height: 50vw;
+      }
+    }
     .content_header{
       display : flex;
     }
@@ -99,10 +157,23 @@
       padding-top : 20px;
       padding-left :20px;
     }
+    @media screen and (max-width: 768px) {
+      .went_content_header{
+        font-size : 4vw;
+        padding-top : 3vw;
+        padding-left : 3vw;
+      }
+    }
     .row_content{
       display : flex;
       padding-top : 20px;
       margin-left :20px;
+    }
+    @media screen and (max-width: 768px) {
+      .row_content{
+        font-size : 4vw;
+        padding-top : 3vw;
+      }
     }
     .assessment_button{
       background: #0000cd;
@@ -117,11 +188,30 @@
       text-decoration: none;
       text-align: center;
     }
+    @media screen and (max-width: 768px) {
+      .assessment_button{
+        margin-left : 25vw;
+        margin-top : 2vw;
+        height: 8vw;
+        width: 35vw;
+        font-size : 4vw;
+      }
+    }
     .reserved_detail{
       margin-left :80px;
     }
+    @media screen and (max-width: 768px) {
+      .reserved_detail{
+        margin-left :10vw;
+      }
+    }
     .reserved_guest{
       margin-left :55px;
+    }
+    @media screen and (max-width: 768px) {
+      .reserved_guest{
+        margin-left :6vw;
+      }
     }
     .message{
         display: block;
@@ -133,9 +223,9 @@
       flex-wrap: wrap;
       margin-left :100px;
     }
-     @media screen and (max-width: 768px) {
+    @media screen and (max-width: 768px) {
     .right_contents{
-      margin-left : 5px;
+      margin-left : 7vw;
       }
     }
     .shop_content{
@@ -147,6 +237,14 @@
       margin-top : 20px;
       padding-bottom : 20px;
       border-radius: 5px;
+    }
+    @media screen and (max-width: 768px) {
+    .shop_content{
+            height: 40vw;
+            width: 40vw;
+            margin-right : 1vw;
+            margin-left : 1vw;
+        }
     }
     .buttons{
       display : flex;
@@ -164,6 +262,13 @@
       padding-top : 5px;
       margin-left : 10px;
     }
+    @media screen and (max-width: 768px) {
+    .detail_button{
+            height: 6vw;
+            width: 20vw;
+            font-size: 3vw;
+        }
+    }
     .error_content{
       width :400px;
       height: 250px;
@@ -175,17 +280,40 @@
       width :220px;
       height: 110px;
     }
+    @media screen and (max-width: 768px) {
+    .shop_photo{
+        width : 40vw;
+        height : 20vw;
+    }
+    }
+    @media screen and (max-width: 768px) {
+    .information{
+            font-size: 3vw;
+        }
+      }
+    @media screen and (max-width: 768px) {
+    .name{
+            font-size: 3vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+    .heart{
+            height: 14vw;
+            width: 14vw;
+            margin-top : -4vw;
+        }
+    }
     </style>
 </head>
 <body>
   <header class="rese_contents">
         @if (Auth::check())
-        <a href="/menu/first" class="link">
+        <a href="/menu/first" class="link_top">
             <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
             <h1 class="rese">Rese</h1>
         </a>
         @else
-        <a href="/menu/second" class="link">
+        <a href="/menu/second" class="link_top">
             <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
             <h1 class="rese">Rese</h1>
         </a>
@@ -196,6 +324,7 @@
       <a href="/mypage" class="link">予約状況</a>
       <h1 class="header_went">来店済み店舗一覧</h1>
       <h2 class="header_like">お気に入り店舗</h2>
+      <a class="header_like_junp" href="#like_contents">お気に入り店舗一覧</a>
     </div>
     <div class="under_contents">
       <div class="left_content">
@@ -234,17 +363,17 @@
       </article>
       @endif
       </div>
-      <div class="right_contents">
+      <div class="right_contents" id="like_contents">
         @foreach ($likeDatas as $likeData)
         <article class="shop_content">
           <div class="shop_image">
             <img src="{{ asset($likeData->getphoto()) }}"  alt="店内画像" class="shop_photo">
           </div>
           <table class="shop_information">
-            <th>{{$likeData->shop->name}}</th>
+            <th class="name">{{$likeData->shop->name}}</th>
             <tr>
-              <td>#{{$likeData->returnPlace()}}</td>
-              <td>#{{$likeData->returnCategory()}}</td>
+              <td class="information">#{{$likeData->returnPlace()}}</td>
+              <td class="information">#{{$likeData->returnCategory()}}</td>
             </tr>
           </table>
           <div class="buttons">
@@ -253,7 +382,7 @@
               <form method="POST" action="{{route('deleteLike')}}">
                 @csrf
                 <input type="hidden" name="shop_id" id="shop_id" value="{{$likeData->shop_id}}">
-                <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="40" height="40">
+                <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="40" height="40" class="heart" >
               </form>
             </div>
           </div>

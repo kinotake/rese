@@ -89,10 +89,10 @@ Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner']], funct
 //     return view('owner/register');
 // });
 // Route::post('/owner/register', [OwnerController::class, 'updateOwner']);
-// Route::get('/owner/login', function () {
-//     return view('owner/login');
-// });
-// Route::post('/owner/login', [OwnerLoginController::class, 'login']);
+ Route::get('/owner/login', function () {
+     return view('owner/login');
+ });
+ Route::post('/aaa/login', [OwnerLoginController::class, 'login'])->name('aaa');
 
 Auth::routes(['verify' => true]);
 

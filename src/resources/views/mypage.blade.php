@@ -28,6 +28,12 @@
       margin-left : 20px;
       color: blue;
     }
+    @media screen and (max-width: 768px) {
+    .rese{
+            margin-left : 4vw;
+            font-size: 8vw;
+        }
+    }
     .user_name{
       display:inline-block;
       font-size : 30px;
@@ -36,7 +42,8 @@
     }
     @media screen and (max-width: 768px) {
     .user_name{
-      margin-left : 10vw;
+        margin-left : 5vw;
+        font-size : 5vw;
       }
     }
     .header_reserve{
@@ -45,7 +52,8 @@
     }
     @media screen and (max-width: 768px) {
     .header_reserve{
-        margin-left : 20vw;;
+        margin-left : 20vw;
+        font-size : 5vw;
       }
     }
     .link_top{
@@ -66,6 +74,7 @@
     @media screen and (max-width: 768px) {
     .header_like{
         display : none;
+        font-size : 3vw;
       }
     }
     .header_like_junp{
@@ -108,11 +117,17 @@
       height: 7vw;
       margin-left : 2vw;;
     }
+     @media screen and (max-width: 768px) {
+      .link{
+        display : block;
+        font-size : 3vw;
+      }
+    }
     .reserved_content{
       width :400px;
       height: 250px;
       background : blue;
-      color : white ;
+      color : white;
       margin-bottom :30px;
       margin-top : 20px;
       box-shadow: 5px 5px 4px 2px gray;
@@ -128,9 +143,15 @@
       height: 180px;
     }
     .row_content{
-      display : fle80
+      display : flex;
       padding-top : 20px;
       margin-left :20px;
+    }
+    @media screen and (max-width: 768px) {
+      .row_content{
+        font-size : 4vw;
+        padding-top : 3vw;
+      }
     }
     .close_icon{
       margin-left :280px;
@@ -138,13 +159,29 @@
     .reserved_detail{
       margin-left :80px;
     }
+    @media screen and (max-width: 768px) {
+      .reserved_detail{
+        margin-left :10vw;
+      }
+    }
     .reserved_guest{
       margin-left :55px;
+    }
+    @media screen and (max-width: 768px) {
+      .reserved_guest{
+        margin-left :6vw;
+      }
     }
     .schedule_buttons{
       width :200px;
       height: 150px;
       padding-top: 100px;
+    }
+    @media screen and (max-width: 768px) {
+      .schedule_buttons{
+        font-size : 4vw;
+        padding-top: 15vw;
+      }
     }
     .detail_botton_contents{
       display : flex;
@@ -161,6 +198,12 @@
       text-decoration: none;
       text-align: center;
     }
+    @media screen and (max-width: 768px) {
+      .schedule_button{
+        height: 10vw;
+        width: 35vw;
+      }
+    }
     .right_contents{
       display : flex;
       flex-wrap: wrap;
@@ -168,7 +211,7 @@
     }
     @media screen and (max-width: 768px) {
     .right_contents{
-      margin-left : 5px;
+      margin-left : 7vw;
       }
     }
     .shop_content{
@@ -180,6 +223,14 @@
       margin-top : 20px;
       padding-bottom : 20px;
       border-radius: 5px;
+    }
+    @media screen and (max-width: 768px) {
+    .shop_content{
+            height: 40vw;
+            width: 40vw;
+            margin-right : 1vw;
+            margin-left : 1vw;
+        }
     }
     .buttons{
       display : flex;
@@ -196,6 +247,13 @@
       text-align: center;
       padding-top : 5px;
       margin-left : 10px;
+    }
+    @media screen and (max-width: 768px) {
+    .detail_button{
+            height: 6vw;
+            width: 20vw;
+            font-size: 3vw;
+        }
     }
     .error_content{
       width :400px;
@@ -215,6 +273,29 @@
     .shop_photo{
       width :220px;
       height: 110px;
+    }
+    @media screen and (max-width: 768px) {
+    .shop_photo{
+        width : 40vw;
+        height : 20vw;
+    }
+    }
+    @media screen and (max-width: 768px) {
+    .information{
+            font-size: 3vw;
+        }
+      }
+    @media screen and (max-width: 768px) {
+    .name{
+            font-size: 3vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+    .heart{
+            height: 14vw;
+            width: 14vw;
+            margin-top : -4vw;
+        }
     }
     </style>
 </head>
@@ -247,7 +328,6 @@
         <div class="row_content">
           <img src="{{ asset('/images/time.png') }}"  alt="timeのアイコン" width="20" height="20" class="time_icon">
         <p>予約</p>
-        <img src="{{ asset('/images/close.png') }}"  alt="closeのアイコン" width="20" height="20" class="close_icon">
         </div>
         <div class="detail_botton_contents">
         <div class="row_contents">
@@ -288,10 +368,10 @@
             <img src="{{ asset($likeData->getphoto()) }}"  alt="店内画像" class="shop_photo">
           </div>
           <table class="shop_information">
-            <th>{{$likeData->shop->name}}</th>
+            <th class="name">{{$likeData->shop->name}}</th>
             <tr>
-              <td>#{{$likeData->returnPlace()}}</td>
-              <td>#{{$likeData->returnCategory()}}</td>
+              <td class="information">#{{$likeData->returnPlace()}}</td>
+              <td class="information">#{{$likeData->returnCategory()}}</td>
             </tr>
           </table>
           <div class="buttons">
@@ -300,7 +380,7 @@
               <form method="POST" action="{{route('deleteLike')}}">
                 @csrf
                 <input type="hidden" name="shop_id" id="shop_id" value="{{$likeData->shop_id}}">
-                <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="40" height="40">
+                <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="40" height="40" class="heart">
               </form>
             </div>
           </div>

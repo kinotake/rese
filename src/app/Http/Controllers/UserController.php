@@ -21,8 +21,7 @@ class UserController extends Controller
 
         $message="メールが送信されました。";
 
-        return redirect('/owner/send')->with(compact('message'));
+        return redirect('/owner')->with(compact('message'));
 
-    
     }
 }

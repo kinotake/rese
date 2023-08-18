@@ -78,10 +78,10 @@
     </header>
     <div class="container">
         <div class="card-header">
-            <p class="register-header">Owner-Login</p>
+            <p class="register-header">Oner-Login</p>
         </div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="{{ route('aaa') }}" method="POST">
             @csrf
                 <div>
                         <img src="{{ asset('/images/mail.png') }}"  alt="mailのアイコン" width="20" height="20" class="email_icon">

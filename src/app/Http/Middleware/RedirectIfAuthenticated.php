@@ -19,18 +19,6 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        // $guards = empty($guards) ? [null] : $guards;
-        
-
-        // foreach ($guards as $guard) {
-        //     if (Auth::guard($guard)->check()) {
-        //         return redirect(RouteServiceProvider::HOME);
-        //     }
-        // }
-
-        // return $next($request);
-        //
-        //  動くが、新規登録後のみAuthの情報が取得できない
         if(Auth::id() != null && Auth::user()->role_id == 1)
         {
             return redirect('/');
@@ -50,6 +38,7 @@ class RedirectIfAuthenticated
         
             foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+
                 return redirect('/');
                 }
             }

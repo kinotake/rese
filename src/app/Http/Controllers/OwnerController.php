@@ -42,14 +42,11 @@ class OwnerController extends Controller
 
     public function getShop($user_id)
     {
-        $UserId = $owner_id;
+        $UserId = $user_id;
         $allShops =  Shop::where('user_id',$UserId)->get();
         $ownerData = User::find($UserId);
-
-        $categories = Category::all();
-        $places = Place::all();
         
-        return view('administrator/shop', compact('allShops','ownerData','categories','places'));
+        return view('administrator/shop', compact('allShops','ownerData'));
     }
 
     public function updateOwner(Request $request)

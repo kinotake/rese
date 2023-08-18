@@ -260,7 +260,48 @@ class ReservesTableSeeder extends Seeder
             'time' => '13:00:00',
             'num_of_guest' => 2 
         ],
-        
+        [    
+            'user_id' => 2,
+            'shop_id' => 5,
+            'date' => '2023-08-17',
+            'time' => '09:00:00',
+            'num_of_guest' => 1 
+        ],
+        [    
+            'user_id' => 3,
+            'shop_id' => 6,
+            'date' => '2023-08-17',
+            'time' => '18:00:00',
+            'num_of_guest' => 2 
+        ],
+        [    
+            'user_id' => 4,
+            'shop_id' => 2,
+            'date' => '2023-08-17',
+            'time' => '11:00:00',
+            'num_of_guest' => 3 
+        ],
+        [    
+            'user_id' => 2,
+            'shop_id' => 5,
+            'date' => '2023-08-18',
+            'time' => '09:00:00',
+            'num_of_guest' => 1 
+        ],
+        [    
+            'user_id' => 3,
+            'shop_id' => 6,
+            'date' => '2023-08-18',
+            'time' => '18:00:00',
+            'num_of_guest' => 2 
+        ],
+        [    
+            'user_id' => 4,
+            'shop_id' => 2,
+            'date' => '2023-08-18',
+            'time' => '11:00:00',
+            'num_of_guest' => 3 
+        ],
         ]);
     }
 }

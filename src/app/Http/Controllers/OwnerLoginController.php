@@ -7,24 +7,26 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReminderEmail;
+use App\Models\Reserve;
 
 class OwnerLoginController extends Controller
 {
     public function login(Request $request): RedirectResponse
     {
-        $credentials = $request->only(['email', 'password']);
+        $today = \Carbon\Carbon::today();
 
-        if (Auth::guard('owners')->attempt($credentials)) {
+        $reserveDatas = Reserve::whereDate('date','=',$today)->get();
+
+        foreach ($reserveDatas as $reserveData) {
             
-            $message = "ログインしました。";
-
-            return redirect('/owner')->with(compact('message'));
+            Mail::send(new ReminderEmail($reserveData));
 
         }
+    
 
-        $message = "ログインに失敗しました。";
-
-        return redirect('/owner/login')->with(compact('message'));
+        return redirect('/');
     }
 
     public function logout(Request $request)
