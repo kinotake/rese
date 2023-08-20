@@ -129,4 +129,11 @@ class ReserveController extends Controller
 
         }
     }
+
+    public function getQr($reserve_id)
+    {
+        $reserveId = $reserve_id;
+        
+        return view('qrcode')->with(compact('reserveId'));
+    }
 }

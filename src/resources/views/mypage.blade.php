@@ -175,12 +175,12 @@
     .schedule_buttons{
       width :200px;
       height: 150px;
-      padding-top: 100px;
+      padding-top: 70px;
     }
     @media screen and (max-width: 768px) {
       .schedule_buttons{
         font-size : 4vw;
-        padding-top: 15vw;
+        padding-top: 0vw;
       }
     }
     .detail_botton_contents{
@@ -349,6 +349,7 @@
         </div>
         </div>
         <div class="schedule_buttons">
+          <a href="qrcode/{{$reserveData->id}}" type="submit" class="schedule_button">QRコードの発行</a>
           <a href="reschedule/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="schedule_button">予約の変更</a>
           <a href="cancel/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="schedule_button">予約のキャンセル</a>
         </div>

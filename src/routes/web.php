@@ -48,6 +48,8 @@ Route::get('/done', function () {
 Route::middleware(['verified'])->group(function(){
     Route::get('/', [ShopController::class, 'index']);
 });
+
+Route::get('/qrcode/{reserve_id}', [ReserveController::class, 'getQr']);
 //  ★管理者権限
 Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'can:admin']], function () 
 {
