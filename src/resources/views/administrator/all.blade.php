@@ -24,52 +24,20 @@
         margin-left : 20px;
         color: #40e0d0;
     }
-    .container{
-        justify-content: center;
-        margin: auto;
-        box-shadow: 5px 5px 4px 2px gray;
-        height: 190px;
-        width: 300px;
-        border-radius: 5px;
+    .links{
+        margin-left : 120px;
+        display : flex;
     }
-    .card-header{
-        border-radius: 5px 5px 0px 0px;
-        background: #40e0d0;
-        height: 50px;
-        width: 300px;
-        color : white;
+    .content_name{
+        margin-left : 20px;
+        font-weight : bold;
+        font-size :25px;
     }
-    
-    .register-header{
-        padding-top : 10px;
-        margin-left : 25px;
-    }
-    .form{
+    .link{
         margin-top : 10px;
-        height: 20px;
-        width: 220px;
-        border : none;
-        border-bottom: 1px solid grey;
-    }
-    .key_icon,.email_icon,.person_icon{
-        display : inline-block;
-        padding-top : 10px;
         margin-left : 25px;
-    }
-    .btn-primary{
-        height: 30px;
-        width: 70px;
-        margin-left : 200px; 
-        margin-top : 10px;
-        color : white;
-        background: #40e0d0;
-        border : none;
-        border-radius: 5px;
-    }
-    .owner_header{
-        margin-left : 50px;
-        margin-top : 30px;
-        margin-bottom : 5px;
+        text-decoration: none;
+        color : grey;       
     }
     .owner_contents{
         width: 1200px;
@@ -114,31 +82,16 @@
 <body>
     <header class="top">
     <a href="/administrator/menu">
-        <img src="{{ asset('/images/adiministrator.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        <img src="{{asset('/images/adiministrator.png')}}"  alt="reseのアイコン" width="55" height="55" class="icon">
     </a>
         <h1 class="rese">Rese</h1>
         <p class="message">{{session('message')}}</p>
     </header>
-    <div class="container">
-            <div class="card-header">
-                <p class="register-header">Owner-Register</p>
-            </div>
-            <div class="card-body">
-                <form action="/administrator/register" method="POST">
-                @csrf
-                    <div>
-                        <img src="{{ asset('/images/person.png') }}"  alt="personのアイコン" width="22" height="22" class="person_icon">
-                                <input id="user_name" type="text" class="form" placeholder="UserName" name="user_name">
-                    </div>
-                    <div>
-                        <img src="{{ asset('/images/mail.png') }}"  alt="mailのアイコン" width="20" height="20" class="email_icon">
-                                <input id="email" type="email" placeholder="Email" class="form" name="email">
-                    </div>
-                    <button type="submit" class="btn btn-primary">登録</button>
-                </form>
-            </div>
-    </div>
-        <h2 class="owner_header">店舗管理者一覧</h2>
+    <nav class="links">
+        <p class="content_name">管理店舗一覧</p>
+        <a href="/administrator/add" class="link">新規管理者作成</a>
+        <a href="/administrator/send/" class="link">連絡機能</a>
+    </nav>
         <table class="owner_contents" border="1">
             <tr>
                 <th>店舗管理者名</th> 
@@ -153,7 +106,7 @@
                 <td class="email">初期ログイン済み</td>
                 <td class="buttons">
                     <a href="administrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">店舗の管理</a>
-                    <a href="" type="submit" class="mail_button">メールの送信</a>
+                    <a href="/administrator/owner/send/{{$allOwner->id}}" type="submit" class="mail_button">メールの送信</a>
                 </td>
             </tr>
             @endforeach

@@ -66,6 +66,14 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'can:admin']
     Route::get('/menu', function () {
         return view('administrator/menu');
     });
+    Route::get('/send', function () {
+        return view('administrator/email');
+    });
+    Route::get('/add', function () {
+    return view('administrator/add');
+    });
+    Route::get('/owner/send/{owner_id}', [OwnerController::class, 'getOwnerSend']);
+    Route::post('/owner/send', [OwnerController::class, 'postOwnerSend']);
 });
 
 //  ★店舗管理者権限

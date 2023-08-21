@@ -29,7 +29,7 @@ class ReserveController extends Controller
         $reserve->shop_id=$selected_shop_id;
         $reserve->save();
 
-        return redirect('/done');
+        return redirect('/payment/create');
         
      }
 

@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Reserve;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 
 class OwnerController extends Controller
 {
@@ -114,5 +116,29 @@ class OwnerController extends Controller
         $reserveData = Reserve::find($reserve_id);
         
         return view('owner/user_email', compact('ownerData','reserveData'));
+    }
+
+    public function getOwnerSend($owner_id)
+    {
+        $ownerId = $owner_id;
+        $ownerData = User::find($ownerId);
+        
+        return view('administrator/user_email', compact('ownerData'));
+    }
+
+    public function postOwnerSend(Request $request)
+    {   
+        $content = $request->input('content');
+        $title = $request->input('title');
+        $userId = $request->input('owner_id');
+        $userData = User::find($userId);
+        $email = $userData->email;
+        
+        Mail::send(new SendMail($content,$title,$email));
+
+        $message="メールが送信されました。";
+
+        return redirect('/administrator')->with(compact('message'));
+
     }
 }

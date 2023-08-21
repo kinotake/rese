@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ユーザー別メール作成ページ</title>
+  <title>メール作成ページ（一斉送信）</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
 
     <style>
@@ -22,7 +22,7 @@
     }
     .rese{
         margin-left : 20px;
-        color: #00bfff;
+        color : #40e0d0;
     }
     .name_content{
         text-align: center;
@@ -48,7 +48,7 @@
     .all_input_contents{
         margin-top : 20px;
         margin-left : 140px;
-        background: #00bfff;
+        background: #40e0d0;
         height: 500px;
         width: 1000px;
         box-shadow: 5px 5px 4px 0px gray;
@@ -66,8 +66,8 @@
         margin-left : 20px;
         color : white;
     }
-    .date{
-        margin-left : 20px;
+    .form{
+
     }
     .mail_header{
         color : white;
@@ -87,7 +87,7 @@
     .form__button{
         height: 50px;
         width: 1000px;
-        background: #00a0e4;
+        background: #32b39e;
         color : white;
         border:none;
         position: absolute;
@@ -102,34 +102,29 @@
 </head>
 <body>
     <header class="top">
-    <a href="/owner/menu">
-        <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+    <a href="/administrator/menu">
+        <img src="{{ asset('/images/adiministrator.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
     </a>
         <h1 class="rese">Rese</h1>
         <p class="message">{{session('message')}}</p>
     </header>
-    <div class ="name_content">
-        <p class="user_name">{{$ownerData->name}}さん</p>
-    </div>
     <nav class="links">
-        <a href="/owner" class="link">管理店舗一覧</a>
-        <a href="/owner/add" class="link">新規店舗作成</a>
+        <a href="/administrator" class="link">管理者一覧</a>
+        <a href="/administrator/add" class="link">新規管理者作成</a>
         <p class="content_name">連絡機能</p>
     </nav>
     
         <div class="all_input_contents">
             <h1 class="mail_header">新規メール作成</h1>
             <main class="input_contents">
-                <form action="owner/user/send" method = "POST">
+                <form action="/owner/send" method = "POST">
                 @csrf
                 <div class ="all_to_contents">
-                <label for="label" class="label">送信先</label>
-                <div class ="to_contents">
-                    <p>{{$reserveData->user->name}}様</p>
-                    <p class ="date">({{$reserveData->date}},{{$reserveData->time}}にご予約)</p>
+                    <label for="label" class="label">送信先</label>
+                    <div class ="to_contents">
+                        <p>店舗管理者全員</p>
+                    </div>
                 </div>
-                </div>
-                <input type="hidden" name="user_id" class="user_id" id="user_id" value="{{$reserveData->user->id}}">
                 <label for="label" class="label">件名</label>
                 <input id="title" type="text" class="title" name="title">
                 <div class ="comment_contents">
