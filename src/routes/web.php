@@ -9,6 +9,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\OwnerLoginController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Livewire\Attendance\Attendancesqrcd;
 
 
 Route::get('/', [ShopController::class, 'index']);
@@ -50,6 +52,11 @@ Route::middleware(['verified'])->group(function(){
 });
 
 Route::get('/qrcode/{reserve_id}', [ReserveController::class, 'getQr']);
+
+Route::prefix('payment')->name('payment.')->group(function () {
+    Route::get('/create', [PaymentController::class, 'create'])->name('create');
+    Route::post('/store', [PaymentController::class, 'store'])->name('store');
+});
 //  ★管理者権限
 Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'can:admin']], function () 
 {
@@ -82,7 +89,8 @@ Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner']], funct
     Route::get('/reserve/went/{shop_id}', [ReserveController::class, 'getReserveWent']);
     Route::get('/menu', function () {
     return view('owner/menu');
-});
+    });
+    Route::get('/read/qrcode', Attendancesqrcd::class); 
 });
 
 // Route::post('owner/logout', [OwnerLoginController::class, 'logout']);
