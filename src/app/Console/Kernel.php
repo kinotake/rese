@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('sendreminders')->everyMinute();
+        $schedule->command('sendreminders')->dailyAt('06:30');
     }
 
     /**
