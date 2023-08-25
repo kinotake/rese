@@ -117,12 +117,12 @@
         <div class="all_input_contents">
             <h1 class="mail_header">新規メール作成</h1>
             <main class="input_contents">
-                <form action="/owner/send" method = "POST">
+                <form action="/administrator/user/send" method = "POST">
                 @csrf
                 <div class ="all_to_contents">
                     <label for="label" class="label">送信先</label>
                     <div class ="to_contents">
-                        <p>店舗管理者全員</p>
+                        <p>一般ユーザ全員</p>
                     </div>
                 </div>
                 <label for="label" class="label">件名</label>

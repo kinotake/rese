@@ -66,9 +66,10 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'can:admin']
     Route::get('/menu', function () {
         return view('administrator/menu');
     });
-    Route::get('/send', function () {
+    Route::get('/user/send', function () {
         return view('administrator/email');
     });
+    Route::post('/user/send', [UserController::class, 'postAllUserSend']);
     Route::get('/add', function () {
     return view('administrator/add');
     });
@@ -97,8 +98,10 @@ Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner']], funct
     Route::get('/reserve/went/{shop_id}', [ReserveController::class, 'getReserveWent']);
     Route::get('/menu', function () {
     return view('owner/menu');
-    });
-    Route::get('/read/qrcode', Attendancesqrcd::class); 
+    }); 
+    Route::get('/read/qrcode', function () {
+     return view('owner/read_qr');
+ });
 });
 
 // Route::post('owner/logout', [OwnerLoginController::class, 'logout']);

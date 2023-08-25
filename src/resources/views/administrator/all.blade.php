@@ -90,7 +90,7 @@
     <nav class="links">
         <p class="content_name">管理店舗一覧</p>
         <a href="/administrator/add" class="link">新規管理者作成</a>
-        <a href="/administrator/send/" class="link">連絡機能</a>
+        <a href="/administrator/user/send" class="link">連絡機能</a>
     </nav>
         <table class="owner_contents" border="1">
             <tr>

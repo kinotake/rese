@@ -104,7 +104,7 @@
     <nav class="links">
         <a href="/administrator" class="link">管理店舗一覧</a>
         <p class="content_name">新規店舗作成</p>
-        <a href="/administrator/send/" class="link">連絡機能</a>
+        <a href="/administrator/user/send" class="link">連絡機能</a>
     </nav>
     
         <div class="all_input_contents">
