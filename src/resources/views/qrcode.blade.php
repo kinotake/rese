@@ -45,5 +45,5 @@
     </tr>
   </table>
 </div>
-<div class="qrcode">{!! QrCode::size(200)->generate('owner/reserve/qr/'.$reserveData->shop_id); !!}</div>
+<div class="qrcode">{!! QrCode::size(200)->generate('owner/reserve/qr/'.$reserveData->id); !!}</div>
 </body>

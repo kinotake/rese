@@ -101,7 +101,9 @@ Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner']], funct
     }); 
     Route::get('/read/qrcode', function () {
      return view('owner/read_qr');
- });
+    });
+    Route::get('/reserve/qr/{reserve_id}', [ReserveController::class, 'getQrData']);
+    Route::post('/reserve/qr', [ReserveController::class, 'enterReserve'])->name('enter');
 });
 
 // Route::post('owner/logout', [OwnerLoginController::class, 'logout']);

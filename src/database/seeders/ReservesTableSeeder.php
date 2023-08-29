@@ -20,28 +20,28 @@ class ReservesTableSeeder extends Seeder
             'shop_id' => 4,
             'date' => '2023-04-29',
             'time' => '13:00:00',
-            'num_of_guest' => 2
+            'num_of_guest' => 2,
         ],
         [    
             'user_id' => 1,
             'shop_id' => 19,
             'date' => '2023-08-29',
             'time' => '17:00:00',
-            'num_of_guest' => 3
+            'num_of_guest' => 3,
         ],
         [    
             'user_id' => 1,
             'shop_id' => 14,
             'date' => '2023-06-13',
             'time' => '17:00:00',
-            'num_of_guest' => 1
+            'num_of_guest' => 1,
         ],
         [    
             'user_id' => 1,
             'shop_id' => 10,
             'date' => '2023-02-01',
             'time' => '17:00:00',
-            'num_of_guest' => 1
+            'num_of_guest' => 1,
         ],
         [    
             'user_id' => 1,
@@ -312,51 +312,51 @@ class ReservesTableSeeder extends Seeder
         [    
             'user_id' => 4,
             'shop_id' => 18,
-            'date' => '2023-08-19',
+            'date' => '2023-08-30',
             'time' => '11:00:00',
             'num_of_guest' => 2
         ],
         [    
             'user_id' => 4,
             'shop_id' => 9,
-            'date' => '2023-08-19',
+            'date' => '2023-08-30',
             'time' => '17:00:00',
             'num_of_guest' => 1
         ],
         [    
             'user_id' => 4,
             'shop_id' => 2,
-            'date' => '2023-08-19',
+            'date' => '2023-08-30',
             'time' => '15:00:00',
             'num_of_guest' => 3
         ],
         [    
             'user_id' => 2,
             'shop_id' => 13,
-            'date' => '2023-08-22',
+            'date' => '2023-08-30',
             'time' => '20:00:00',
             'num_of_guest' => 4
         ],
         [    
             'user_id' => 4,
             'shop_id' => 13,
-            'date' => '2023-08-22',
+            'date' => '2023-08-30',
             'time' => '11:00:00',
             'num_of_guest' => 2
         ],
         [    
             'user_id' => 1,
             'shop_id' => 10,
-            'date' => '2023-08-22',
+            'date' => '2023-08-30',
             'time' => '17:00:00',
             'num_of_guest' => 1
         ],
         [    
             'user_id' => 3,
             'shop_id' => 2,
-            'date' => '2023-08-22',
+            'date' => '2023-08-30',
             'time' => '15:00:00',
-            'num_of_guest' => 3
+            'num_of_guest' => 3,
         ],
         ]);
     }

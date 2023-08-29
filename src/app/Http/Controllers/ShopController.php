@@ -126,7 +126,7 @@ class ShopController extends Controller
         $who= Auth::id();
         $userData = User::where('id',$who)->first();
         
-        $reserveDatas = Reserve::whereDate('date','>',$today)->get();
+        $reserveDatas = Reserve::whereDate('date','>=',$today)->get();
         $likeDatas = Like::where('user_id',$who)->get();
     
         return view('mypage')->with(compact('userData','reserveDatas','likeDatas'));

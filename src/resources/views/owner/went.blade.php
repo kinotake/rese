@@ -41,6 +41,10 @@
         color : grey;
         margin-left : 20px;
     }
+    .chunk_header{
+        padding-top : 20px;
+        margin-left : 40px;
+    }
     .reserve_contents{
         margin : auto;
         width: 1200px;
@@ -73,12 +77,14 @@
         <a href="/owner/reserve/today/{{$shopData->id}}" type="submit" class="link">本日の予約情報</a>
         <p class="main_link">過去の予約情報</p>
     </div>
+    <h3 class="chunk_header">ご来店されなかったお客様</h3>
     <table class="reserve_contents" border="1">
         <tr>
             <th>日付</th> 
             <th>時間</th>
             <th>人数</th>
             <th>氏名</th>
+            <th>入店時間</th>
             <th>お問い合わせ</th>
         </tr>
     @if (@isset($reserveDatas))
@@ -88,6 +94,30 @@
             <th>{{$reserveData->time}}</th>
             <th>{{$reserveData->num_of_guest}}人</th>
             <th>{{$reserveData->user->name}}様</th>
+            <th>来店前です</th>
+            <th><a href="/owner/user/send/{{$reserveData->id}}" type="submit" class="detail_button">お問い合わせ</a></th>
+        </tr>
+    @endforeach
+    @endif
+    </table>
+    <h3 class="chunk_header">既に来店済みのお客様</h3>
+    <table class="reserve_contents" border="1">
+        <tr>
+            <th>日付</th> 
+            <th>時間</th>
+            <th>人数</th>
+            <th>氏名</th>
+            <th>入店時間</th>
+            <th>お問い合わせ</th>
+        </tr>
+    @if (@isset($wentDatas))
+    @foreach ($wentDatas as $wentData)
+        <tr>
+            <th>{{$wentData->date}}</th>
+            <th>{{$wentData->time}}</th>
+            <th>{{$wentData->num_of_guest}}人</th>
+            <th>{{$wentData->user->name}}様</th>
+            <th>{{$wentData->enter_at}}</th>
             <th><a href="/owner/user/send/{{$reserveData->id}}" type="submit" class="detail_button">お問い合わせ</a></th>
         </tr>
     @endforeach

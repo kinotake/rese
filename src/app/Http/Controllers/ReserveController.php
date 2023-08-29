@@ -33,7 +33,7 @@ class ReserveController extends Controller
         
      }
 
-     public function postReschedule()
+    public function postReschedule()
     {   
         $selected_date = $_POST["date"];
         $selected_time = $_POST["time"];
@@ -73,16 +73,20 @@ class ReserveController extends Controller
         
         return view('owner/reserve')->with(compact('reserveDatas','shopData'));
     }
+
     public function getReserveToday($shop_id)
     {
         $shopId = $shop_id;
 
         $today = Carbon::now();
-        $reserveDatas = Reserve::where('shop_id','=',$shopId)->whereDate('date','=',$today)->latest('date')->oldest('time')->get();
+
+        $reserveDatas = Reserve::where('shop_id','=',$shopId)->where('enter_at','=',null)->whereDate('date','=',$today)->latest('date')->oldest('time')->get();
+
+        $wentDatas = Reserve::where('shop_id','=',$shopId)->where('enter_at','!=',null)->whereDate('date','=',$today)->latest('date')->oldest('time')->get();
 
         $shopData = Shop::find($shopId);
         
-        return view('owner/today')->with(compact('reserveDatas','shopData'));
+        return view('owner/today')->with(compact('reserveDatas','shopData','wentDatas'));
     }
 
     public function getReserveWent($shop_id)
@@ -90,7 +94,9 @@ class ReserveController extends Controller
         $shopId = $shop_id;
 
         $today = Carbon::now();
-        $reserveDatas = Reserve::where('shop_id','=',$shopId)->whereDate('date','<',$today)->latest('date')->get();
+        $reserveDatas = Reserve::where('shop_id','=',$shopId)->where('enter_at','=',null)->whereDate('date','<',$today)->latest('date')->get();
+
+        $wentDatas = Reserve::where('shop_id','=',$shopId)->where('enter_at','!=',null)->whereDate('date','<',$today)->latest('date')->get();
 
         $shopData = Shop::find($shopId);
         
@@ -136,5 +142,30 @@ class ReserveController extends Controller
         $reserveData = Reserve::find($reserveId);
 
         return view('qrcode')->with(compact('reserveData'));
+    }
+
+    public function getQrData($reserve_id)
+    {
+        $ReserveId = $reserve_id;
+
+        $reserveData = Reserve::find($ReserveId);
+        
+        return view('owner/qr_buttons')->with(compact('reserveData'));
+    }
+
+    public function enterReserve()
+    {   
+        $day = \Carbon\Carbon::now();
+        $reserved_id = $_POST["reserve_id"];
+        
+        $reserve = Reserve::find($reserved_id);
+        $reserve->enter_at = $day;
+        $reserve->save();
+
+        $user_name = $reserve->user->name;
+        
+        $message = $user_name."さんが入店しました。";
+
+        return redirect('owner/reserve/today'.'/'.$reserve->shop->id)->with(compact('message'));
     }
 }

@@ -24,6 +24,9 @@ window.onload = (e) => {
             if (code) {
                 drawRect(code.location);// Rect
                 msg.innerText = code.data;// Data
+                var str = msg.innerText;
+                window.location.href = 'http://localhost:81' + '/'+ str;
+            
             } else {
                 msg.innerText = "Detecting QR-Code...";
             }

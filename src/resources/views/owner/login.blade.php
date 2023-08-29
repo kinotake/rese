@@ -78,7 +78,7 @@
     </header>
     <div class="container">
         <div class="card-header">
-            <p class="register-header">Oner-Login</p>
+            <p class="register-header">Owner-Login</p>
         </div>
         <div class="card-body">
             <form action="{{ route('aaa') }}" method="POST">

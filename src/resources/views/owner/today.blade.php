@@ -41,6 +41,10 @@
         color : grey;
         margin-left : 20px;
     }
+     .chunk_header{
+        padding-top : 20px;
+        margin-left : 40px;
+    }
     .reserve_contents{
         margin : auto;
         width: 1200px;
@@ -57,6 +61,11 @@
         padding-top : 5px;
         margin-left : 15px;
     }
+    .message{
+        padding-top : 10px;
+        margin-left : 30px;
+        color : red;
+    }
     </style>
 </head>
 <body>
@@ -65,20 +74,22 @@
         <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
     </a>
         <h1 class="rese">Rese</h1>
-        <p class="">{{session('message')}}</p>
+        <p class="message">{{session('message')}}</p>
     </header>
-    <h2 class="shop_header">{{$shopData->name}}</h2>
+     <h2 class="shop_header">{{$shopData->name}}</h2>
     <div class="middle_contents">
         <a href="/owner/reserve/{{$shopData->id}}" type="submit" class="link">これからの予約情報</a>
         <p class="main_link">本日の予約情報</p>
         <a href="/owner/reserve/went/{{$shopData->id}}" type="submit" class="link">過去の予約情報</a>
     </div>
+    <h3 class="chunk_header">ご来店前のお客様</h3>
     <table class="reserve_contents" border="1">
         <tr>
             <th>日付</th> 
             <th>時間</th>
             <th>人数</th>
             <th>氏名</th>
+            <th>入店時間</th>
             <th>お問い合わせ</th>
         </tr>
     @if (@isset($reserveDatas))
@@ -88,9 +99,34 @@
             <th>{{$reserveData->time}}</th>
             <th>{{$reserveData->num_of_guest}}人</th>
             <th>{{$reserveData->user->name}}様</th>
+            <th>来店前です</th>
+            <th><a href="/owner/user/send/{{$reserveData->id}}" type="submit" class="detail_button">お問い合わせ</a></th>
+        </tr>
+    @endforeach
+    @endif
+    </table>
+    <h3 class="chunk_header">既に来店済みのお客様</h3>
+    <table class="reserve_contents" border="1">
+        <tr>
+            <th>日付</th> 
+            <th>時間</th>
+            <th>人数</th>
+            <th>氏名</th>
+            <th>入店時間</th>
+            <th>お問い合わせ</th>
+        </tr>
+    @if (@isset($wentDatas))
+    @foreach ($wentDatas as $wentData)
+        <tr>
+            <th>{{$wentData->date}}</th>
+            <th>{{$wentData->time}}</th>
+            <th>{{$wentData->num_of_guest}}人</th>
+            <th>{{$wentData->user->name}}様</th>
+            <th>{{$wentData->enter_at}}</th>
             <th><a href="/owner/user/send/{{$reserveData->id}}" type="submit" class="detail_button">お問い合わせ</a></th>
         </tr>
     @endforeach
     @endif
     </table>
 </body>
+</html>
