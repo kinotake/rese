@@ -34,32 +34,35 @@
         margin-left : 100px;
     }
     .main_link{
+        margin-left : 20px;
         font-size : 25px;
     }
     .link{
         text-decoration: none;
         color : grey;
         margin-left : 20px;
+        margin-bottom : 20px;
     }
-     .chunk_header{
-        padding-top : 20px;
-        margin-left : 40px;
-    }
-    .reserve_contents{
-        margin : auto;
-        width: 1200px;
-    }
-    .detail_button{
+    .qr_button{
         background: #00bfff;
-        display: inline-block;
+        display : block;
         height: 30px;
-        width: 150px;
+        width: 200px;
         color : white;
         border-radius: 5px;
         text-decoration: none;
         text-align: center;
         padding-top : 5px;
-        margin-left : 15px;
+        margin: 0 auto;
+        box-shadow: 3px 3px 3px 0px gray;
+    }
+    .chunk_header{
+        padding-top : 20px;
+        margin-left : 40px;
+    }
+    .reserve_contents{
+        width: 1200px;
+        margin : auto;
     }
     .message{
         padding-top : 10px;
@@ -82,6 +85,7 @@
         <p class="main_link">本日の予約情報</p>
         <a href="/owner/reserve/went/{{$shopData->id}}" type="submit" class="link">過去の予約情報</a>
     </div>
+    <a href="/owner/read/qrcode" type="submit" class="qr_button">QRコードの読み取り</a>
     <h3 class="chunk_header">ご来店前のお客様</h3>
     <table class="reserve_contents" border="1">
         <tr>

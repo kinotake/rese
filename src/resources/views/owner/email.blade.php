@@ -133,7 +133,7 @@
                     </select>
                     <p>で</p>
                     <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()">
-                    <p>の来店者全員（予定含む）</p>
+                    <p>の来店予定者全員</p>
                 </div>
                 </div>
                 <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">

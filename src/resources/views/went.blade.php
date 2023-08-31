@@ -76,7 +76,7 @@
     }
     @media screen and (max-width: 768px) {
       .link_top{
-        width: 120vw;
+        width: 100vw;
         height: 15vw;
         background: #eeeeee;
       }
@@ -240,8 +240,8 @@
     }
     @media screen and (max-width: 768px) {
     .shop_content{
-            height: 40vw;
-            width: 40vw;
+            height: 80vw;
+            width: 80vw;
             margin-right : 1vw;
             margin-left : 1vw;
         }
@@ -264,9 +264,9 @@
     }
     @media screen and (max-width: 768px) {
     .detail_button{
-            height: 6vw;
-            width: 20vw;
-            font-size: 3vw;
+            height: 12vw;
+            width: 40vw;
+            font-size: 6vw;
         }
     }
     .error_content{
@@ -282,25 +282,25 @@
     }
     @media screen and (max-width: 768px) {
     .shop_photo{
-        width : 40vw;
-        height : 20vw;
+        width : 80vw;
+        height : 40vw;
     }
     }
     @media screen and (max-width: 768px) {
     .information{
-            font-size: 3vw;
+            font-size: 6vw;
         }
       }
     @media screen and (max-width: 768px) {
     .name{
-            font-size: 3vw;
+            font-size: 6vw;
         }
     }
     @media screen and (max-width: 768px) {
     .heart{
-            height: 14vw;
-            width: 14vw;
-            margin-top : -4vw;
+            height: 28vw;
+            width: 28vw;
+            margin-top : -8vw;
         }
     }
     </style>

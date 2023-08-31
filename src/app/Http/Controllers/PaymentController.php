@@ -20,6 +20,7 @@ class PaymentController extends Controller
         try {
 
         $customer = Customer::create(array(
+        'name'   => $request->name,
         "email" => $request->stripeEmail,
         "source" => $request->stripeToken
         ));

@@ -39,20 +39,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // public function redirectPath($request)
-    // {
-    //     $request->authenticate();
- 
-    //     $request->session()->regenerate();
-
-    //     if (Auth::User()->role == 2) {
-
-    //         return redirect('/owner');
-
-    //         }
-    //     return redirect('login');
-    // }
-
     public function redirectPath()
     {
         $role = Auth::user()->role_id;

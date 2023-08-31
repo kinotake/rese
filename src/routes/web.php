@@ -47,9 +47,7 @@ Route::get('/done', function () {
     return view('reservethanks');
 });
 
-Route::middleware(['verified'])->group(function(){
-    Route::get('/', [ShopController::class, 'index']);
-});
+
 
 Route::get('/qrcode/{reserve_id}', [ReserveController::class, 'getQr']);
 
@@ -58,7 +56,7 @@ Route::prefix('payment')->name('payment.')->group(function () {
     Route::post('/store', [PaymentController::class, 'store'])->name('store');
 });
 //  ★管理者権限
-Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'can:admin']], function () 
+Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'can:admin','verified']], function () 
 {
     Route::get('/', [OwnerController::class, 'getOwner']);
     Route::get('/shop/{user_id}', [OwnerController::class, 'getShop']);
@@ -78,7 +76,8 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'can:admin']
 });
 
 //  ★店舗管理者権限
-Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner']], function () 
+
+Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner','verified']], function () 
 {
     Route::get('/', [OwnerController::class, 'getAll']);
     Route::get('/add', [ShopController::class, 'getAdd']); 
@@ -112,10 +111,11 @@ Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner']], funct
 //     return view('owner/register');
 // });
 // Route::post('/owner/register', [OwnerController::class, 'updateOwner']);
- Route::get('/owner/login', function () {
-     return view('owner/login');
- });
- Route::post('/aaa/login', [OwnerLoginController::class, 'login'])->name('aaa');
+Route::get('/owner/login', function () {
+    return view('owner/login');
+});
+
+Route::post('/aaa/login', [OwnerLoginController::class, 'login'])->name('aaa');
 
 Auth::routes(['verify' => true]);
 

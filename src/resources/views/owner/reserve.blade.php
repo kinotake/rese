@@ -34,12 +34,14 @@
         margin-left : 100px;
     }
     .main_link{
+        margin-left : 20px;
         font-size : 25px;
     }
     .link{
         text-decoration: none;
         color : grey;
         margin-left : 20px;
+        margin-bottom : 20px;
     }
     .reserve_contents{
         margin : auto;

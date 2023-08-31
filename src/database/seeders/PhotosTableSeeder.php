@@ -21,7 +21,7 @@ class PhotosTableSeeder extends Seeder
         ],
         [    
             'shop_id' => 2,
-            'path' => 'storage/images/2.yakiniku.jpg',
+            'path' => 'storage/images/6.yakiniku.jpg',
         ],
         [    
             'shop_id' => 3,
@@ -37,7 +37,7 @@ class PhotosTableSeeder extends Seeder
         ],
         [    
             'shop_id' => 6,
-            'path' => 'storage/images/2.yakiniku.jpg',
+            'path' => 'storage/images/6.yakiniku.jpg',
         ],
         [    
             'shop_id' => 7,
@@ -57,11 +57,11 @@ class PhotosTableSeeder extends Seeder
         ],
         [    
             'shop_id' => 11,
-            'path' => 'storage/images/2.yakiniku.jpg',
+            'path' => 'storage/images/6.yakiniku.jpg',
         ],
         [    
             'shop_id' => 12,
-            'path' => 'storage/images/2.yakiniku.jpg',
+            'path' => 'storage/images/6.yakiniku.jpg',
         ],
         [    
             'shop_id' => 13,
@@ -85,7 +85,7 @@ class PhotosTableSeeder extends Seeder
         ],
         [    
             'shop_id' => 18,
-            'path' => 'storage/images/2.yakiniku.jpg',
+            'path' => 'storage/images/6.yakiniku.jpg',
         ],
         [    
             'shop_id' => 19,

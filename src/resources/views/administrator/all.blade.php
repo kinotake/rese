@@ -40,13 +40,13 @@
         color : grey;       
     }
     .owner_contents{
+        margin-top : 20px;
         width: 1200px;
         margin-left : 50px;
         margin-bottom : 100px;
     }
     .buttons{
         display : flex;
-        margin-right : 0px; 
     }
     .message{
         margin-top : 5px;
@@ -96,16 +96,14 @@
             <tr>
                 <th>店舗管理者名</th> 
                 <th>メールアドレス</th>
-                <th>何か</th>
                 <th>管理・メール</th>
             </tr>
             @foreach ($allOwners as $allOwner)
             <tr class="row">
                 <td class="name">{{$allOwner->name}}様</td> 
                 <td class="email">{{$allOwner->email}}</td>
-                <td class="email">初期ログイン済み</td>
                 <td class="buttons">
-                    <a href="administrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">店舗の管理</a>
+                    <a href="administrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">管理店舗</a>
                     <a href="/administrator/owner/send/{{$allOwner->id}}" type="submit" class="mail_button">メールの送信</a>
                 </td>
             </tr>
