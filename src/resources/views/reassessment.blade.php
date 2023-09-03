@@ -112,7 +112,7 @@
     }
     .content_right{
         background: blue;
-        height: 500px;
+        height: 540px;
         width: 450px;
         box-shadow: 5px 5px 4px 0px gray;
         border-radius: 5px;
@@ -284,6 +284,20 @@
             font-size : 4vw;
         }
     }
+    .input_error{
+        display : block;
+        height: 30px;
+        width: 350px;
+        background: red;
+        margin-left : 50px;
+        border-radius: 5px;
+        margin-top : 2px;
+    }
+    .input_error_message{
+        display : block;
+        color: white;
+        text-align: center;
+    }
     </style>
 </head>
 <body>
@@ -365,6 +379,16 @@
                 <label for="comment_label" class="comment_label">Comment</label><br>
                 <textarea cols="30" rows="5"name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
                 </div>
+            @error('score')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('score')}}</strong>
+            </span>
+            @enderror
+            @error('comment')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('comment')}}</strong>
+            </span>
+            @enderror
                 <button class="form__button" type="submit">評価を変更する</button>
             </form>
     </section>

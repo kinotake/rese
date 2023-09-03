@@ -107,8 +107,8 @@
     </div>
     <nav class="links">
         <p class="content_name">管理店舗一覧</p>
-        <a href="/owner/add/" class="link">新規店舗作成</a>
-        <a href="/owner/send/" class="link">連絡機能</a>
+        <a href="/owner/add" class="link">新規店舗作成</a>
+        <a href="/owner/send" class="link">連絡機能</a>
     </nav>
     <main class="under_content">
     <p class="error">{{$noPost??''}}</p>

@@ -17,44 +17,37 @@ Route::get('/', [ShopController::class, 'index']);
 Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
 Route::post('/search', [ShopController::class, 'search']);
 Route::post('/delete', [LikeController::class, 'deleteLike'])->name('deleteLike');
-Route::get('/detail/{id}', [ShopController::class, 'detail']);
+Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
 Route::post('/detail', [ReserveController::class, 'makeReserve']);
 Route::get('/mypage', [ShopController::class, 'getMypage']);
-Route::get('/reschedule/{shop_id}/{id}', [ShopController::class, 'getReschedule']);
+Route::get('/reschedule/{shop_id}/{reserve_id}', [ShopController::class, 'getReschedule']);
 Route::post('/reschedule', [ReserveController::class, 'postReschedule']);
-Route::get('/cancel/{shop_id}/{id}', [ShopController::class, 'getCancel']);
+Route::get('/cancel/{shop_id}/{reserve_id}', [ShopController::class, 'getCancel']);
 Route::post('/cancel', [ReserveController::class, 'postCancel']);
 Route::get('/went', [ShopController::class, 'getWent']);
-Route::get('/assessment/{id}', [ShopController::class, 'getAssessment']);
+Route::get('/assessment/{reserve_id}', [ShopController::class, 'getAssessment']);
 Route::post('/assessment', [PostController::class, 'postAssessment']);
-    // ↑idの形変えてないです
 Route::get('/reassessment/{reserve_id}', [PostController::class, 'getReassessment']);
 Route::post('/reassessment', [PostController::class, 'postReassessment']);
 
 Route::get('/menu/first', function () {
     return view('loginmenu');
 });
-
 Route::get('/menu/second', function () {
     return view('logoutmenu');
 });
-
 Route::get('/thanks', function () {
     return view('registerthanks');
 });
-
 Route::get('/done', function () {
     return view('reservethanks');
 });
-
-
-
 Route::get('/qrcode/{reserve_id}', [ReserveController::class, 'getQr']);
-
 Route::prefix('payment')->name('payment.')->group(function () {
     Route::get('/create', [PaymentController::class, 'create'])->name('create');
     Route::post('/store', [PaymentController::class, 'store'])->name('store');
 });
+
 //  ★管理者権限
 Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'can:admin','verified']], function () 
 {
@@ -104,18 +97,6 @@ Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner','verifie
     Route::get('/reserve/qr/{reserve_id}', [ReserveController::class, 'getQrData']);
     Route::post('/reserve/qr', [ReserveController::class, 'enterReserve'])->name('enter');
 });
-
-// Route::post('owner/logout', [OwnerLoginController::class, 'logout']);
-
-// Route::get('/owner/register', function () {
-//     return view('owner/register');
-// });
-// Route::post('/owner/register', [OwnerController::class, 'updateOwner']);
-Route::get('/owner/login', function () {
-    return view('owner/login');
-});
-
-Route::post('/aaa/login', [OwnerLoginController::class, 'login'])->name('aaa');
 
 Auth::routes(['verify' => true]);
 

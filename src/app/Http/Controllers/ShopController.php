@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ShopRequest;
 use App\Models\Shop;
 use App\Models\Category;
 use App\Models\Place;
@@ -87,9 +88,9 @@ class ShopController extends Controller
         }
     }
 
-    public function detail($id)
+    public function detail($shop_id)
     {
-        $shopId = $id;
+        $shopId = $shop_id;
         $shopData = Shop::where('id',$shopId)->first();
         $checkLogin = Auth::check();
         
@@ -132,9 +133,9 @@ class ShopController extends Controller
         return view('mypage')->with(compact('userData','reserveDatas','likeDatas'));
     }
 
-    public function getReschedule($shop_id,$id)
+    public function getReschedule($shop_id,$reserve_id)
     {
-        $reserveId = $id;
+        $reserveId = $reserve_id;
         $reservedData = Reserve::where('id',$reserveId)->first();
         $shopId = $shop_id;
         $shopData = Shop::where('id',$shopId)->first();
@@ -164,9 +165,9 @@ class ShopController extends Controller
         return view('reschedule', compact('shopData','worktimes','people','reservedData'));
     }
 
-    public function getCancel($shop_id,$id)
+    public function getCancel($shop_id,$reserve_id)
     {
-        $reserveId = $id;
+        $reserveId = $reserve_id;
         $reservedData = Reserve::where('id',$reserveId)->first();
         $shopId = $shop_id;
         $shopData = Shop::where('id',$shopId)->first();
@@ -188,9 +189,9 @@ class ShopController extends Controller
         return view('went', compact('wentReserveDatas','userData','likeDatas'));
     }
 
-    public function getAssessment($id)
+    public function getAssessment($reserve_id)
     {
-        $reserveId = $id;
+        $reserveId = $reserve_id;
         $ReserveDatas = Reserve::where('id',$reserveId)->first();
         $shopId = $ReserveDatas->shop_id;
         $shopData = Shop::where('id',$shopId)->first();
@@ -198,12 +199,12 @@ class ShopController extends Controller
         return view('assessment', compact('shopData','reserveId'));
     }
 
-    public function makeShop(Request $request)
+    public function makeShop(ShopRequest $request)
     {
         $post = $request->all();
 
         $userId = $_POST["owner_id"];
-        $postName = $_POST["new_shop_name"];
+        $postName = $_POST["name"];
         $categoryId = $_POST["category_id"];
         $placeId = $_POST["place_id"];
         $comment = $_POST["comment"];
@@ -226,6 +227,14 @@ class ShopController extends Controller
         $shopId = $_POST["num"];
         $categoryId = $_POST["category_id"];
 
+        if($categoryId == null)
+        {
+            $error="ジャンルを選択してください。";
+
+            return redirect('/owner/edit'.'/'.$shopId)->with(compact('error'));
+        }
+        else{
+
         Shop::where('id','=',$shopId)->update([
             'category_id' => $categoryId,
         ]);
@@ -233,6 +242,7 @@ class ShopController extends Controller
         $message="ジャンルが変更されました。";
 
         return redirect('/owner')->with(compact('message'));
+        }
         
     }
 
@@ -241,6 +251,15 @@ class ShopController extends Controller
         $shopId = $_POST["num"];
         $placeId = $_POST["place_id"];
 
+        if($placeId == null)
+        {
+            $error="エリアを選択してください。";
+
+            return redirect('/owner/edit'.'/'.$shopId)->with(compact('error'));
+        }
+        else
+        {
+        
         Shop::where('id','=',$shopId)->update([
             'place_id' => $placeId,
         ]);
@@ -248,6 +267,7 @@ class ShopController extends Controller
         $message="エリアが変更されました。";
 
         return redirect('/owner')->with(compact('message'));
+        }
         
     }
 
@@ -256,6 +276,22 @@ class ShopController extends Controller
         $shopId = $_POST["num"];
         $postComment = $_POST["comment"];
 
+        $commentLength=mb_strlen($postComment);
+
+        if($postComment == null)
+        {
+            $error="コメントを記入してください。";
+
+            return redirect('/owner/edit'.'/'.$shopId)->with(compact('error'));
+        }
+        elseif($commentLength > 120)
+        {
+            $error="コメントを120文字以内で入力してください";
+
+            return redirect('/owner/edit'.'/'.$shopId)->with(compact('error'));
+        }
+        else
+        {
         Shop::where('id','=',$shopId)->update([
             'comment' => $postComment,
         ]);
@@ -263,6 +299,7 @@ class ShopController extends Controller
         $message="コメントが変更されました。";
 
         return redirect('/owner')->with(compact('message'));
+        }
         
     }
     public function getAdd()

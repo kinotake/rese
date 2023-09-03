@@ -12,12 +12,18 @@ class PhotoController extends Controller
         $shop = $_POST["num"];
 
         $dir = 'images';
-        $file_name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->storeAs('public/' . $dir, $file_name);
-
         $photoData = Photo::where('shop_id', '=', $shop)->first();
 
-        if($photoData === null){
+        if($request->file('image') == null)
+        {
+            $error="画像を選択してください。";
+
+            return redirect('/owner/edit'.'/'.$shop)->with(compact('error'));
+        }
+        elseif($photoData === null){
+
+            $file_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dir, $file_name);
 
             $photo = new Photo();
             $photo->shop_id = $shop;
@@ -30,6 +36,9 @@ class PhotoController extends Controller
         }
         else
         {
+            $file_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dir, $file_name);
+
             $photoId = $photoData->id;
             $photo = Photo::find($photoId);
             $photo->path = 'storage/' . $dir . '/' . $file_name;

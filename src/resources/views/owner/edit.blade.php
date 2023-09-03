@@ -133,6 +133,20 @@
         height: 300px;
         width: 500px;
     }
+    .input_error{
+        display : block;
+        height: 30px;
+        width: 350px;
+        background: red;
+        margin-left : 50px;
+        border-radius: 5px;
+        margin-top : 2px;
+    }
+    .input_error_message{
+        display : block;
+        color: white;
+        text-align: center;
+    }
     </style>
 </head>
 <body>
@@ -166,14 +180,14 @@
         </article>
         <section class="content_right">
             <header class="assessment_header">店舗情報の変更</header>
-        <main class="">
+        <main>
             <div class="select_contents">
             <form action="/owner/edit/place" method = "POST">
             @csrf
                 <label for="label" class="label">エリア</label>
                 <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
             <select class="select_place" name="place_id">
-                    <option value="selected">All area</option>
+                    <option value="" selected>All area</option>
                     @foreach ($places as $place)
                     <option value="{{$place->id}}">{{$place->name}}</option>
                     @endforeach
@@ -187,7 +201,7 @@
                 <label for="label" class="label">ジャンル</label>
                 <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
                 <select class="select_category" name="category_id">
-                    <option value="selected">All genre</option>
+                    <option value="" selected>All genre</option>
                     @foreach ($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
@@ -213,9 +227,12 @@
                 <button class="form__button_image">アップロード</button>
             </form>
             </div>
-        </main>
-                
-            
+             @if (session('error'))
+            <span class="input_error">
+                <strong class="input_error_message">{{session('error')}}</strong>
+            </span>
+            @endif
+        </main>           
         </section>
     </div>
 </body>

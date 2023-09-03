@@ -38,7 +38,7 @@ class PostController extends Controller
 
         return view('reassessment', compact('shopData','reserveId','postData'));
     }
-    public function postReassessment()
+    public function postReassessment(PostRequest $request)
     {   
         $selectedScore = $_POST["score"];
         $reassessmentComment = $_POST["comment"];

@@ -49,7 +49,7 @@
         margin-top : 20px;
         margin-left : 140px;
         background: #00bfff;
-        height: 300px;
+        height: 430px;
         width: 450px;
         box-shadow: 5px 5px 4px 0px gray;
         border-radius: 5px;
@@ -93,6 +93,20 @@
         position: absolute;
         bottom: 0;
     }
+    .input_error{
+        display : block;
+        height: 30px;
+        width: 350px;
+        background: red;
+        margin-left : 50px;
+        border-radius: 5px;
+        margin-top : 2px;
+    }
+    .input_error_message{
+        display : block;
+        color: white;
+        text-align: center;
+    }
     </style>
 </head>
 <body>
@@ -109,7 +123,7 @@
     <nav class="links">
         <a href="/owner" class="link">管理店舗一覧</a>
         <p class="content_name">新規店舗作成</p>
-        <a href="/owner/send/" class="link">連絡機能</a>
+        <a href="/owner/send" class="link">連絡機能</a>
     </nav>
     
         <div class="all_input_contents">
@@ -120,19 +134,19 @@
                 <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">
                 <div class ="select_contents">
                 <label for="label" class="label">新規店舗名</label>
-                <input id="new_shop_name" type="text" class="form" name="new_shop_name">
+                <input id="name" type="text" class="form" name="name">
                 </div>
                 <div class ="select_contents">
                 <label for="label" class="label">エリア</label>
                 <select class="select" name="place_id">
-                    <option value="selected">All area</option>
+                    <option value="" selected>All area</option>
                     @foreach ($places as $place)
                     <option value="{{$place->id}}">{{$place->name}}</option>
                     @endforeach
                 </select>
                 <label for="label" class="label_genre">ジャンル</label>
                 <select class="select" name="category_id">
-                    <option value="selected">All genre</option>
+                    <option value="" selected>All genre</option>
                     @foreach ($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
@@ -142,6 +156,26 @@
                 <label for="label" class="label_comment">コメント</label>
                 <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
                 </div>
+            @error('name')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('name')}}</strong>
+            </span>
+            @enderror
+            @error('place_id')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('place_id')}}</strong>
+            </span>
+            @enderror
+            @error('category_id')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('category_id')}}</strong>
+            </span>
+            @enderror
+            @error('comment')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('comment')}}</strong>
+            </span>
+            @enderror
             </main>
                 <button class="form__button" type="submit">作成する</button>
             </form>

@@ -251,6 +251,20 @@
             font-size : 4vw;
         }
     }
+    .input_error{
+        display : block;
+        height: 30px;
+        width: 350px;
+        background: red;
+        margin-left : 50px;
+        border-radius: 5px;
+        margin-top : 2px;
+    }
+    .input_error_message{
+        display : block;
+        color: white;
+        text-align: center;
+    }
     </style>
 </head>
 <body>
@@ -295,11 +309,13 @@
                 <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reservedData->id}}">
                 <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()"></br>
                 <select name="time" id="time" class="time">
+                    <option value="" selected>選択してください</option>
                     @foreach ($worktimes as $worktime)
                     <option value="{{$worktime}}">{{$worktime}}</option>
                     @endforeach
                 </select></br>
                 <select name="num_of_guest" id="num_of_guest" class="num_of_guest">
+                    <option value="" selected>選択してください</option>
                     @foreach ($people as $person)
                     <option value="{{$person}}">{{$person}}人</option>
                     @endforeach
@@ -335,6 +351,21 @@
             <p id="selectnum" class="select_value"></p>
             </div>
         </aside>
+            @error('date')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('date')}}</strong>
+            </span>
+            @enderror
+            @error('time')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('time')}}</strong>
+            </span>
+            @enderror
+            @error('num_of_guest')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('num_of_guest')}}</strong>
+            </span>
+            @enderror
         <script type="text/javascript">
             let date = document.getElementById('date');
             let selectdate = document.getElementById('selectdate');

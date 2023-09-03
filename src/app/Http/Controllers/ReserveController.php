@@ -33,7 +33,7 @@ class ReserveController extends Controller
         
      }
 
-    public function postReschedule()
+    public function postReschedule(ReserveRequest $request)
     {   
         $selected_date = $_POST["date"];
         $selected_time = $_POST["time"];
