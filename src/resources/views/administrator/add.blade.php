@@ -107,21 +107,22 @@
         <a href="/administrator/user/send" class="link">連絡機能</a>
     </nav>
     
-        <div class="all_input_contents">
-            <h1 class="shop_header">新規店舗作成</h1>
-            <main class="input_contents">
-                <form action="/administrator/register" method="POST">
-                @csrf
-                <div class ="select_contents">
+    <div class="all_input_contents">
+        <h1 class="shop_header">新規店舗作成</h1>
+        <main class="input_contents">
+            <form action="/administrator/register" method="POST">
+            @csrf
+            <div class ="select_contents">
                 <label for="label" class="name_label">新規管理者名</label>
                 <input id="user_name" type="text" class="form" name="user_name">
-                </div>
-                <div class ="select_contents">
+            </div>
+            <div class ="select_contents">
                 <label for="label" class="mail_label">メールアドレス</label>
                 <input id="email" type="email" class="form" name="email">
-                </div>
-            </main>
-                <button class="form__button" type="submit">作成する</button>
+            </div>
+        </main>
+        <button class="form__button" type="submit">作成する</button>
             </form>
-        </div>
+    </div>
 </body>
+</html>

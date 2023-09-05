@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>入力してください</title>
+  <title>管理店舗一覧</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
 
     <style>
@@ -96,9 +96,9 @@
 </head>
 <body>
     <header class="top">
-    <a href="/owner/menu">
-        <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
+        <a href="/owner/menu">
+            <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        </a>
         <h1 class="rese">Rese</h1>
         <p class="message">{{session('message')}}</p>
     </header>
@@ -110,35 +110,32 @@
         <a href="/owner/add" class="link">新規店舗作成</a>
         <a href="/owner/send" class="link">連絡機能</a>
     </nav>
-    <main class="under_content">
     <p class="error">{{$noPost??''}}</p>
     <main class="under_contents">
         <div class="left_padding_content">
         </div>
-    @if (@isset($allShops))
+        @if (@isset($allShops))
         <div class="shop_contents">
-    @foreach ($allShops as $allShop)
-        <article class="shop_content">
-            <div class="shop_image">
-                <img src="{{ asset($allShop->getPhoto()) }}"  alt="店内画像" class="shop_photo">
-            </div>
-            <table class="shop_information">
-            <th>{{$allShop->name}}</th>
-            <tr>
-                <td>#{{$allShop->place->name}}</td>
-                <td>#{{$allShop->category->name}}</td>
-            </tr>
-            </table>
-            <div class="bottons">
-                <a href="owner/edit/{{$allShop->id}}" type="submit" class="detail_button">編集する</a>
-                <a href="owner/reserve/{{$allShop->id}}" type="submit" class="detail_button">予約一覧</a>
-            </div>
-        </article>
-    @endforeach
-    </div>
-    @endif
-    
-</main>
-
-    
+            @foreach ($allShops as $allShop)
+            <article class="shop_content">
+                <div class="shop_image">
+                    <img src="{{ asset($allShop->getPhoto()) }}"  alt="店内画像" class="shop_photo">
+                </div>
+                <table class="shop_information">
+                    <th>{{$allShop->name}}</th>
+                    <tr>
+                        <td>#{{$allShop->place->name}}</td>
+                        <td>#{{$allShop->category->name}}</td>
+                    </tr>
+                </table>
+                <div class="bottons">
+                    <a href="owner/edit/{{$allShop->id}}" type="submit" class="detail_button">編集する</a>
+                    <a href="owner/reserve/{{$allShop->id}}" type="submit" class="detail_button">予約一覧</a>
+                </div>
+            </article>
+            @endforeach
+        </div>
+    @endif 
+    </main>
 </body>
+</html>

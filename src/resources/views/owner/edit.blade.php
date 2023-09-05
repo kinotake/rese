@@ -151,14 +151,12 @@
 </head>
 <body>
     <header class="top">
-    <a href="/owner/menu">
-        <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
+        <a href="/owner/menu">
+            <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        </a>
         <h1 class="rese">Rese</h1>
         <p class="">{{session('message')}}</p>
     </header>
-    <div class="under_content">
-    </div>
     <div class="under_content">
         <article class="content_left">
             <div class="shop_header">
@@ -169,7 +167,7 @@
             </div>
             <div>
                 <img src="{{ asset($shopData->getPhoto()) }}"  alt="店内画像" class="shop_photo">
-            </select_contents>
+            </div>
             <table>
                 <tr>
                     <td>#{{$shopData->place->name??''}}</td>
@@ -180,59 +178,60 @@
         </article>
         <section class="content_right">
             <header class="assessment_header">店舗情報の変更</header>
-        <main>
-            <div class="select_contents">
-            <form action="/owner/edit/place" method = "POST">
-            @csrf
-                <label for="label" class="label">エリア</label>
-                <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
-            <select class="select_place" name="place_id">
-                    <option value="" selected>All area</option>
-                    @foreach ($places as $place)
-                    <option value="{{$place->id}}">{{$place->name}}</option>
-                    @endforeach
-                </select>
-            <button class="form__button" type="submit">変更する</button>
-            </form>
-            </div>
-            <div class="select_contents">
-            <form action="/owner/edit/category" method = "POST">
-            @csrf
-                <label for="label" class="label">ジャンル</label>
-                <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
-                <select class="select_category" name="category_id">
-                    <option value="" selected>All genre</option>
-                    @foreach ($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
-                </select>
-            <button class="form__button" type="submit">変更する</button>
-            </form>
-            </div>
-            <div class="select_contents">
-            <form action="/owner/edit/comment" method = "POST" class="select_contents_comment">
-            @csrf
-                <label for="label" class="label">コメント</label>
-                <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
-                <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
-                <button class="form__button" type="submit">変更する</button>
-            </form>
-            </div>
-            <div class="select_contents">
-            <form method="POST" action="/owner/upload" enctype="multipart/form-data">
-            @csrf
-                <label for="label" class="label_image">画像</label>
-                <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
-                <input type="file" value="{{$shopId}}" name="image" class="image">
-                <button class="form__button_image">アップロード</button>
-            </form>
-            </div>
-             @if (session('error'))
-            <span class="input_error">
-                <strong class="input_error_message">{{session('error')}}</strong>
-            </span>
-            @endif
-        </main>           
+            <main>
+                <div class="select_contents">
+                    <form action="/owner/edit/place" method = "POST">
+                    @csrf
+                        <label for="label" class="label">エリア</label>
+                        <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
+                        <select class="select_place" name="place_id">
+                            <option value="" selected>All area</option>
+                            @foreach ($places as $place)
+                            <option value="{{$place->id}}">{{$place->name}}</option>
+                            @endforeach
+                        </select>
+                        <button class="form__button" type="submit">変更する</button>
+                    </form>
+                </div>
+                <div class="select_contents">
+                    <form action="/owner/edit/category" method = "POST">
+                    @csrf
+                        <label for="label" class="label">ジャンル</label>
+                        <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
+                        <select class="select_category" name="category_id">
+                            <option value="" selected>All genre</option>
+                            @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                        <button class="form__button" type="submit">変更する</button>
+                    </form>
+                </div>
+                <div class="select_contents">
+                    <form action="/owner/edit/comment" method = "POST" class="select_contents_comment">
+                    @csrf
+                        <label for="label" class="label">コメント</label>
+                        <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
+                        <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
+                        <button class="form__button" type="submit">変更する</button>
+                    </form>
+                </div>
+                <div class="select_contents">
+                    <form method="POST" action="/owner/upload" enctype="multipart/form-data">
+                    @csrf
+                        <label for="label" class="label_image">画像</label>
+                        <input type="hidden" name="num" class="num" id="num" value="{{$shopId}}">
+                        <input type="file" value="{{$shopId}}" name="image" class="image">
+                        <button class="form__button_image">アップロード</button>
+                    </form>
+                </div>
+                @if (session('error'))
+                <span class="input_error">
+                    <strong class="input_error_message">{{session('error')}}</strong>
+                </span>
+                @endif
+            </main>           
         </section>
     </div>
 </body>
+</html>

@@ -90,33 +90,34 @@
 </head>
 <body>
     <header class="top">
-    <a href="/administrator/menu">
-        <img src="{{ asset('/images/adiministrator.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
+        <a href="/administrator/menu">
+            <img src="{{ asset('/images/adiministrator.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        </a>
         <h1 class="rese">Rese</h1>
         <p class="message">{{$message??''}}</p>
     </header>
     <div class="under_content">
         <div class="content_left">
-        <h2 class="under_content">{{$ownerData->name}}様 管理店舗一覧</h2>
-        <table class="owner_contents" border="1">
-            <tr>
-                <th>店舗名</th> 
-                <th>カテゴリ</th>
-                <th>立地</th>
-                <th>最終更新日時</th>
-            </tr>
-            @if (@isset($allShops))
-            @foreach ($allShops as $allShop)
-            <tr>
-                <td class="name">{{$allShop->name}}</td> 
-                <td class="email">{{$allShop->category->name}}</td>
-                <td class="num">{{$allShop->place->name}}</td>
-                <td>{{$allShop->updated_at}}</td>
-            </tr>
-            @endforeach
-            @endif
-        </table>
+            <h2 class="under_content">{{$ownerData->name}}様 管理店舗一覧</h2>
+            <table class="owner_contents" border="1">
+                <tr>
+                    <th>店舗名</th> 
+                    <th>カテゴリ</th>
+                    <th>立地</th>
+                    <th>最終更新日時</th>
+                </tr>
+                @if (@isset($allShops))
+                @foreach ($allShops as $allShop)
+                <tr>
+                    <td class="name">{{$allShop->name}}</td> 
+                    <td class="email">{{$allShop->category->name}}</td>
+                    <td class="num">{{$allShop->place->name}}</td>
+                    <td>{{$allShop->updated_at}}</td>
+                </tr>
+                @endforeach
+                @endif
+            </table>
         </div>
     </div>
 </body>
+</html>

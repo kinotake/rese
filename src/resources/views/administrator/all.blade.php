@@ -81,9 +81,9 @@
 </head>
 <body>
     <header class="top">
-    <a href="/administrator/menu">
-        <img src="{{asset('/images/adiministrator.png')}}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
+        <a href="/administrator/menu">
+            <img src="{{asset('/images/adiministrator.png')}}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        </a>
         <h1 class="rese">Rese</h1>
         <p class="message">{{session('message')}}</p>
     </header>
@@ -92,21 +92,22 @@
         <a href="/administrator/add" class="link">新規管理者作成</a>
         <a href="/administrator/user/send" class="link">連絡機能</a>
     </nav>
-        <table class="owner_contents" border="1">
-            <tr>
-                <th>店舗管理者名</th> 
-                <th>メールアドレス</th>
-                <th>管理・メール</th>
-            </tr>
-            @foreach ($allOwners as $allOwner)
-            <tr class="row">
-                <td class="name">{{$allOwner->name}}様</td> 
-                <td class="email">{{$allOwner->email}}</td>
-                <td class="buttons">
-                    <a href="administrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">管理店舗</a>
-                    <a href="/administrator/owner/send/{{$allOwner->id}}" type="submit" class="mail_button">メールの送信</a>
-                </td>
-            </tr>
-            @endforeach
-        </table>
+    <table class="owner_contents" border="1">
+        <tr>
+            <th>店舗管理者名</th> 
+            <th>メールアドレス</th>
+            <th>管理・メール</th>
+        </tr>
+        @foreach ($allOwners as $allOwner)
+        <tr class="row">
+            <td class="name">{{$allOwner->name}}様</td> 
+            <td class="email">{{$allOwner->email}}</td>
+            <td class="buttons">
+                <a href="administrator/shop/{{$allOwner->id}}" type="submit" class="detail_button">管理店舗</a>
+                <a href="/administrator/owner/send/{{$allOwner->id}}" type="submit" class="mail_button">メールの送信</a>
+            </td>
+        </tr>
+         @endforeach
+    </table>
 </body>
+</html>

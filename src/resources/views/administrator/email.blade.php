@@ -102,9 +102,9 @@
 </head>
 <body>
     <header class="top">
-    <a href="/administrator/menu">
-        <img src="{{ asset('/images/adiministrator.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
+        <a href="/administrator/menu">
+            <img src="{{ asset('/images/adiministrator.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        </a>
         <h1 class="rese">Rese</h1>
         <p class="message">{{session('message')}}</p>
     </header>
@@ -113,12 +113,11 @@
         <a href="/administrator/add" class="link">新規管理者作成</a>
         <p class="content_name">連絡機能</p>
     </nav>
-    
-        <div class="all_input_contents">
-            <h1 class="mail_header">新規メール作成</h1>
-            <main class="input_contents">
-                <form action="/administrator/user/send" method = "POST">
-                @csrf
+    <div class="all_input_contents">
+        <h1 class="mail_header">新規メール作成</h1>
+        <main class="input_contents">
+            <form action="/administrator/user/send" method = "POST">
+            @csrf
                 <div class ="all_to_contents">
                     <label for="label" class="label">送信先</label>
                     <div class ="to_contents">
@@ -128,11 +127,12 @@
                 <label for="label" class="label">件名</label>
                 <input id="title" type="text" class="title" name="title">
                 <div class ="comment_contents">
-                <label for="label" class="label">内容</label>
-                <textarea cols="140" rows="22" name="content" class="content" id="content">{{ old('content') }}</textarea>
+                    <label for="label" class="label">内容</label>
+                    <textarea cols="140" rows="22" name="content" class="content" id="content">{{ old('content') }}</textarea>
                 </div>
-            </main>
+        </main>
                 <button class="form__button" type="submit">送信する</button>
             </form>
-        </div>
+    </div>
 </body>
+</html>

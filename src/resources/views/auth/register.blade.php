@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ログインページ</title>
+  <title>会員登録ページ</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
 
     <style>
@@ -110,11 +110,10 @@
             <div class="card">
                 <div class="card-header">
                     <p class="register-header">{{ __('Register') }}</p>
-                    </div>
-
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
-                        @csrf
+                    @csrf
 
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -150,3 +149,4 @@
     </div>
 </div>
 </body>
+</html>

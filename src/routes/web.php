@@ -44,7 +44,7 @@ Route::get('/done', function () {
 });
 Route::get('/qrcode/{reserve_id}', [ReserveController::class, 'getQr']);
 Route::prefix('payment')->name('payment.')->group(function () {
-    Route::get('/create', [PaymentController::class, 'create'])->name('create');
+    Route::get('/create/{shop_id}/{date}/{time}/{num}', [PaymentController::class, 'create'])->name('create');
     Route::post('/store', [PaymentController::class, 'store'])->name('store');
 });
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ReserveRequest;
 use Carbon\Carbon;
 use App\Models\Shop;
+use App\Models\Price;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ManyMail;
 
@@ -20,6 +21,11 @@ class ReserveController extends Controller
         $selected_time = $_POST["time"];
         $selected_shop_id = $_POST["shop_id"];
         $selected_num_of_guest = $_POST["num_of_guest"];
+
+        $shopPrice = Price::where('shop_id','=',$selected_shop_id)->first();
+
+        if($shopPrice == null)
+        {
         
         $reserve = new Reserve();
         $reserve->date=$selected_date;
@@ -29,7 +35,14 @@ class ReserveController extends Controller
         $reserve->shop_id=$selected_shop_id;
         $reserve->save();
 
-        return redirect('/payment/create');
+        $message="予約が完了しました。";
+
+        return redirect('/mypage')->with(compact('message'));
+        }
+        else
+        {
+            return redirect('/payment/create'.'/'.$selected_shop_id.'/'.$selected_date.'/'.$selected_time.'/'.$selected_num_of_guest);
+        }
         
      }
 

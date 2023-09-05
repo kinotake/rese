@@ -294,6 +294,10 @@
             margin-top : -8vw;
         }
     }
+    .error{
+        margin-left : 150px;
+        color : red;
+    }
     </style>
 </head>
 <body>
@@ -302,11 +306,13 @@
         <a href="/menu/first" class="link_top">
             <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
             <h1 class="rese">Rese</h1>
+            <p class="error">{{session('message')}}</p>
         </a>
         @else
         <a href="/menu/second" class="link_top">
             <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
             <h1 class="rese">Rese</h1>
+            <p class="error">{{session('message')}}</p>
         </a>
         @endif
     </header>

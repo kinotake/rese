@@ -111,9 +111,9 @@
 </head>
 <body>
     <header class="top">
-    <a href="/owner/menu">
-        <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
+        <a href="/owner/menu">
+            <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        </a>
         <h1 class="rese">Rese</h1>
         <p class="">{{session('message')}}</p>
     </header>
@@ -125,59 +125,58 @@
         <p class="content_name">新規店舗作成</p>
         <a href="/owner/send" class="link">連絡機能</a>
     </nav>
-    
-        <div class="all_input_contents">
-            <h1 class="shop_header">新規店舗作成</h1>
-            <main class="input_contents">
-                <form action="{{ route('makeShop')}}" method = "POST">
-                @csrf
+    <div class="all_input_contents">
+        <h1 class="shop_header">新規店舗作成</h1>
+        <main class="input_contents">
+            <form action="{{ route('makeShop')}}" method = "POST">
+            @csrf
                 <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">
                 <div class ="select_contents">
-                <label for="label" class="label">新規店舗名</label>
-                <input id="name" type="text" class="form" name="name">
+                    <label for="label" class="label">新規店舗名</label>
+                    <input id="name" type="text" class="form" name="name">
                 </div>
                 <div class ="select_contents">
-                <label for="label" class="label">エリア</label>
-                <select class="select" name="place_id">
-                    <option value="" selected>All area</option>
-                    @foreach ($places as $place)
-                    <option value="{{$place->id}}">{{$place->name}}</option>
-                    @endforeach
-                </select>
-                <label for="label" class="label_genre">ジャンル</label>
-                <select class="select" name="category_id">
-                    <option value="" selected>All genre</option>
-                    @foreach ($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
-                </select>
+                    <label for="label" class="label">エリア</label>
+                    <select class="select" name="place_id">
+                        <option value="" selected>All area</option>
+                        @foreach ($places as $place)
+                        <option value="{{$place->id}}">{{$place->name}}</option>
+                        @endforeach
+                    </select>
+                    <label for="label" class="label_genre">ジャンル</label>
+                    <select class="select" name="category_id">
+                        <option value="" selected>All genre</option>
+                        @foreach ($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class ="select_contents">
-                <label for="label" class="label_comment">コメント</label>
-                <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
+                    <label for="label" class="label_comment">コメント</label>
+                    <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
                 </div>
-            @error('name')
-            <span class="input_error">
-                <strong class="input_error_message">{{$errors->first('name')}}</strong>
-            </span>
-            @enderror
-            @error('place_id')
-            <span class="input_error">
-                <strong class="input_error_message">{{$errors->first('place_id')}}</strong>
-            </span>
-            @enderror
-            @error('category_id')
-            <span class="input_error">
-                <strong class="input_error_message">{{$errors->first('category_id')}}</strong>
-            </span>
-            @enderror
-            @error('comment')
-            <span class="input_error">
-                <strong class="input_error_message">{{$errors->first('comment')}}</strong>
-            </span>
-            @enderror
-            </main>
+                @error('name')
+                <span class="input_error">
+                    <strong class="input_error_message">{{$errors->first('name')}}</strong>
+                </span>
+                @enderror
+                @error('place_id')
+                <span class="input_error">
+                    <strong class="input_error_message">{{$errors->first('place_id')}}</strong>
+                </span>
+                @enderror
+                @error('category_id')
+                <span class="input_error">
+                    <strong class="input_error_message">{{$errors->first('category_id')}}</strong>
+                </span>
+                @enderror
+                @error('comment')
+                <span class="input_error">
+                    <strong class="input_error_message">{{$errors->first('comment')}}</strong>
+                </span>
+                @enderror
+        </main>
                 <button class="form__button" type="submit">作成する</button>
             </form>
-        </div>
+    </div>
 </body>
