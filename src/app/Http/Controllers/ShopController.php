@@ -11,6 +11,7 @@ use App\Models\Like;
 use App\Models\Reserve;
 use App\Models\User;
 use App\Models\Owner;
+use App\Models\Price;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -94,7 +95,6 @@ class ShopController extends Controller
         $shopData = Shop::where('id',$shopId)->first();
         $checkLogin = Auth::check();
         
-        // 可変（時間）
         $start = 9;
         $end = 22;
         $worktimes = [];
@@ -107,7 +107,6 @@ class ShopController extends Controller
             $worktimes[] = $item;
         }
 
-        // 可変（人数）
         $min = 1;
         $max = 15;
         $people = [];
@@ -118,7 +117,9 @@ class ShopController extends Controller
 
         $shopPosts = Shop::find($shopId)->posts;
 
-        return view('detail', compact('shopData','worktimes','people','checkLogin','shopPosts'));
+        $shopPrices = Price::where('shop_id',$shopId)->get();
+
+        return view('detail', compact('shopData','worktimes','people','checkLogin','shopPosts','shopPrices'));
     }
 
     public function getMypage()
@@ -292,13 +293,13 @@ class ShopController extends Controller
         }
         else
         {
-        Shop::where('id','=',$shopId)->update([
+            Shop::where('id','=',$shopId)->update([
             'comment' => $postComment,
-        ]);
+            ]);
 
-        $message="コメントが変更されました。";
+            $message="コメントが変更されました。";
 
-        return redirect('/owner')->with(compact('message'));
+            return redirect('/owner')->with(compact('message'));
         }
         
     }

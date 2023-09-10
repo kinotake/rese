@@ -102,9 +102,9 @@
 </head>
 <body>
     <header class="top">
-    <a href="/owner/menu">
-        <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
+        <a href="/owner/menu">
+            <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        </a>
         <h1 class="rese">Rese</h1>
         <p class="message">{{session('message')}}</p>
     </header>
@@ -116,28 +116,28 @@
         <a href="/owner/add" class="link">新規店舗作成</a>
         <p class="content_name">連絡機能</p>
     </nav>
-    
-        <div class="all_input_contents">
-            <h1 class="mail_header">新規メール作成</h1>
-            <main class="input_contents">
-                <form action="owner/user/send" method = "POST">
-                @csrf
-                <div class ="all_to_contents">
+    <div class="all_input_contents">
+        <h1 class="mail_header">新規メール作成</h1>
+        <main class="input_contents">
+            <form action="owner/user/send" method = "POST">
+            @csrf
+            <div class ="all_to_contents">
                 <label for="label" class="label">送信先</label>
                 <div class ="to_contents">
                     <p>{{$reserveData->user->name}}様</p>
                     <p class ="date">({{$reserveData->date}},{{$reserveData->time}}にご予約)</p>
                 </div>
-                </div>
-                <input type="hidden" name="user_id" class="user_id" id="user_id" value="{{$reserveData->user->id}}">
-                <label for="label" class="label">件名</label>
-                <input id="title" type="text" class="title" name="title">
-                <div class ="comment_contents">
+            </div>
+            <input type="hidden" name="user_id" class="user_id" id="user_id" value="{{$reserveData->user->id}}">
+            <label for="label" class="label">件名</label>
+            <input id="title" type="text" class="title" name="title">
+            <div class ="comment_contents">
                 <label for="label" class="label">内容</label>
                 <textarea cols="140" rows="22" name="content" class="content" id="content">{{ old('content') }}</textarea>
-                </div>
-            </main>
+            </div>
+        </main>
                 <button class="form__button" type="submit">送信する</button>
             </form>
-        </div>
+    </div>
 </body>
+</html>

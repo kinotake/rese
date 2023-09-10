@@ -13,27 +13,23 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
-    public function create($shop_id,$date,$time,$num)
+    public function create($shop_id,$date,$time,$num,$price_id)
     {
         $shopId = $shop_id;
-        $allPrices = Price::where('shop_id','=',$shopId)->get();
+        $priceId = $price_id;
 
-        return view('payment.create', compact('allPrices','date','time','num','shopId'));
+        $priceData = Price::find($priceId);
+        $howMuch = $priceData->price * $num;
+
+        return view('payment.create', compact('howMuch','date','time','num','shopId','priceId'));
     }
 
     public function store(Request $request)
     {
-        $priceId = $_POST["price_id"];
+
         $selected_num_of_guest = $_POST["num"];
-        $priceData = Price::find($priceId);
-
-        if($priceData == null)
-        {
-            $error="いずれかのプランを選択してください。";
-
-            return back()->with(compact('error'));
-        }
-        else{
+        $selected_price_id = $_POST["price_id"];
+        $priceData = Price::find($selected_price_id);
 
         try
         {
@@ -70,6 +66,6 @@ class PaymentController extends Controller
         {
             return $e->getMessage();
         }
-        }
+        
     }
 }

@@ -82,21 +82,21 @@
 </head>
 <body>
   <header class="rese_contents">
-        @if (Auth::check())
-        <a href="/menu/first" class="link">
-            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-            <h1 class="rese">Rese</h1>
-        </a>
-        @else
-        <a href="/menu/second" class="link">
-            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-            <h1 class="rese">Rese</h1>
-        </a>
-        @endif
+    @if (Auth::check())
+    <a href="/menu/first" class="link">
+      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+      <h1 class="rese">Rese</h1>
+    </a>
+    @else
+    <a href="/menu/second" class="link">
+      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+      <h1 class="rese">Rese</h1>
+    </a>
+    @endif
   </header>
   <article class="thanks">
     <p class="comment">会員登録ありがとうございます</p>
     <a href="/" class="button">戻る</a>
   </article>
-
 </body>
+</html>

@@ -44,17 +44,18 @@
     </style>
 </head>
 <body>
-<div class="back_content">
-  <a href="/" class="back">×</a>
-</div>
-<article class="links">
-  <a href="/" class="link">Home</a>
-  <a class="link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById ('logout-form').submit();">
+  <div class="back_content">
+    <a href="/" class="back">×</a>
+  </div>
+  <article class="links">
+    <a href="/" class="link">Home</a>
+    <a class="link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById ('logout-form').submit();">
     {{ __('Logout') }}
-  </a>
-  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-  @csrf
-  </form>
-  <a href="/mypage" class="link">Mypage</a>
-</article>
+    </a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+    @csrf
+    </form>
+    <a href="/mypage" class="link">Mypage</a>
+  </article>
 </body>
+</html>

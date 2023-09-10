@@ -28,22 +28,23 @@
     </style>
 </head>
 <body>
-<div class="information">
-  <p class="information_p">下のQRコードを店舗の機械に通してください。</p>
-  <table class="reserve_data"  border="1" style="border-collapse: collapse">
-    <tr>
-      <th>お名前</th> 
-      <th>店舗名</th>
-      <th>日付</th>
-      <th>時間</th>
-    </tr>
-    <tr>
-      <td class="name">{{$reserveData->user->name}}様</td> 
-      <td class="email">{{$reserveData->shop->name}}</td>
-      <td class="email">{{$reserveData->date}}</td>
-      <td class="buttons">{{Str::limit($reserveData->time,5,' ')}}～</td>
-    </tr>
-  </table>
-</div>
-<div class="qrcode">{!! QrCode::size(200)->generate('owner/reserve/qr/'.$reserveData->id); !!}</div>
+  <div class="information">
+    <p class="information_p">下のQRコードを店舗の機械に通してください。</p>
+    <table class="reserve_data"  border="1" style="border-collapse: collapse">
+      <tr>
+        <th>お名前</th> 
+        <th>店舗名</th>
+        <th>日付</th>
+        <th>時間</th>
+      </tr>
+      <tr>
+        <td class="name">{{$reserveData->user->name}}様</td> 
+        <td class="email">{{$reserveData->shop->name}}</td>
+        <td class="email">{{$reserveData->date}}</td>
+        <td class="buttons">{{Str::limit($reserveData->time,5,' ')}}～</td>
+      </tr>
+    </table>
+  </div>
+  <div class="qrcode">{!! QrCode::size(200)->generate('owner/reserve/qr/'.$reserveData->id); !!}</div>
 </body>
+</html>

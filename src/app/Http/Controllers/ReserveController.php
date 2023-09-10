@@ -21,10 +21,17 @@ class ReserveController extends Controller
         $selected_time = $_POST["time"];
         $selected_shop_id = $_POST["shop_id"];
         $selected_num_of_guest = $_POST["num_of_guest"];
+        $price_id = $_POST["price_id"];
 
-        $shopPrice = Price::where('shop_id','=',$selected_shop_id)->first();
+        $priceData = Price::find($price_id);
+        
+        if($priceData == null)
+        {
+            $error="いずれかのプランを選択してください。";
 
-        if($shopPrice == null)
+            return back()->with(compact('error'));
+        }
+        elseif($priceData->price = 0)
         {
         
         $reserve = new Reserve();
@@ -41,29 +48,89 @@ class ReserveController extends Controller
         }
         else
         {
-            return redirect('/payment/create'.'/'.$selected_shop_id.'/'.$selected_date.'/'.$selected_time.'/'.$selected_num_of_guest);
+            return redirect('/payment/create'.'/'.$selected_shop_id.'/'.$selected_date.'/'.$selected_time.'/'.$selected_num_of_guest.'/'.$price_id);
         }
         
      }
 
-    public function postReschedule(ReserveRequest $request)
+    public function postRescheduleDate(Request $request)
     {   
         $selected_date = $_POST["date"];
-        $selected_time = $_POST["time"];
-        $selected_shop_id = $_POST["shop_id"];
-        $selected_num_of_guest = $_POST["num_of_guest"];
-        $reserved_id = $_POST["reserve_id"];
-        
-        $reserve = Reserve::find($reserved_id);
-        $reserve->date=$selected_date;
-        $reserve->time=$selected_time;
-        $reserve->num_of_guest=$selected_num_of_guest;
-        $reserve->save();
+        $today = Carbon::now();
 
-        $message="予約が変更されました。";
+        if($selected_date == null)
+        {
+            $error="日付を選択してください。";
+
+            return back()->with(compact('error'));
+        }
+        elseif($selected_date < $today)
+        {
+            $error="本日以降の日付を選択してください";
+
+            return back()->with(compact('error'));
+        }
+        else
+        {
+            $reserved_id = $_POST["reserve_id"];
+        
+            $reserve = Reserve::find($reserved_id);
+            $reserve->date=$selected_date;
+            $reserve->save();
+
+            $message="予約の日付が変更されました。";
 
         return redirect('/mypage')->with(compact('message'));
+        }
     }
+    public function postRescheduleTime(Request $request)
+    {   
+        $selected_time = $_POST["time"];
+
+        if($selected_time == null)
+        {
+            $error="時間を選択してください。";
+
+            return back()->with(compact('error'));
+        }
+        else
+        {
+            $reserved_id = $_POST["reserve_id"];
+        
+            $reserve = Reserve::find($reserved_id);
+            $reserve->time=$selected_time;
+            $reserve->save();
+
+            $message="予約の時間が変更されました。";
+
+            return redirect('/mypage')->with(compact('message'));
+
+        }
+    }
+    public function postRescheduleNum(Request $request)
+    {   
+        $selected_num_of_guest = $_POST["num_of_guest"];
+
+        if($selected_num_of_guest == null)
+        {
+            $error="人数を選択してください。";
+
+            return back()->with(compact('error'));
+        }
+        else
+        {
+            $reserved_id = $_POST["reserve_id"];
+        
+            $reserve = Reserve::find($reserved_id);
+            $reserve->num_of_guest=$selected_num_of_guest;
+            $reserve->save();
+
+            $message="予約の人数が変更されました。";
+
+            return redirect('/mypage')->with(compact('message'));
+        }
+    }
+
     public function postCancel()
     {   
         $reserved_id = $_POST["reserve_id"];

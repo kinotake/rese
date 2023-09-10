@@ -21,7 +21,9 @@ Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
 Route::post('/detail', [ReserveController::class, 'makeReserve']);
 Route::get('/mypage', [ShopController::class, 'getMypage']);
 Route::get('/reschedule/{shop_id}/{reserve_id}', [ShopController::class, 'getReschedule']);
-Route::post('/reschedule', [ReserveController::class, 'postReschedule']);
+Route::post('/reschedule/date', [ReserveController::class, 'postRescheduleDate']);
+Route::post('/reschedule/time', [ReserveController::class, 'postRescheduleTime']);
+Route::post('/reschedule/num', [ReserveController::class, 'postRescheduleNum']);
 Route::get('/cancel/{shop_id}/{reserve_id}', [ShopController::class, 'getCancel']);
 Route::post('/cancel', [ReserveController::class, 'postCancel']);
 Route::get('/went', [ShopController::class, 'getWent']);
@@ -44,7 +46,7 @@ Route::get('/done', function () {
 });
 Route::get('/qrcode/{reserve_id}', [ReserveController::class, 'getQr']);
 Route::prefix('payment')->name('payment.')->group(function () {
-    Route::get('/create/{shop_id}/{date}/{time}/{num}', [PaymentController::class, 'create'])->name('create');
+    Route::get('/create/{shop_id}/{date}/{time}/{num}/{price_id}', [PaymentController::class, 'create'])->name('create');
     Route::post('/store', [PaymentController::class, 'store'])->name('store');
 });
 

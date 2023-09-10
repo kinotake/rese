@@ -103,12 +103,12 @@
     </header>
     <nav class="links">
         <a href="/administrator" class="link">管理店舗一覧</a>
-        <p class="content_name">新規店舗作成</p>
+        <p class="content_name">新規管理者作成</p>
         <a href="/administrator/user/send" class="link">連絡機能</a>
     </nav>
     
     <div class="all_input_contents">
-        <h1 class="shop_header">新規店舗作成</h1>
+        <h1 class="shop_header">新規管理者作成</h1>
         <main class="input_contents">
             <form action="/administrator/register" method="POST">
             @csrf

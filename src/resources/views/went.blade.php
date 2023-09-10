@@ -307,37 +307,37 @@
 </head>
 <body>
   <header class="rese_contents">
-        @if (Auth::check())
-        <a href="/menu/first" class="link_top">
-            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-            <h1 class="rese">Rese</h1>
-        </a>
-        @else
-        <a href="/menu/second" class="link_top">
-            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-            <h1 class="rese">Rese</h1>
-        </a>
-        @endif
-    </header>
+    @if (Auth::check())
+    <a href="/menu/first" class="link_top">
+      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+      <h1 class="rese">Rese</h1>
+    </a>
+    @else
+    <a href="/menu/second" class="link_top">
+      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+      <h1 class="rese">Rese</h1>
+    </a>
+    @endif
+  </header>
   <p class="user_name">{{$userData->name}}さん</p>
-    <div class="headers">
-      <a href="/mypage" class="link">予約状況</a>
-      <h1 class="header_went">来店済み店舗一覧</h1>
-      <h2 class="header_like">お気に入り店舗</h2>
-      <a class="header_like_junp" href="#like_contents">お気に入り店舗一覧</a>
-    </div>
-    <div class="under_contents">
-      <div class="left_content">
+  <div class="headers">
+    <a href="/mypage" class="link">予約状況</a>
+    <h1 class="header_went">来店済み店舗一覧</h1>
+    <h2 class="header_like">お気に入り店舗</h2>
+    <a class="header_like_junp" href="#like_contents">お気に入り店舗一覧</a>
+  </div>
+  <div class="under_contents">
+    <div class="left_content">
       @if ($wentReserveDatas->isNotEmpty())
       @foreach ($wentReserveDatas as $wentReserveData)
       <article class="reserved_content">
         <div class="content_header">
-        <p class="went_content_header">来店済み店舗</p>
-        @if ($wentReserveData->checkPost() == 0)
-        <a href="assessment/{{$wentReserveData->id}}" type="submit" class="assessment_button">評価する</a>
-        @else
-        <a href="reassessment/{{$wentReserveData->id}}" type="submit" class="assessment_button">編集する</a>
-        @endif
+          <p class="went_content_header">来店済み店舗</p>
+          @if ($wentReserveData->checkPost() == 0)
+          <a href="assessment/{{$wentReserveData->id}}" type="submit" class="assessment_button">評価する</a>
+          @else
+          <a href="reassessment/{{$wentReserveData->id}}" type="submit" class="assessment_button">編集する</a>
+          @endif
         </div>
         <div class="row_content">
           <label for="shop_label" class="label">Shop</label>
@@ -362,32 +362,33 @@
         <p class="error">来店済みデータがありません</p>
       </article>
       @endif
-      </div>
-      <div class="right_contents" id="like_contents">
-        @foreach ($likeDatas as $likeData)
-        <article class="shop_content">
-          <div class="shop_image">
-            <img src="{{ asset($likeData->getphoto()) }}"  alt="店内画像" class="shop_photo">
-          </div>
-          <table class="shop_information">
-            <th class="name">{{$likeData->shop->name}}</th>
-            <tr>
-              <td class="information">#{{$likeData->returnPlace()}}</td>
-              <td class="information">#{{$likeData->returnCategory()}}</td>
-            </tr>
-          </table>
-          <div class="buttons">
-            <a href="detail/{{$likeData->shop_id}}" type="submit" class="detail_button">詳しく見る</a>
-            <div>
-              <form method="POST" action="{{route('deleteLike')}}">
-                @csrf
-                <input type="hidden" name="shop_id" id="shop_id" value="{{$likeData->shop_id}}">
-                <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="40" height="40" class="heart" >
-              </form>
-            </div>
-          </div>
-        </article>
-        @endforeach
-      </div>
     </div>
+    <div class="right_contents" id="like_contents">
+      @foreach ($likeDatas as $likeData)
+      <article class="shop_content">
+        <div class="shop_image">
+          <img src="{{ asset($likeData->getphoto()) }}"  alt="店内画像" class="shop_photo">
+        </div>
+        <table class="shop_information">
+          <th class="name">{{$likeData->shop->name}}</th>
+          <tr>
+            <td class="information">#{{$likeData->returnPlace()}}</td>
+            <td class="information">#{{$likeData->returnCategory()}}</td>
+          </tr>
+        </table>
+        <div class="buttons">
+          <a href="detail/{{$likeData->shop_id}}" type="submit" class="detail_button">詳しく見る</a>
+          <div>
+            <form method="POST" action="{{route('deleteLike')}}">
+              @csrf
+              <input type="hidden" name="shop_id" id="shop_id" value="{{$likeData->shop_id}}">
+              <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="40" height="40" class="heart" >
+            </form>
+          </div>
+        </div>
+      </article>
+      @endforeach
+    </div>
+  </div>
 </body>
+</html>

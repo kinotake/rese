@@ -293,6 +293,13 @@
         border-radius: 5px;
         margin-top : 2px;
     }
+    @media screen and (max-width: 768px) {
+    .input_error{
+            height: 5vw;
+            width: 80vw;
+            font-size : 3vw;
+        }
+    }
     .input_error_message{
         display : block;
         color: white;
@@ -318,7 +325,9 @@
         <article class="content_left">
             <div class="shop_header">
                 <div class="back_content">
-                    <a href="/mypage" class="back"><</a>
+                    <a href="/mypage" class="back">
+                        <p class="font"><</p>
+                    </a>
                 </div>
                 <h1 class="shop_name">{{$shopData->name??''}}</h1>
             </div>
@@ -333,63 +342,65 @@
             </table>
             <p class="font">{{$shopData->comment??''}}</p>
         </article>
-    <section class="content_right">
-        <h1 class="reassessment_header">店舗評価の変更</h1>
-        <div class="post_content">
-            <label for="update_label" class="updated_at_label">投稿時間</label>
-            <p id="selectshop" class="updated_at_value">{{$postData->updated_at}}</p>
-        </div>
-        <aside class="assesment_contents">
-            <div class="assesment_content">
-                <div class="post_content">
-                    <label for="score_label" class="label">Score</label>
-                    <div class="score_value">
-                    @for ($count = 1; $count <= $postData->score; $count++)
-                        <p>★</p>
-                    @endfor
-                        <p>({{$postData->score}})</p>
+        <section class="content_right">
+            <h1 class="reassessment_header">店舗評価の変更</h1>
+            <div class="post_content">
+                <label for="update_label" class="updated_at_label">投稿時間</label>
+                <p id="selectshop" class="updated_at_value">{{$postData->updated_at}}</p>
+            </div>
+            <aside class="assesment_contents">
+                <div class="assesment_content">
+                    <div class="post_content">
+                        <label for="score_label" class="label">Score</label>
+                        <div class="score_value">
+                            @for ($count = 1; $count <= $postData->score; $count++)
+                            <p>★</p>
+                            @endfor
+                            <p>({{$postData->score}})</p>
+                        </div>
+                    </div>
+                    <div class="post_content_comment">
+                        <label for="comment_label" class="label">Comment</label>
+                        <p id="selectshop" class="comment_value">{{$postData->comment}}</p>
                     </div>
                 </div>
-                <div class="post_content_comment">
-                    <label for="comment_label" class="label">Comment</label>
-                    <p id="selectshop" class="comment_value">{{$postData->comment}}</p>
-                </div>
-            </div>
-        </aside>
-        <form action="/reassessment" method ="POST">
+            </aside>
+            <form action="/reassessment" method ="POST">
                 @csrf
                 <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reserveId}}">
                 <input type="hidden" name="post_id" class="post_id" id="post_id" value="{{$postData->id}}">
                 <div class="score_contents">
-                <label for="score_label" class="label">Score</label>
-                <div class="rate-form">
-                    <input id="star5" type="radio" name="score" value="5" id="score">
-                    <label for="star5">★</label>
-                    <input id="star4" type="radio" name="score" value="4" id="score">
-                    <label for="star4">★</label>
-                    <input id="star3" type="radio" name="score" value="3" id="score">
-                    <label for="star3">★</label>
-                    <input id="star2" type="radio" name="score" value="2" id="score">
-                    <label for="star2">★</label>
-                    <input id="star1" type="radio" name="score" value="1" id="score">
-                    <label for="star1">★</label>
-                </div>
+                    <label for="score_label" class="label">Score</label>
+                    <div class="rate-form">
+                        <input id="star5" type="radio" name="score" value="5" id="score">
+                        <label for="star5">★</label>
+                        <input id="star4" type="radio" name="score" value="4" id="score">
+                        <label for="star4">★</label>
+                        <input id="star3" type="radio" name="score" value="3" id="score">
+                        <label for="star3">★</label>
+                        <input id="star2" type="radio" name="score" value="2" id="score">
+                        <label for="star2">★</label>
+                        <input id="star1" type="radio" name="score" value="1" id="score">
+                        <label for="star1">★</label>
+                    </div>
                 </div>
                 <div class="input_contents">
-                <label for="comment_label" class="comment_label">Comment</label><br>
-                <textarea cols="30" rows="5"name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
+                    <label for="comment_label" class="comment_label">Comment</label><br>
+                    <textarea cols="30" rows="5"name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
                 </div>
-            @error('score')
-            <span class="input_error">
-                <strong class="input_error_message">{{$errors->first('score')}}</strong>
-            </span>
-            @enderror
-            @error('comment')
-            <span class="input_error">
-                <strong class="input_error_message">{{$errors->first('comment')}}</strong>
-            </span>
-            @enderror
+                @error('score')
+                <span class="input_error">
+                    <strong class="input_error_message">{{$errors->first('score')}}</strong>
+                </span>
+                @enderror
+                @error('comment')
+                <span class="input_error">
+                    <strong class="input_error_message">{{$errors->first('comment')}}</strong>
+                </span>
+                @enderror
                 <button class="form__button" type="submit">評価を変更する</button>
             </form>
-    </section>
+        </section>
+    </div>
 </body>
+</html>

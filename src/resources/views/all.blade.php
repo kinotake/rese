@@ -219,17 +219,17 @@
 <body>
     <header class="top">
         <div class="rese_contents">
-        @if (Auth::check())
-        <a href="/menu/first" class="link">
-            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-            <h1 class="rese">Rese</h1>
-        </a>
-        @else
-        <a href="/menu/second" class="link">
-            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-            <h1 class="rese">Rese</h1>
-        </a>
-        @endif
+            @if (Auth::check())
+            <a href="/menu/first" class="link">
+                <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+                <h1 class="rese">Rese</h1>
+            </a>
+            @else
+            <a href="/menu/second" class="link">
+                <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+                <h1 class="rese">Rese</h1>
+            </a>
+            @endif
         </div>
         <div class="search_contents">
             <form action="/search" method = "POST" class="form">
@@ -260,19 +260,19 @@
     <div class="under_contents">
         <div class="left_padding_content">
         </div>
-    @if (@isset($allShops))
+        @if (@isset($allShops))
         <div class="shop_contents">
-    @foreach ($allShops as $allShop)
+        @foreach ($allShops as $allShop)
         <article class="shop_content">
             <div class="shop_image">
                 <img src="{{ asset($allShop->getPhoto()) }}"  alt="店内画像" class="shop_photo">
             </div>
             <table class="shop_information">
-            <th class="name">{{$allShop->name}}</th>
-            <tr>
-                <td class="information">#{{$allShop->place->name}}</td>
-                <td class="information">#{{$allShop->category->name}}</td>
-            </tr>
+                <th class="name">{{$allShop->name}}</th>
+                <tr>
+                    <td class="information">#{{$allShop->place->name}}</td>
+                    <td class="information">#{{$allShop->category->name}}</td>
+                </tr>
             </table>
             <div class="bottons">
                 <a href="detail/{{$allShop->id}}" type="submit" class="detail_button">詳しく見る</a>
@@ -293,11 +293,9 @@
                 </div>
             </div>
         </article>
-    @endforeach
+        @endforeach
     </div>
-    @endif
-    
-    </div>
-
-    
+        @endif
+        </div>  
 </body>
+</html>

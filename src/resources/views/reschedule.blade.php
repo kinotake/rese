@@ -121,7 +121,7 @@
     @media screen and (max-width: 768px) {
     .content_right{
             height: 100vw;
-            width: 100vw;
+            width: 97vw;
         }
     }
     .reserve_header{
@@ -176,9 +176,9 @@
     }
     @media screen and (max-width: 768px) {
         .select_contents{
-            margin-left: 6vw;
+            margin-left: 3vw;
             height: auto;
-            width: 80vw;
+            width: 90vw;
         }
     }
     .select_content{
@@ -188,20 +188,39 @@
     .select_content_center{
         height: 150px;
         width: 40px;
+        margin-top : 40px;
+    }
+    @media screen and (max-width: 768px) {
+        .select_content_center{
+            height: 15vw;
+            width: 5vw;
+            margin-top : 5vw;
+        }
     }
     .heckle{
-        margin-top : 55px;
         text-align: center;
         display:block;
         font-size : 25px;
+    }
+    @media screen and (max-width: 768px) {
+    .heckle{
+            margin-top : 3vw;
+            font-size : 5vw;
+        }
     }
     .select_content_right{
         padding-top : 7px;
     }
     .select_value{
         margin-bottom : 15px;
-        margin-left : 20px;
+        margin-left : 5px;
     }
+    .select_value_num{
+        margin-bottom : 15px;
+        margin-left : 5px;
+        margin-top : 8px;
+    }
+    
     .reserved_value{
         margin-bottom : 10px;
         margin-left : 20px;
@@ -212,22 +231,23 @@
     @media screen and (max-width: 768px) {
         .label{
             margin-left : 5vw;
-            font-size: 5vw;
+            font-size: 3vw;
         }
     }
     .form__button{
-        height: 50px;
-        width: 450px;
+        height: 30px;
+        width: 60px;
         background: #0000cd;
         color : white;
         border:none;
-        position: absolute;
         bottom: 0;
+        border-radius: 5px;
+        margin-top : 3px;
     }
     @media screen and (max-width: 768px) {
     .form__button{
-            height: 10vw;
-            width: 100vw;
+            height: 7vw;
+            width: 15vw;
             font-size : 3vw;
         }
     }
@@ -260,10 +280,33 @@
         border-radius: 5px;
         margin-top : 2px;
     }
+    @media screen and (max-width: 768px) {
+    .input_error{
+            height: 5vw;
+            width: 80vw;
+            font-size : 3vw;
+        }
+    }
     .input_error_message{
         display : block;
         color: white;
         text-align: center;
+    }
+    .select_padding{
+        height: 33px;
+        width: 110px;
+    }
+    @media screen and (max-width: 768px) {
+    .select_padding{
+            height: 7vw;
+            width: 25vw;
+        }
+    }
+    .select_row_contents{
+        display : flex;
+    }
+    .none_content{
+        display : none;
     }
     </style>
 </head>
@@ -285,7 +328,9 @@
         <article class="content_left">
             <div class="shop_header">
                 <div class="back_content">
-                    <a href="/mypage" class="back"><</a>
+                    <a href="/mypage" class="back">
+                        <p class="font"><</p>
+                    </a>
                 </div>
                 <h1 class="shop_name">{{$shopData->name??''}}</h1>
             </div>
@@ -300,107 +345,124 @@
             </table>
             <p class="font">{{$shopData->comment??''}}</p>
         </article>
-    <section class="content_right">
-        <h1 class="reserve_header">予約変更</h1>
-        <main class="input_contents">
-            <form action="/reschedule" method = "POST">
-                @csrf
-                <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$shopData->id??''}}">
-                <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reservedData->id}}">
-                <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()"></br>
-                <select name="time" id="time" class="time">
-                    <option value="" selected>選択してください</option>
-                    @foreach ($worktimes as $worktime)
-                    <option value="{{$worktime}}">{{$worktime}}</option>
-                    @endforeach
-                </select></br>
-                <select name="num_of_guest" id="num_of_guest" class="num_of_guest">
-                    <option value="" selected>選択してください</option>
-                    @foreach ($people as $person)
-                    <option value="{{$person}}">{{$person}}人</option>
-                    @endforeach
-                </select>
-        </main>
-        <aside class="select_contents">
-            <div class="select_content_left">
-            <div class="select_content">
-                <label for="shop_label" class="label">Shop</label>
-                <p id="selectshop" class="reserved_value">{{$shopData->name??''}}</p>
-            </div>
-            <div class="select_content">
-                <label for="date_label" class="label">Date</label>
-                <p id="selectshop" class="reserved_value">{{$reservedData->date??''}}</p>
-            </div>
-            <div class="select_content">
-                <label for="time_label" class="label">Time</label>
-                <p id="selectshop" class="reserved_value">{{Str::limit($reservedData->time,5,' ')}}</p>
-            </div>
-            <div class="select_content">
-                <label for="num_label" class="label">Number</label>
-                <p id="selectshop" class="reserved_value">{{$reservedData->num_of_guest??''}}人
-                </p>
-            </div>
-            </div>
-            <div class="select_content_center">
-                <p class="heckle">→</p>
-            </div>
-            <div class="select_content_right">
-            <p id="selectshop" class="select_value">{{$shopData->name??''}}</p>
-            <p id="selectdate" class="select_value"></p>
-            <p id="selecttime" class="select_value"></p>
-            <p id="selectnum" class="select_value"></p>
-            </div>
-        </aside>
-            @error('date')
-            <span class="input_error">
-                <strong class="input_error_message">{{$errors->first('date')}}</strong>
-            </span>
-            @enderror
-            @error('time')
-            <span class="input_error">
-                <strong class="input_error_message">{{$errors->first('time')}}</strong>
-            </span>
-            @enderror
-            @error('num_of_guest')
-            <span class="input_error">
-                <strong class="input_error_message">{{$errors->first('num_of_guest')}}</strong>
-            </span>
-            @enderror
-        <script type="text/javascript">
-            let date = document.getElementById('date');
-            let selectdate = document.getElementById('selectdate');
+        <section class="content_right">
+            <h1 class="reserve_header">予約変更</h1>
+            <main class="input_contents">
+                <form action="/reschedule/date" method="POST" id="date_form">
+                    @csrf
+                    <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$shopData->id??''}}">
+                    <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reservedData->id}}">
+                    <input type="date" id="date" name="date" value="date" class="date" onkeyup="inputCheck()"></br>
+                </form>
+                <form action="/reschedule/time" method="POST" id="time_form">
+                    @csrf
+                    <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reservedData->id}}">
+                    <select name="time" id="time" class="time">
+                        <option value="" selected>選択してください</option>
+                        @foreach ($worktimes as $worktime)
+                        <option value="{{$worktime}}">{{$worktime}}</option>
+                        @endforeach
+                    </select></br>
+                </form>
+                <form action="/reschedule/num" method="POST" id="num_form">
+                    @csrf
+                    <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reservedData->id}}">
+                    <select name="num_of_guest" id="num_of_guest" class="num_of_guest">
+                        <option value="" selected>選択してください</option>
+                        @foreach ($people as $person)
+                        <option value="{{$person}}">{{$person}}人</option>
+                        @endforeach
+                    </select>
+                </form>
+            </main>
+            <aside class="select_contents">
+                <div class="select_content_left">
+                    <div class="select_content">
+                        <label for="shop_label" class="label">Shop</label>
+                        <p id="selectshop" class="reserved_value">{{$shopData->name??''}}</p>
+                    </div>
+                    <div class="select_content">
+                        <label for="date_label" class="label">Date</label>
+                        <p id="selectshop" class="reserved_value">{{$reservedData->date??''}}</p>
+                    </div>
+                    <div class="select_content">
+                        <label for="time_label" class="label">Time</label>
+                        <p id="selectshop" class="reserved_value">{{Str::limit($reservedData->time,5,' ')}}</p>
+                    </div>
+                    <div class="select_content">
+                        <label for="num_label" class="label">Number</label>
+                        <p id="selectshop" class="reserved_value">{{$reservedData->num_of_guest??''}}人</p>
+                    </div>
+                </div>
+                <div class="select_content_center">
+                    <p class="heckle">→</p>
+                    <p class="heckle">→</p>
+                    <p class="heckle">→</p>
+                </div>
+                <div class="select_content_right">
+                    <p id="selectshop" class="select_value">{{$shopData->name??''}}</p>
+                    <div class="select_row_contents">
+                        <div class="select_padding">
+                            <p class="none_content">選択なしの空白を作る用のコンテンツです</p>
+                            <p id="selectdate" class="select_value"></p>
+                        </div>
+                        <button class="form__button" type="submit" form="date_form">日付変更</button>
+                    </div>
+                    <div class="select_row_contents">
+                        <div class="select_padding">
+                            <p class="none_content">選択なしの空白を作る用のコンテンツです</p>
+                            <p id="selecttime" class="select_value"></p>
+                        </div>
+                        <button class="form__button" type="submit" form="time_form">時間変更</button>
+                    </div>
+                    <div class="select_row_contents">
+                        <div class="select_padding">
+                            <p class="none_content">選択なしの空白を作る用のコンテンツです</p>
+                            <p id="selectnum" class="select_value_num"></p>
+                        </div>
+                        <button class="form__button" type="submit" form="num_form">人数変更</button>
+                    </div>
+                </?div>
+            </aside>
+            @if (session('error'))
+                <span class="input_error">
+                    <strong class="input_error_message">{{session('error')}}</strong>
+                </span>
+            @endif
+            <script type="text/javascript">
+                let date = document.getElementById('date');
+                let selectdate = document.getElementById('selectdate');
 
-            timestamp = 0;
+                timestamp = 0;
 
-            function update(){
+                function update(){
 	
-	            timestamp++;
-	            window.requestAnimationFrame(update);
+	                timestamp++;
+	                window.requestAnimationFrame(update);
 	
-	            if (timestamp % 10 == 0 )
-                {
-		            selectdate.innerHTML = date.value;
-	            }
+	                if (timestamp % 10 == 0 )
+                    {
+		                selectdate.innerHTML = date.value;
+	                }
 	
-            }
+                }
 
-            update();
-        </script>
-        <script type="text/javascript">
-            var time = document.getElementById('time');
-            time.addEventListener('change', (event) => {
-            var selecttime = document.getElementById('selecttime');
-            selecttime.textContent =  time.options[time.selectedIndex].textContent;
-            });
-        </script>
-        <script type="text/javascript">
-            var num_of_guest = document.getElementById('num_of_guest');
-            num_of_guest.addEventListener('change', (event) => {
-            var selectnum = document.getElementById('selectnum');
-            selectnum.textContent = num_of_guest.options[num_of_guest.selectedIndex].textContent;
-            });
-        </script>
-                <button class="form__button" type="submit">予約を変更する</button>
-            </form>
+                update();
+            </script>
+            <script type="text/javascript">
+                var time = document.getElementById('time');
+                time.addEventListener('change', (event) => {
+                var selecttime = document.getElementById('selecttime');
+                selecttime.textContent =  time.options[time.selectedIndex].textContent;
+                });
+            </script>
+            <script type="text/javascript">
+                var num_of_guest = document.getElementById('num_of_guest');
+                num_of_guest.addEventListener('change', (event) => {
+                var selectnum = document.getElementById('selectnum');
+                selectnum.textContent = num_of_guest.options[num_of_guest.selectedIndex].textContent;
+                });
+            </script>
         </section>
 </body>
+</html>

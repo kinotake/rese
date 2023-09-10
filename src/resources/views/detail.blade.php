@@ -122,7 +122,7 @@
     }
     @media screen and (max-width: 768px) {
     .content_right{
-            height: 90vw;
+            height: 110vw;
             width: 100vw;
             margin-top : 4vw;
         }
@@ -176,7 +176,7 @@
     }
     .select_contents{
         background: white;
-        height: 150px;
+        height: 185px;
         width: 400px;
         margin:auto;
         background: #0075e8;
@@ -284,6 +284,13 @@
         border-radius: 5px;
         margin-top : 2px;
     }
+    @media screen and (max-width: 768px) {
+    .input_error{
+            height: 5vw;
+            width: 80vw;
+            font-size : 3vw;
+        }
+    }
     .input_error_message{
         display : block;
         color: white;
@@ -378,7 +385,9 @@
         <article class="content_left">
             <div class="shop_header">
                 <div class="back_content">
-                    <a href="/" class="back"><</a>
+                    <a href="/" class="back">
+                        <p class="font"><</p>
+                    </a>
                 </div>
                 <h1 class="shop_name">{{$shopData->name??''}}</h1>
             </div>
@@ -413,6 +422,12 @@
                         <option value="{{$person}}">{{$person}}人</option>
                         @endforeach
                     </select>
+                    <select name="price_id" id="price_id" class="select">
+                        <option value="" selected>プランを選択してください</option>
+                        @foreach ($shopPrices as $shopPrice)
+                        <option value="{{$shopPrice->id}}">{{$shopPrice->name}}({{$shopPrice->price}}円、１人あたり)</option>
+                        @endforeach
+                    </select>
             </main>
             <aside class="select_contents">
                 <div class="select_content">
@@ -430,6 +445,10 @@
                 <div class="select_content">
                     <label for="num_label" class="label">Number</label>
                     <p id="selectnum" class="select_value"></p>
+                </div>
+                <div class="select_content">
+                    <label for="price_label" class="label">Price</label>
+                    <p id="selectprice" class="select_value"></p>
                 </div>
             </aside>
             <script type="text/javascript">
@@ -466,6 +485,13 @@
                 selectnum.textContent = num_of_guest.options[num_of_guest.selectedIndex].textContent;
                 });
             </script>
+            <script type="text/javascript">
+                var price_id = document.getElementById('price_id');
+                price_id.addEventListener('change', (event) => {
+                var price = document.getElementById('selectprice');
+                selectprice.textContent = price_id.options[price_id.selectedIndex].textContent;
+                });
+            </script>
                     <button class="form__button" type="submit">予約する</button>
                 </form>
             @error('date')
@@ -483,6 +509,11 @@
                 <strong class="input_error_message">{{$errors->first('num_of_guest')}}</strong>
             </span>
             @enderror
+            @if (session('error'))
+                <span class="input_error">
+                    <strong class="input_error_message">{{session('error')}}</strong>
+                </span>
+            @endif
         </section>
     </div>
             @else
@@ -494,23 +525,24 @@
             </div>
         </section>
     </div>
-        @endif
-<h2 class="post_header">この店の評価</h2>
-<article class="post_contents">
-@if (@isset($shopPosts))
-    @foreach ($shopPosts as $shopPost)
-    <div class="post_content">
-        <div class="star_contents">
-    @for ($count = 1; $count <= $shopPost->score; $count++)
-            <p class="star">★</p>
-    @endfor
+    @endif
+    <h2 class="post_header">この店の評価</h2>
+    <article class="post_contents">
+        @if (@isset($shopPosts))
+        @foreach ($shopPosts as $shopPost)
+        <div class="post_content">
+            <div class="star_contents">
+            @for ($count = 1; $count <= $shopPost->score; $count++)
+                <p class="star">★</p>
+            @endfor
             <p class="font">({{$shopPost->score}})</p>
         </div>
         <div class="comment_content">
             <p class="font">{{$shopPost->comment}}</p>
         </div>
-    </div>
-    @endforeach
-@endif
-</article>
+        </div>
+        @endforeach
+        @endif
+    </article>
 </body>
+</html>

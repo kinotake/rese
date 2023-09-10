@@ -284,7 +284,9 @@
         <article class="content_left">
             <div class="shop_header">
                 <div class="back_content">
-                    <a href="/mypage" class="back"><</a>
+                    <a href="/mypage" class="back">
+                        <p class="font"><</p>
+                    </a>
                 </div>
                 <h1 class="shop_name">{{$shopData->name??''}}</h1>
             </div>
@@ -299,27 +301,26 @@
             </table>
             <p class="font">{{$shopData->comment??''}}</p>
         </article>
-    <section class="content_right">
-        <h1 class="reserve_header">予約のキャンセル</h1>
-
-        <aside class="select_contents">
-            <div class="select_content">
-                <label for="shop_label" class="label">Shop</label>
-                <p id="selectshop" class="select_value">{{$shopData->name??''}}</p>
-            </div>
-            <div class="select_content">
-                <label for="date_label" class="label">Date</label>
-                <p id="selectdate" class="select_value">{{$reservedData->date}}</p>
-            </div>
-            <div class="select_content">
-                <label for="time_label" class="label">Time</label>
-                <p id="selecttime" class="select_value">{{Str::limit($reservedData->time,5,' ')}}</p>
-            </div>
-            <div class="select_content">
-                <label for="num_label" class="label">Number</label>
-                <p id="selectnum" class="select_value">{{$reservedData->num_of_guest}}人</p>
-            </div>
-        </aside>
+        <section class="content_right">
+            <h1 class="reserve_header">予約のキャンセル</h1>
+            <aside class="select_contents">
+                <div class="select_content">
+                    <label for="shop_label" class="label">Shop</label>
+                    <p id="selectshop" class="select_value">{{$shopData->name??''}}</p>
+                </div>
+                <div class="select_content">
+                    <label for="date_label" class="label">Date</label>
+                    <p id="selectdate" class="select_value">{{$reservedData->date}}</p>
+                </div>
+                <div class="select_content">
+                    <label for="time_label" class="label">Time</label>
+                    <p id="selecttime" class="select_value">{{Str::limit($reservedData->time,5,' ')}}</p>
+                </div>
+                <div class="select_content">
+                    <label for="num_label" class="label">Number</label>
+                    <p id="selectnum" class="select_value">{{$reservedData->num_of_guest}}人</p>
+                </div>
+            </aside>
             <form action="/cancel" method = "POST">
             @csrf
                 <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reservedData->id}}">
@@ -327,3 +328,4 @@
             </form>
         </section>
 </body>
+</html>

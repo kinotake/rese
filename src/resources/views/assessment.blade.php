@@ -137,7 +137,7 @@
     }
     @media screen and (max-width: 768px) {
     .content_right{
-            height: 70vw;
+            height: 90vw;
             width: 100vw;
         }
     }
@@ -204,6 +204,7 @@
         .comment{
             height: 20vw;
             width: 85vw;
+            font-size : 4vw;
         }
     }
     .form__button{
@@ -231,6 +232,13 @@
         border-radius: 5px;
         margin-top : 2px;
     }
+    @media screen and (max-width: 768px) {
+    .input_error{
+            height: 5vw;
+            width: 80vw;
+            font-size : 3vw;
+        }
+    }
     .input_error_message{
         display : block;
         color: white;
@@ -251,12 +259,13 @@
             font-size : 4vw;
         }
     }
+    
     </style>
 </head>
 <body>
-<header class="rese_contents">
-    @if (Auth::check())
-    <a href="/menu/first" class="link">
+    <header class="rese_contents">
+        @if (Auth::check())
+        <a href="/menu/first" class="link">
         <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
         <h1 class="rese">Rese</h1>
     </a>
@@ -266,12 +275,14 @@
         <h1 class="rese">Rese</h1>
     </a>
     @endif
-</header>
+    </header>
     <div class="under_content">
         <article class="content_left">
             <div class="shop_header">
                 <div class="back_content">
-                    <a href="/went" class="back"><</a>
+                    <a href="/went" class="back">
+                        <p class="font"><</p>
+                    </a>
                 </div>
                 <h1 class="shop_name">{{$shopData->name??''}}</h1>
             </div>
@@ -287,29 +298,29 @@
             <p class="font">{{$shopData->comment??''}}</p>
         </article>
         <section class="content_right">
-        <h1 class="assessment_header">評価</h1>
-        <main class="input_contents">
-            <form action="/assessment" method = "POST">
+            <h1 class="assessment_header">評価</h1>
+            <main class="input_contents">
+                <form action="/assessment" method = "POST">
                 @csrf
-                <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reserveId}}">
-                <label for="score_label" class="label">Score</label>
-                <div class="rate-form">
-                    <input id="star5" type="radio" name="score" value="5" id="score">
-                    <label for="star5" class="font">★</label>
-                    <input id="star4" type="radio" name="score" value="4" id="score">
-                    <label for="star4" class="font">★</label>
-                    <input id="star3" type="radio" name="score" value="3" id="score">
-                    <label for="star3" class="font">★</label>
-                    <input id="star2" type="radio" name="score" value="2" id="score">
-                    <label for="star2" class="font">★</label>
-                    <input id="star1" type="radio" name="score" value="1" id="score">
-                    <label for="star1" class="font">★</label>
-                </div>
-                <label for="comment_label" class="label">Comment</label>
-                <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
-        </main>
-                <button class="form__button" type="submit">評価する</button>
-            </form>
+                    <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reserveId}}">
+                    <label for="score_label" class="label">Score</label>
+                    <div class="rate-form">
+                        <input id="star5" type="radio" name="score" value="5" id="score">
+                        <label for="star5" class="font">★</label>
+                        <input id="star4" type="radio" name="score" value="4" id="score">
+                        <label for="star4" class="font">★</label>
+                        <input id="star3" type="radio" name="score" value="3" id="score">
+                        <label for="star3" class="font">★</label>
+                        <input id="star2" type="radio" name="score" value="2" id="score">
+                        <label for="star2" class="font">★</label>
+                        <input id="star1" type="radio" name="score" value="1" id="score">
+                        <label for="star1" class="font">★</label>
+                    </div>
+                    <label for="comment_label" class="label">Comment</label>
+                    <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
+            </main>
+                    <button class="form__button" type="submit">評価する</button>
+                </form>
             @error('score')
             <span class="input_error">
                 <strong class="input_error_message">{{$errors->first('score')}}</strong>
@@ -323,3 +334,4 @@
         </section>
     </div>
 </body>
+</html>

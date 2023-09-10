@@ -37,17 +37,23 @@
     .message{ 
         color : red;
     }
+    .pay_amount{
+        margin-top: 20px;
+        text-align: center;
+        border : 1px solid #000;
+    }
+
     </style>
 </head>
 <body>
 <div class="container">
-        @if (session('flash_alert'))
-            <div class="alert alert-danger">{{ session('flash_alert') }}</div>
-        @elseif(session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
+    @if (session('flash_alert'))
+        <div class="alert alert-danger">{{ session('flash_alert') }}</div>
+    @elseif(session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
         <div class="p-5">
             <div class="col-6 card">
                 <div class="card-header">Stripe決済</div>
@@ -69,19 +75,18 @@
                             <div id="card-cvc" class="form-control"></div>
                         </div>
 
-                        <div id="card-errors" class="text-danger"></div>
+                        <div class ="pay_amount">
+                            <label>お支払金額</label>
+                            <div class="form-control">合計{{$howMuch}}円</div>
+                        </div>
 
-                        <select class="select" name="price_id">
-                            <option value="" selected>プランを選択してください</option>
-                            @foreach ($allPrices as $allPrice)
-                            <option value="{{$allPrice->id}}">{{$allPrice->name}}({{$allPrice->price}}円、１人あたり)</option>
-                            @endforeach
-                        </select>
+                        <div id="card-errors" class="text-danger"></div>
                         <p class="message">{{session('error')}}</p>
                         <input type="hidden" name="date" class="date" id="date" value="{{$date}}">
                         <input type="hidden" name="time" class="time" id="time" value="{{$time}}">
                         <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$shopId}}">
                         <input type="hidden" name="num" class="num" id="num" value="{{$num}}">
+                        <input type="hidden" name="price_id" class="price_id" id="price_id" value="{{$priceId}}">
                         <button class="mt-3 btn btn-primary">支払い</button>
                     </form>
                 </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>入力してください</title>
+  <title>ご予約一覧（昨日以前）</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
 
     <style>
@@ -80,9 +80,9 @@
 </head>
 <body>
     <header class="top">
-    <a href="/owner/menu">
-        <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-    </a>
+        <a href="/owner/menu">
+            <img src="{{ asset('/images/owner.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+        </a>
         <h1 class="rese">Rese</h1>
         <p class="">{{session('message')}}</p>
     </header>
@@ -140,3 +140,4 @@
     @endif
     </table>
 </body>
+</html>

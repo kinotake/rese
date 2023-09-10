@@ -94,20 +94,21 @@
 </head>
 <body>
   <header class="rese_contents">
-        @if (Auth::check())
-        <a href="/menu/first" class="link">
-            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-            <h1 class="rese">Rese</h1>
-        </a>
-        @else
-        <a href="/menu/second" class="link">
-            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-            <h1 class="rese">Rese</h1>
-        </a>
-        @endif
-    </header>
+    @if (Auth::check())
+    <a href="/menu/first" class="link">
+      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+      <h1 class="rese">Rese</h1>
+    </a>
+    @else
+    <a href="/menu/second" class="link">
+      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+      <h1 class="rese">Rese</h1>
+    </a>
+    @endif
+  </header>
   <article class="thanks">
     <p class ="comment">ご予約ありがとうございます</p>
     <a href="" onclick="window.history.back(); return false;" class="button">戻る</a>
   </article>
 </body>
+</html>

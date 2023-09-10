@@ -302,94 +302,95 @@
 </head>
 <body>
   <header class="rese_contents">
-        @if (Auth::check())
-        <a href="/menu/first" class="link_top">
-            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-            <h1 class="rese">Rese</h1>
-            <p class="error">{{session('message')}}</p>
-        </a>
-        @else
-        <a href="/menu/second" class="link_top">
-            <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
-            <h1 class="rese">Rese</h1>
-            <p class="error">{{session('message')}}</p>
-        </a>
-        @endif
-    </header>
+    @if (Auth::check())
+    <a href="/menu/first" class="link_top">
+      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+      <h1 class="rese">Rese</h1>
+      <p class="error">{{session('message')}}</p>
+    </a>
+    @else
+    <a href="/menu/second" class="link_top">
+      <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
+      <h1 class="rese">Rese</h1>
+      <p class="error">{{session('message')}}</p>
+    </a>
+    @endif
+  </header>
   <p class="user_name">{{$userData->name}}さん</p>
-    <div class="headers">
-      <h1 class="header_reserve">予約状況</h1>
-      <a href="/went" class="link">来店済み店舗一覧</a>
-      <h2 class="header_like">お気に入り店舗</h2>
-      <a class="header_like_junp" href="#like_contents">お気に入り店舗一覧</a>
-    </div>
-    <div class="under_contents">
-      <div class="left_content">
+  <div class="headers">
+    <h1 class="header_reserve">予約状況</h1>
+    <a href="/went" class="link">来店済み店舗一覧</a>
+    <h2 class="header_like">お気に入り店舗</h2>
+    <a class="header_like_junp" href="#like_contents">お気に入り店舗一覧</a>
+  </div>
+  <div class="under_contents">
+    <div class="left_content">
       @if ($reserveDatas->isNotEmpty())
       @foreach ($reserveDatas as $reserveData)
-      <article class="reserved_content">
-        <div class="row_content">
-          <img src="{{ asset('/images/time.png') }}"  alt="timeのアイコン" width="20" height="20" class="time_icon">
-        <p>予約</p>
-        </div>
-        <div class="detail_botton_contents">
-        <div class="row_contents">
-        <div class="row_content">
-          <label for="shop_label" class="label">Shop</label>
-          <p class="reserved_detail">{{$reserveData->returnName()}}</p>
-        </div>
-        <div class="row_content">
-          <label for="date_label" class="label">Date</label>
-          <p class="reserved_detail">{{$reserveData->date}}</p>
-        </div>
-        <div class="row_content">
-          <label for="time_label" class="label">Time</label>
-          <p class="reserved_detail">{{ Str::limit($reserveData->time,5,' ') }}</p>
-        </div>
-        <div class="row_content">
-          <label for="num_label" class="label">Number</label>
-          <p class="reserved_guest">{{$reserveData->num_of_guest}}人</p>
-        </div>
-        </div>
-        <div class="schedule_buttons">
-          <a href="qrcode/{{$reserveData->id}}" type="submit" class="schedule_button">QRコードの発行</a>
-          <a href="reschedule/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="schedule_button">予約の変更</a>
-          <a href="cancel/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="schedule_button">予約のキャンセル</a>
-        </div>
-        </div>
-      </article>
-      @endforeach
-      @else
-      <article class="error_content">
-        <p class="error">予約データがありません</p>
-      </article>
-      @endif
-      </div>
-      <div class="right_contents" id="like_contents">
-        @foreach ($likeDatas as $likeData)
-        <article class="shop_content">
-          <div class="shop_image">
-            <img src="{{ asset($likeData->getphoto()) }}"  alt="店内画像" class="shop_photo">
+        <article class="reserved_content">
+          <div class="row_content">
+            <img src="{{ asset('/images/time.png') }}"  alt="timeのアイコン" width="20" height="20" class="time_icon">
+            <p>予約</p>
           </div>
-          <table class="shop_information">
-            <th class="name">{{$likeData->shop->name}}</th>
-            <tr>
-              <td class="information">#{{$likeData->returnPlace()}}</td>
-              <td class="information">#{{$likeData->returnCategory()}}</td>
-            </tr>
-          </table>
-          <div class="buttons">
-            <a href="detail/{{$likeData->shop_id}}" type="submit" class="detail_button">詳しく見る</a>
-            <div>
-              <form method="POST" action="{{route('deleteLike')}}">
-                @csrf
-                <input type="hidden" name="shop_id" id="shop_id" value="{{$likeData->shop_id}}">
-                <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="40" height="40" class="heart">
-              </form>
+          <div class="detail_botton_contents">
+            <div class="row_contents">
+              <div class="row_content">
+                <label for="shop_label" class="label">Shop</label>
+                <p class="reserved_detail">{{$reserveData->returnName()}}</p>
+              </div>
+              <div class="row_content">
+                <label for="date_label" class="label">Date</label>
+                <p class="reserved_detail">{{$reserveData->date}}</p>
+              </div>
+              <div class="row_content">
+                <label for="time_label" class="label">Time</label>
+                <p class="reserved_detail">{{ Str::limit($reserveData->time,5,' ') }}</p>
+              </div>
+              <div class="row_content">
+                <label for="num_label" class="label">Number</label>
+                <p class="reserved_guest">{{$reserveData->num_of_guest}}人</p>
+              </div>
+            </div>
+            <div class="schedule_buttons">
+              <a href="qrcode/{{$reserveData->id}}" type="submit" class="schedule_button">QRコードの発行</a>
+              <a href="reschedule/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="schedule_button">予約の変更</a>
+              <a href="cancel/{{$reserveData->shop_id}}/{{$reserveData->id}}" type="submit" class="schedule_button">予約のキャンセル</a>
             </div>
           </div>
         </article>
         @endforeach
-      </div>
+        @else
+        <article class="error_content">
+          <p class="error">予約データがありません</p>
+        </article>
+        @endif
     </div>
+    <div class="right_contents" id="like_contents">
+      @foreach ($likeDatas as $likeData)
+      <article class="shop_content">
+        <div class="shop_image">
+          <img src="{{ asset($likeData->getphoto()) }}"  alt="店内画像" class="shop_photo">
+        </div>
+        <table class="shop_information">
+          <th class="name">{{$likeData->shop->name}}</th>
+          <tr>
+            <td class="information">#{{$likeData->returnPlace()}}</td>
+            <td class="information">#{{$likeData->returnCategory()}}</td>
+          </tr>
+        </table>
+        <div class="buttons">
+          <a href="detail/{{$likeData->shop_id}}" type="submit" class="detail_button">詳しく見る</a>
+          <div>
+            <form method="POST" action="{{route('deleteLike')}}">
+              @csrf
+              <input type="hidden" name="shop_id" id="shop_id" value="{{$likeData->shop_id}}">
+              <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="40" height="40" class="heart">
+            </form>
+          </div>
+        </div>
+      </article>
+      @endforeach
+    </div>
+  </div>
 </body>
+</html>
