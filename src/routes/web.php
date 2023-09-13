@@ -13,41 +13,47 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Livewire\Attendance\Attendancesqrcd;
 
 
-Route::get('/', [ShopController::class, 'index']);
-Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
-Route::post('/search', [ShopController::class, 'search']);
-Route::post('/delete', [LikeController::class, 'deleteLike'])->name('deleteLike');
-Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
-Route::post('/detail', [ReserveController::class, 'makeReserve']);
-Route::get('/mypage', [ShopController::class, 'getMypage']);
-Route::get('/reschedule/{shop_id}/{reserve_id}', [ShopController::class, 'getReschedule']);
-Route::post('/reschedule/date', [ReserveController::class, 'postRescheduleDate']);
-Route::post('/reschedule/time', [ReserveController::class, 'postRescheduleTime']);
-Route::post('/reschedule/num', [ReserveController::class, 'postRescheduleNum']);
-Route::get('/cancel/{shop_id}/{reserve_id}', [ShopController::class, 'getCancel']);
-Route::post('/cancel', [ReserveController::class, 'postCancel']);
-Route::get('/went', [ShopController::class, 'getWent']);
-Route::get('/assessment/{reserve_id}', [ShopController::class, 'getAssessment']);
-Route::post('/assessment', [PostController::class, 'postAssessment']);
-Route::get('/reassessment/{reserve_id}', [PostController::class, 'getReassessment']);
-Route::post('/reassessment', [PostController::class, 'postReassessment']);
+Route::group(['middleware' => ['verified']], function () 
+{
+    Route::get('/', [ShopController::class, 'index']);
+    Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
+    Route::post('/search', [ShopController::class, 'search']);
+    Route::post('/delete', [LikeController::class, 'deleteLike'])->name('deleteLike');
+    Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
+    Route::post('/detail', [ReserveController::class, 'makeReserve']);
+    Route::get('/mypage', [ShopController::class, 'getMypage']);
+    Route::get('/reschedule/{shop_id}/{reserve_id}', [ShopController::class, 'getReschedule']);
+    Route::post('/reschedule/date', [ReserveController::class, 'postRescheduleDate']);
+    Route::post('/reschedule/time', [ReserveController::class, 'postRescheduleTime']);
+    Route::post('/reschedule/num', [ReserveController::class, 'postRescheduleNum']);
+    Route::get('/cancel/{shop_id}/{reserve_id}', [ShopController::class, 'getCancel']);
+    Route::post('/cancel', [ReserveController::class, 'postCancel']);
+    Route::get('/went', [ShopController::class, 'getWent']);
+    Route::get('/assessment/{reserve_id}', [ShopController::class, 'getAssessment']);
+    Route::post('/assessment', [PostController::class, 'postAssessment']);
+    Route::get('/reassessment/{reserve_id}', [PostController::class, 'getReassessment']);
+    Route::post('/reassessment', [PostController::class, 'postReassessment']);
 
-Route::get('/menu/first', function () {
-    return view('loginmenu');
+    Route::get('/menu/first', function () {
+        return view('loginmenu');
+    });
+    Route::get('/done', function () {
+        return view('reservethanks');
+    });
+    Route::get('/qrcode/{reserve_id}', [ReserveController::class, 'getQr']);
+    Route::prefix('payment')->name('payment.')->group(function () {
+        Route::get('/create/{shop_id}/{date}/{time}/{num}/{price_id}', [PaymentController::class, 'create'])->name('create');
+        Route::post('/store', [PaymentController::class, 'store'])->name('store');
+    });
+
 });
+
 Route::get('/menu/second', function () {
     return view('logoutmenu');
 });
+
 Route::get('/thanks', function () {
     return view('registerthanks');
-});
-Route::get('/done', function () {
-    return view('reservethanks');
-});
-Route::get('/qrcode/{reserve_id}', [ReserveController::class, 'getQr']);
-Route::prefix('payment')->name('payment.')->group(function () {
-    Route::get('/create/{shop_id}/{date}/{time}/{num}/{price_id}', [PaymentController::class, 'create'])->name('create');
-    Route::post('/store', [PaymentController::class, 'store'])->name('store');
 });
 
 //  ★管理者権限
