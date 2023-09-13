@@ -81,12 +81,12 @@ Laravel,Dockerでの開発環境が整っていることが前提です。（開
 
 ☆環境構築用コマンド一覧</br>
 ```php:rese
-1.cd 各々のディレクトリ</br>
-2.git clone URLのコピー</br>
-3.cd rese</br>
-4.docker-compose up --build</br>
-5.docker-compose exec php bash</br>
-6.* * * * * cd [プロジェクトのパス] && php artisan schedule:run >> /dev/null 2>&1</br>
+1.cd 各々のディレクトリ
+2.git clone git@github.com:kinotake/rese.git
+3.cd rese
+4.docker-compose up --build
+5.docker-compose exec php bash
+6.* * * * * cd [プロジェクトのパス] && php artisan schedule:run >> /dev/null 2>&1
 ```
 
 ☆その他の注意事項</br>
