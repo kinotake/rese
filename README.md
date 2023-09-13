@@ -58,17 +58,12 @@ php 7.4.9</br>
 mysql</br>
 
 ☆テーブル設計</br>
-<p>
-    ![テーブル設計](images/table1.png)
-    ![テーブル設計](images/table2.png)
-</p>
-<p>
-    ![テーブル設計](images/table3.png)
-    ![テーブル設計](images/table4.png)
-</p>
-<p>
-    ![テーブル設計](images/table5.png)
-</p>
+
+![テーブル設計](images/table1.png)
+![テーブル設計](images/table2.png)
+![テーブル設計](images/table3.png)
+![テーブル設計](images/table4.png)
+![テーブル設計](images/table5.png)
 
 ☆ER図
 ![ER図](images/ER.png)
