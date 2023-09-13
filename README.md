@@ -12,6 +12,7 @@
 
 新規店舗管理者のパスワード、及び
 既にシーダファイルの中に入っているユーザデータのパスワードはすべて"qwertyui"です。
+メール送信はmailhogを使用しました。
 
 ☆機能一覧 </br>
 
@@ -57,11 +58,17 @@ php 7.4.9</br>
 mysql</br>
 
 ☆テーブル設計</br>
-![テーブル設計](images/table1.png)
-![テーブル設計](images/table2.png)
-![テーブル設計](images/table3.png)
-![テーブル設計](images/table4.png)
-![テーブル設計](images/table5.png)
+<p>
+    ![テーブル設計](images/table1.png)
+    ![テーブル設計](images/table2.png)
+</p>
+<p>
+    ![テーブル設計](images/table3.png)
+    ![テーブル設計](images/table4.png)
+</p>
+<p>
+    ![テーブル設計](images/table5.png)
+</p>
 
 ☆ER図
 ![ER図](images/ER.png)
@@ -126,7 +133,7 @@ Laravel,Dockerでの開発環境が整っていることが前提です。（開
 ![店舗管理者画面](images/owner5.png)
 2.一般ユーザでのマイページのレスポンシブ画面の表示</br>
 レスポンシブ画面時、見出しの「いいね一覧」を押すことによって同じページのいいね一覧に一気に飛ぶことができます。予約が増えた際、スクロールの手間をなるべく減らすためにこのような仕様にしました。</br>
-![店舗管理者画面](images/responsive.png)
+![店舗管理者画面](images/responsive.png)</br>
 3.各権限でのヘッダの色</br>
 権限によってヘッダ、及びロゴの色を変えています。</br>
 ![一般ユーザ画面](images/test1.png)
