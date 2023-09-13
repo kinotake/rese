@@ -14,9 +14,24 @@ class Shop extends Model
       return $this->hasMany('App\Models\Like');
     }
 
+    public function reserves()
+    {
+      return $this->hasMany('App\Models\Reserve');
+    }
+
     public function user()
     {
     return $this->hasManyThrough(User::class,Like::class);
+    }
+
+    public function category()
+    {
+      return $this->belongsTo('App\Models\Category');
+    }
+
+    public function place()
+    {
+      return $this->belongsTo('App\Models\Place');
     }
 
     // ログインしているユーザがつけている全いいねの取得
@@ -24,7 +39,7 @@ class Shop extends Model
     { 
       if (Auth::id() == null)
       {
-        $txt ="ログインされていないため、お気に入りの取得ができません。";
+        $txt ="ログインでいいねが可能です。";
 
         return $txt;
       }
@@ -41,5 +56,24 @@ class Shop extends Model
         return $no_like;
       }
     }
+    public function getPhoto()
+    { 
+      if (Photo::where('shop_id','=',$this->id)->exists())
+      {
+        $photoData = Photo::where('shop_id','=',$this->id)->first();
+        $photoPath = $photoData->path;
+
+        return $photoPath;
+      }
+       else
+      {
+        $noPhotoPath = '/images/test.png';
+
+        return $noPhotoPath;
+      }
+    }
+    public function posts()
+    {
+        return $this->hasManyThrough(Post::class, Reserve::class);
+    }
 }
-// 'App\Model\User', 'App\Order'

@@ -17,6 +17,13 @@ class DatabaseSeeder extends Seeder
           ShopsTableSeeder::class,
           LikesTableSeeder::class,
           UsersTableSeeder::class,
+          CategoriesTableSeeder::class,
+          PlacesTableSeeder::class,
+          ReservesTableSeeder::class,
+          PostsTableSeeder::class,
+          RolesTableSeeder::class,
+          PhotosTableSeeder::class,
+          PricesTableSeeder::class,
         ]);
     }
 }

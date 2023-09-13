@@ -18,27 +18,23 @@ class UsersTableSeeder extends Seeder
         [    
             'name' => '中村光',
             'email' => 'test@test',
-            'password' => 'qwertyui',
+            'password' => \Hash::make('qwertyui'),
+            'role_id' => 1,
+            'email_verified_at' => null,
         ],
         [    
-            'name' => '木村昇',
-            'email' => 'test2@test2',
-            'password' => 'qwertyui',
+            'name' => '中山美穂',
+            'email' => 'owner@owner',
+            'password' => \Hash::make('qwertyui'),
+            'role_id' => 2,
+            'email_verified_at' => \Carbon\Carbon::now(),
         ],
         [    
-            'name' => '向井和弘',
-            'email' => 'test3@test3',
-            'password' => 'qwertyui',
-        ],
-        [    
-            'name' => '樋口一葉',
-            'email' => 'test4@test4',
-            'password' => 'qwertyui',
-        ],
-        [    
-            'name' => '大林餅',
-            'email' => 'test5@test5',
-            'password' => 'qwertyui',
+            'name' => '上杉謙信',
+            'email' => 'admin@admin',
+            'password' => \Hash::make('qwertyui'),
+            'role_id' => 3,
+            'email_verified_at' => \Carbon\Carbon::now(),
         ],
         ]);
     }
