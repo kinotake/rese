@@ -83,7 +83,6 @@ Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner','verifie
     Route::post('/user/send', [UserController::class, 'postUserSend']); 
     Route::get('/edit/{shop_id}', [OwnerController::class, 'getEdit']); 
     Route::post('/edit/category', [ShopController::class, 'editCategory']);
-    Route::post('/edit/category', [ShopController::class, 'editCategory']);
     Route::post('/edit/place', [ShopController::class, 'editPlace']);
     Route::post('/edit/comment', [ShopController::class, 'editComment']);
     Route::post('/upload', [PhotoController::class, 'postUpload']);

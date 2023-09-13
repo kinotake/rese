@@ -38,47 +38,50 @@ class ShopController extends Controller
         $categories = Category::all();
         $places = Place::all();
 
+        $seachedArea = Place::find($place_id);
+        $seachedGenre = Category::find($category_id);
+
         if($category_id != "selected" && $place_id != "selected" && $keyword != null)
         {
             $allShops = Shop::where($cond)->where('name','like','%'.$keyword.'%')->get();
-    
-            return view('all', compact('allShops','categories','places'));
+
+            return view('all', compact('allShops','categories','places','seachedArea','seachedGenre','keyword'));
         }
         elseif($category_id != "selected" && $place_id != "selected" && $keyword == null)
         {
             $allShops = Shop::where($cond)->get();
 
-            return view('all', compact('allShops','categories','places'));
+            return view('all', compact('allShops','categories','places','seachedArea','seachedGenre'));
         }
         elseif($category_id != "selected" && $place_id == "selected" && $keyword != null)
         {   
             $allShops = Shop::where('category_id','=',$category_id)->where('name','like','%'.$keyword.'%')->get();
 
-            return view('all', compact('allShops','categories','places'));
+            return view('all', compact('allShops','categories','places','seachedGenre','keyword'));
         }
         elseif($category_id == "selected" && $place_id != "selected" && $keyword != null)
         {
             $allShops = Shop::where('place_id','=',$place_id)->where('name','like','%'.$keyword.'%')->get();
 
-            return view('all', compact('allShops','categories','places'));
+            return view('all', compact('allShops','categories','places','seachedArea','keyword'));
         }
         elseif($category_id != "selected" && $place_id == "selected" && $keyword == null)
         {
             $allShops = Shop::where('category_id','=',$category_id)->get();
 
-            return view('all', compact('allShops','categories','places'));
+            return view('all', compact('allShops','categories','places','seachedGenre'));
         }
         elseif($category_id == "selected" && $place_id != "selected" && $keyword == null)
         {
             $allShops = Shop::where('place_id','=',$place_id)->get();
 
-            return view('all', compact('allShops','categories','places'));
+            return view('all', compact('allShops','categories','places','seachedArea'));
         }
         elseif($category_id == "selected" && $place_id == "selected" && $keyword != null)
         {
             $allShops = Shop::where('name','like','%'.$keyword.'%')->get();
 
-            return view('all', compact('allShops','categories','places'));
+            return view('all', compact('allShops','categories','places','keyword'));
         }
         else
         {

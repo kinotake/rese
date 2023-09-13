@@ -65,6 +65,12 @@
     .form_button_contents{
         display : flex;
     }
+    @media screen and (max-width: 768px) {
+        .form_button_contents{
+            width: 51vw;
+            height: 8vw;
+        }
+    }
     .select{
         border: none;
         border-right: 1px solid gray;
@@ -80,7 +86,8 @@
     }
     @media screen and (max-width: 768px) {
         .keyword{
-            width: 40vw;
+            width: 50vw;
+            height: 7vw;
         }
     }
     .icon{
@@ -120,7 +127,7 @@
     }
     @media screen and (max-width: 768px) {
     .shop_contents{
-            margin-top : 20vw;
+            margin-top : 3vw;
             margin-left : 10vw;
         }
     }
@@ -214,6 +221,25 @@
         height : 40vw;
     }
     }
+    .searched_data{
+        margin-left : 20px;
+    }
+    @media screen and (max-width: 768px) {
+    .searched_data{
+        font-size : 4vw;
+        margin-left : 5vw;
+    }
+    }
+    .searched_contents{
+        margin-left : 100px;
+        display : flex;
+    }
+    @media screen and (max-width: 768px) {
+    .searched_contents{
+        margin-left : 5vw;
+        padding-top : 23vw;
+    }
+    }
     </style>
 </head>
 <body>
@@ -257,6 +283,18 @@
     </header>
     <p class="error">{{session('message')}}</p>
     <p class="error">{{$noPost??''}}</p>
+    <div class="searched_contents">
+        <p class="searched_data">検索情報 :</p>
+        @if (@isset($seachedArea))
+        <p class="searched_data">”{{$seachedArea->name}}”</p>
+        @endif
+        @if (@isset($seachedGenre))
+        <p class="searched_data">”{{$seachedGenre->name}}”</p>
+        @endif
+        @if (@isset($keyword))
+        <p class="searched_data">”{{$keyword}}”</p>
+        @endif
+    </div>
     <div class="under_contents">
         <div class="left_padding_content">
         </div>

@@ -78,7 +78,7 @@ class RegisterController extends Controller
     {
 
         $role = Auth::user()->role_id;
-        dd($role);
+        
         if($role == 1){
             return '/';
         }

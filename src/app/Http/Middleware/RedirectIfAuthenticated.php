@@ -19,6 +19,8 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
+        $who = Auth::id();
+
         if(Auth::id() != null && Auth::user()->role_id == 1)
         {
             return redirect('/');
@@ -38,7 +40,7 @@ class RedirectIfAuthenticated
         
             foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-
+                
                 return redirect('/');
                 }
             }
