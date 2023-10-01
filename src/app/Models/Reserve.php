@@ -26,7 +26,7 @@ class Reserve extends Model
     }
      public function checkPost()
     { 
-      if (Post::where('reserve_id','=',$this->id)->exists())
+      if (Post::where('shop_id','=',$this->shop_id)->exists())
       {
         $have_post = 1;
 

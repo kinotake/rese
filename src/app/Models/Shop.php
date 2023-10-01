@@ -74,6 +74,6 @@ class Shop extends Model
     }
     public function posts()
     {
-        return $this->hasManyThrough(Post::class, Reserve::class);
+        return $this->hasMany('App\Models\Post');
     }
 }

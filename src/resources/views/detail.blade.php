@@ -79,8 +79,7 @@
     }
     .under_content{
         display:flex;
-        justify-content: center;
-	    align-items: center;
+	    margin: 0 auto;
     }
     @media screen and (max-width: 768px) {
     .under_content{
@@ -95,9 +94,8 @@
     .content_left{
         height: 450px;
         width: 500px;
-        box-shadow: 5px 5px 4px 0px gray;
         padding-right : 20px;
-        padding-left : 20px;
+        padding-left : 140px;
         padding-top : 20px;
         padding-bottom : 20px;
         border-radius: 5px;
@@ -118,7 +116,8 @@
         width: 450px;
         box-shadow: 5px 5px 4px 0px gray;
         border-radius: 5px;
-        position: relative;
+        position:fixed;
+        margin-left : 680px;
     }
     @media screen and (max-width: 768px) {
     .content_right{
@@ -298,7 +297,12 @@
     }
     .post_header{
         margin-left : 140px;
-        margin-top : 30px
+        margin-top : 30px;
+        background: blue;
+        color: white;
+        height: 40px;
+        width : 500px;
+        text-align: center;
     }
     @media screen and (max-width: 768px) {
     .post_header{
@@ -312,7 +316,6 @@
         margin-top : 20px;
         height: 300px;
         width : 1000px;
-        overflow-x:auto;
         margin-bottom : 30px;
         border : 1px solid gray;
     }
@@ -321,7 +324,6 @@
             width : 95vw;
             height: 65vw;
             margin-left : 5vw;
-            overflow-x:auto;
         }
     }
     .post_content{
@@ -526,7 +528,7 @@
         </section>
     </div>
     @endif
-    <h2 class="post_header">この店の評価</h2>
+    <h2 class="post_header">全ての口コミ情報</h2>
     <article class="post_contents">
         @if (@isset($shopPosts))
         @foreach ($shopPosts as $shopPost)

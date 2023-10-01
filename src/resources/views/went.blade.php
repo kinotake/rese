@@ -336,7 +336,7 @@
           @if ($wentReserveData->checkPost() == 0)
           <a href="assessment/{{$wentReserveData->id}}" type="submit" class="assessment_button">評価する</a>
           @else
-          <a href="reassessment/{{$wentReserveData->id}}" type="submit" class="assessment_button">編集する</a>
+          <a href="reassessment/{{$wentReserveData->shop_id}}" type="submit" class="assessment_button">編集する</a>
           @endif
         </div>
         <div class="row_content">

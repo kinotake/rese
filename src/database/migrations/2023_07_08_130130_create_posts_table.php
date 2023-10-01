@@ -17,7 +17,8 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->integer('score');
             $table->string('comment');
-            $table->integer('reserve_id');
+            $table->integer('shop_id');
+            $table->integer('user_id');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

@@ -40,6 +40,7 @@
     }
     .rese_contents{
         display : flex;
+        background: #e8e8e8;
     }
     .link{
         text-decoration: none;
@@ -62,64 +63,31 @@
             font-size: 8vw;
         }
     }
-    .back_content{
-        height: 30px;
-        width: 30px;
-        box-shadow: 2px 2px 2px 0px gray;
-        border-radius: 5px;
-        margin-top : 5px;
-        margin-bottom : 5px;
-        text-align: center;
-    }
-    @media screen and (max-width: 768px) {
-        .back_content{
-            height: 6vw;
-            width: 6vw;;   
-        }
-    }
-    .back{
-        text-decoration: none;
-        color :black;
-        font-weight : bold;
-    }
-    .shop_name{
-        display:block;
-        margin-left : 20px;
-    }
-    @media screen and (max-width: 768px) {
-        .shop_name{
-            margin-left : 4vw;
-            font-size : 6vw;
-        }
-    }
-    .under_content{
+    .middle_contents{
         display:flex;
-        justify-content: center;
 	    align-items: center;
+        background: #e8e8e8;
     }
     @media screen and (max-width: 768px) {
-    .under_content{
-            display:block;
+    .middle_contents{
             margin-left : 0vw;
             padding-top :5vw;
         }
     }
-    .shop_header{
-        display:flex;
-    }
     .content_left{
-        height: 450px;
-        width: 500px;
-        box-shadow: 5px 5px 4px 0px gray;
+        height: 300px;
+        width: 400px;
         padding-right : 20px;
         padding-left : 20px;
-        padding-top : 20px;
+        margin-top : 20px;
         padding-bottom : 20px;
-        border-radius: 5px;
+        margin-left : 200px;
+        display:block;
+        border-right: solid gray;
     }
     @media screen and (max-width: 768px) {
         .content_left{
-            height: 90vw;;
+            height: 90vw;
             width: 95vw;
             padding-right : 4vw;
             padding-left : 4vw;
@@ -127,33 +95,95 @@
             padding-bottom : 20vw;
         }
     }
-    .content_right{
+    .question_contents{
+        height: 90px;
+        width: 250px;
+    }
+    .question{
+        font-size: 30px;
+    }
+    .shop_content{
+        height: 220px;
+        width: 220px;
+        box-shadow: 5px 5px 4px 2px gray;
+        margin-right : 20px;
+        margin-left : 20px;
+        margin-top : 20px;
+        padding-bottom : 20px;
+        border-radius: 5px;
+        background: white;
+    }
+    @media screen and (max-width: 768px) {
+    .shop_content{
+            height: 80vw;
+            width: 80vw;
+            margin-right : 1vw;
+            margin-left : 1vw;
+        }
+    }
+    .shop_photo{
+        width : 220px;
+        height : 110px;
+    }
+    @media screen and (max-width: 768px) {
+    .shop_photo{
+        width : 80vw;
+        height : 40vw;
+    }
+    }
+    .shop_information{
+        margin-left : 10px;
+    }
+    @media screen and (max-width: 768px) {
+    .information{
+            font-size: 6vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+    .name{
+            font-size: 6vw;
+        }
+    }
+    .bottons{
+        display : flex;
+        justify-content: space-between;
+    }
+    .detail_button{
         background: blue;
+        display: block;
+        height: 30px;
+        width: 100px;
+        color : white;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+        padding-top : 5px;
+        margin-left : 10px;
+    }
+    @media screen and (max-width: 768px) {
+    .detail_button{
+            height: 12vw;
+            width: 40vw;
+            font-size: 6vw;
+        }
+    }
+    @media screen and (max-width: 768px) {
+    .heart{
+            height: 28vw;
+            width: 28vw;
+            margin-top : -8vw;
+        }
+    }
+    .content_right{
         height: 400px;
         width: 450px;
-        box-shadow: 5px 5px 4px 0px gray;
-        border-radius: 5px;
         position: relative;
+        padding-left : 40px;
     }
     @media screen and (max-width: 768px) {
     .content_right{
             height: 90vw;
             width: 100vw;
-        }
-    }
-    .assessment_header{
-        color :white;
-        padding-top : 20px;
-        margin-bottom : 20px;
-        margin-left : 30px;
-        font-size : 30px;
-    }
-    @media screen and (max-width: 768px) {
-        .assessment_header{
-            padding-top : 4vw;
-            margin-bottom : 4vw;
-            margin-left : 6vw;
-            font-size : 6vw;
         }
     }
     .input_contents{
@@ -164,12 +194,9 @@
             margin-left : 6vw;
         }
     }
-    .label{
-        color :white;
-    }
     @media screen and (max-width: 768px) {
         .label{
-            font-size: 5vw;;
+            font-size: 5vw;
         }
     }
     .rate-form {
@@ -188,13 +215,13 @@
         font-size: 35px;
     }
     .rate-form label:hover {
-        color: #ffcc00;
+        color: blue;
     }
     .rate-form label:hover ~ label {
-        color: #ffcc00;
+        color: blue;
     }
     .rate-form input[type=radio]:checked ~ label {
-        color: #ffcc00;
+        color: blue;
     }
     .comment{
         height: 100px;
@@ -210,11 +237,12 @@
     .form__button{
         height: 50px;
         width: 450px;
-        background: #0000cd;
-        color : white;
+        background: white;
         border:none;
-        position: absolute;
         bottom: 0;
+        border-radius: 50px;
+        margin-top : 45px;
+        margin-bottom : 45px;
     }
     @media screen and (max-width: 768px) {
     .form__button{
@@ -244,22 +272,15 @@
         color: white;
         text-align: center;
     }
-    .shop_photo{
-        height: 300px;
-        width: 500px;
-    }
-    @media screen and (max-width: 768px) {
-        .shop_photo{
-        height: 60vw;
-        width: 95vw;
-        }
-    }
     @media screen and (max-width: 768px) {
         .font{
             font-size : 4vw;
         }
     }
-    
+    .under_contents{
+        background: #e8e8e8;
+        text-align:  center; 
+    }
     </style>
 </head>
 <body>
@@ -276,34 +297,47 @@
     </a>
     @endif
     </header>
-    <div class="under_content">
-        <article class="content_left">
-            <div class="shop_header">
-                <div class="back_content">
-                    <a href="/went" class="back">
-                        <p class="font"><</p>
-                    </a>
-                </div>
-                <h1 class="shop_name">{{$shopData->name??''}}</h1>
+    <div class="middle_contents">
+        <div class="content_left">
+            <div class="question_contents">
+                <p class="question">今回のご利用はいかがでしたか？</p>
             </div>
-            <div>
+            <article class="shop_content">
+            <div class="shop_image">
                 <img src="{{ asset($shopData->getPhoto()) }}"  alt="店内画像" class="shop_photo">
             </div>
-            <table>
+            <table class="shop_information">
+                <th class="name">{{$shopData->name}}</th>
                 <tr>
-                    <td class="font">#{{$shopData->place->name??''}}</td>
-                    <td class="font">#{{$shopData->category->name??''}}</td>
+                    <td class="information">#{{$shopData->place->name}}</td>
+                    <td class="information">#{{$shopData->category->name}}</td>
                 </tr>
             </table>
-            <p class="font">{{$shopData->comment??''}}</p>
+            <div class="bottons">
+                <a href="detail/{{$shopData->id}}" type="submit" class="detail_button">詳しく見る</a>
+                <div>
+                    @if ($shopData->checkLike() == 0)
+                    <form method="POST" action="{{route('makeLike')}}">
+                    @csrf
+                        <input type="hidden" name="shop_id" id="shop_id" value="{{$shopData->id}}">                  
+                        <input type="image" src="{{ asset('/images/heart.png') }}" alt="色なしハート" name="heart" width="50" height="50" class="heart">
+                    </form>
+                    @else
+                    <form method="POST" action="{{route('deleteLike')}}">
+                    @csrf
+                        <input type="hidden" name="shop_id" id="shop_id" value="{{$shopData->id}}">
+                        <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="50" height="50" class="heart">
+                    </form>
+                    @endif
+                </div>
+            </div>
         </article>
+        </div>
         <section class="content_right">
-            <h1 class="assessment_header">評価</h1>
-            <main class="input_contents">
-                <form action="/assessment" method = "POST">
+                <form action="/assessment" method ="POST" enctype="multipart/form-data">
                 @csrf
                     <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reserveId}}">
-                    <label for="score_label" class="label">Score</label>
+                    <label for="score_label" class="label">体験を評価してください</label>
                     <div class="rate-form">
                         <input id="star5" type="radio" name="score" value="5" id="score">
                         <label for="star5" class="font">★</label>
@@ -316,11 +350,10 @@
                         <input id="star1" type="radio" name="score" value="1" id="score">
                         <label for="star1" class="font">★</label>
                     </div>
-                    <label for="comment_label" class="label">Comment</label>
-                    <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
-            </main>
-                    <button class="form__button" type="submit">評価する</button>
-                </form>
+                    <label for="comment_label" class="label">口コミを投稿</label>
+                    <textarea cols="30" rows="5" name="comment" class="comment" id="comment" placeholder="カジュアルな夜におすすめのスポット">{{ old('comment') }}</textarea>
+                    <label for="label" class="label_image">画像</label>
+                    <input type="file" name="image" class="image" value="{{$reserveId}}">
             @error('score')
             <span class="input_error">
                 <strong class="input_error_message">{{$errors->first('score')}}</strong>
@@ -332,6 +365,10 @@
             </span>
             @enderror
         </section>
+    </div>
+    <div class="under_contents">
+    <button class="form__button" type="submit">口コミを投稿</button>
+                </form>
     </div>
 </body>
 </html>
