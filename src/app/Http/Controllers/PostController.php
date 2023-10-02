@@ -53,23 +53,34 @@ class PostController extends Controller
         }   
     }
 
-    public function getReassessment($reserve_id)
+    public function getReassessment($shop_id)
     {
-        $reserveId = $reserve_id;
+        $shopId = $shop_id;
         $who= Auth::id();
-        $ReserveDatas = Reserve::where('id',$reserveId)->first();
-        $shopId = $ReserveDatas->shop_id;
         $shopData = Shop::where('id',$shopId)->first();
         $postData = Post::where('shop_id',$shopId)->where('user_id',$who)->first();
 
-        return view('reassessment', compact('shopData','reserveId','postData'));
+        return view('reassessment', compact('shopData','postData'));
     }
     public function postReassessment(PostRequest $request)
     {   
         $selectedScore = $_POST["score"];
         $reassessmentComment = $_POST["comment"];
         $selectedPostId = $_POST["post_id"];
-        $reserveId = $_POST["reserve_id"];
+
+        if($request->file('image') != null)
+        {
+            $dir = 'images';
+            $file_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dir,'post/'. $file_name);
+
+            $imageData = Image::where('post_id',$selectedPostId)->first();
+
+            $image = Image::find($imageData->id);
+            $image->path = 'storage/' . $dir . '/' .'post/'. $file_name;
+            $image->save();
+        }
+        
         
         $post = Post::find($selectedPostId);
         $post->score=$selectedScore;
@@ -79,5 +90,14 @@ class PostController extends Controller
         $message="評価が変更されました。";
 
         return redirect('/went')->with(compact('message'));
+    }
+
+    public function deletePost($post_id)
+    {   
+        $reserve = Post::find($post_id)->delete();
+
+        $message="投稿が削除されました。";
+
+        return back()->with(compact('message'));
     }
 }

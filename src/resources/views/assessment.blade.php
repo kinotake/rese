@@ -40,7 +40,6 @@
     }
     .rese_contents{
         display : flex;
-        background: #e8e8e8;
     }
     .link{
         text-decoration: none;
@@ -66,7 +65,6 @@
     .middle_contents{
         display:flex;
 	    align-items: center;
-        background: #e8e8e8;
     }
     @media screen and (max-width: 768px) {
     .middle_contents{
@@ -237,7 +235,7 @@
     .form__button{
         height: 50px;
         width: 450px;
-        background: white;
+        background: c3c2c2;
         border:none;
         bottom: 0;
         border-radius: 50px;
@@ -278,7 +276,6 @@
         }
     }
     .under_contents{
-        background: #e8e8e8;
         text-align:  center; 
     }
     </style>
@@ -314,7 +311,7 @@
                 </tr>
             </table>
             <div class="bottons">
-                <a href="detail/{{$shopData->id}}" type="submit" class="detail_button">詳しく見る</a>
+                <a href="/detail/{{$shopData->id}}" type="submit" class="detail_button">詳しく見る</a>
                 <div>
                     @if ($shopData->checkLike() == 0)
                     <form method="POST" action="{{route('makeLike')}}">

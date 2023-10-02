@@ -31,9 +31,9 @@ Route::group(['middleware' => ['verified']], function ()
     Route::get('/went', [ShopController::class, 'getWent']);
     Route::get('/assessment/{reserve_id}', [ShopController::class, 'getAssessment']);
     Route::post('/assessment', [PostController::class, 'postAssessment']);
-    Route::get('/reassessment/{reserve_id}', [PostController::class, 'getReassessment']);
+    Route::get('/reassessment/{shop_id}', [PostController::class, 'getReassessment']);
     Route::post('/reassessment', [PostController::class, 'postReassessment']);
-
+    Route::post('/delete/post/{post_id}', [PostController::class, 'deletePost'])->name('deletePost');;
     Route::get('/menu/first', function () {
         return view('loginmenu');
     });

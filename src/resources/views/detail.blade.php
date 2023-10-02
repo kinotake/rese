@@ -312,12 +312,11 @@
     }
     .post_contents{
         display:flex;
-        margin-left : 130px;
+        margin-left : 140px;
         margin-top : 20px;
-        height: 300px;
-        width : 1000px;
+        height: auto;
+        width : 500px;
         margin-bottom : 30px;
-        border : 1px solid gray;
     }
     @media screen and (max-width: 768px) {
     .post_contents{
@@ -326,12 +325,16 @@
             margin-left : 5vw;
         }
     }
-    .post_content{
-        margin-top : 30px;
-        box-shadow: 3px 3px 3px 3px gray;
-        height: 250px;
-        width: 300px;
+    .post_hedder{
+        margin-top : 15px;
         margin-left : 30px;
+    }
+    .post_content{
+        margin-top : 10px;
+        border-top : 1px solid grey;
+        border-bottom : 1px solid grey;
+        height: auto;
+        width: 500px;
         flex-shrink: 0;
     }
     @media screen and (max-width: 768px) {
@@ -343,11 +346,14 @@
     .star_contents{
         display:flex;
         margin-left : 5px;
-        margin-top : 10px;
-        margin-bottom : 10px;
     }
     .star{
-        color: gold;
+        color: blue;
+        font-size : 40px;
+    }
+    .star_shadow{
+        color: grey;
+        font-size : 40px;
     }
     .comment_content{
         margin-left : 5px;
@@ -366,6 +372,12 @@
         .font,.login,.error,.star{
             font-size : 4vw;
         }
+    }
+    .post_button{
+        cursor: pointer;
+        border: none;
+        background: none;
+        text-decoration: underline;
     }
     </style>
 </head>
@@ -405,7 +417,7 @@
             <p class="font">{{$shopData->comment??''}}</p>
         </article>
         <section class="content_right">
-            <h1 class="reserve_header">予約</h1>
+            <h2 class="reserve_header">予約</h2>
             @if ($checkLogin == true)
             <main class="input_contents">
                 <form action="/detail" method = "POST">
@@ -533,15 +545,24 @@
         @if (@isset($shopPosts))
         @foreach ($shopPosts as $shopPost)
         <div class="post_content">
+            <p class="post_hedder">投稿のヘッダ</p>
+            <form action="/delete/post/{{$shopPost->id}}" method ="POST">
+                @csrf
+                <button class="post_button" type="submit">口コミを削除する</button>
+            </form>
+            <a href="/reassessment/{{$shopPost->shop_id}}" type="submit" class="assessment_button">編集する</a>
             <div class="star_contents">
             @for ($count = 1; $count <= $shopPost->score; $count++)
                 <p class="star">★</p>
             @endfor
-            <p class="font">({{$shopPost->score}})</p>
+            @for ($count = 1; $count <= 5-$shopPost->score; $count++)
+                <p class="star_shadow">★</p>
+            @endfor
         </div>
         <div class="comment_content">
             <p class="font">{{$shopPost->comment}}</p>
         </div>
+        <img src="{{ asset($shopPost->getImage()) }}" class="shop_photo" alt="この投稿に画像はありません。">
         </div>
         @endforeach
         @endif
