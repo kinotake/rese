@@ -113,7 +113,7 @@
     </div>
     <nav class="links">
         <a href="/owner" class="link">管理店舗一覧</a>
-        <a href="/owner/add" class="link">新規店舗作成（入力）</a>
+        <a href="/owner/add" class="link">新規店舗作成</a>
         <p class="content_name">連絡機能</p>
         
     </nav>

@@ -107,6 +107,13 @@
         color: white;
         text-align: center;
     }
+    .import_contents{
+        margin-left : 50px;
+        margin-top : 50px;
+    }
+    .under_contents{
+        display : flex;
+    }
     </style>
 </head>
 <body>
@@ -122,72 +129,77 @@
     </div>
     <nav class="links">
         <a href="/owner" class="link">管理店舗一覧</a>
-        <p class="content_name">新規店舗作成（入力）</p>
+        <p class="content_name">新規店舗作成</p>
         <a href="/owner/send" class="link">連絡機能</a>
     </nav>
-    <div class="all_input_contents">
-        <h1 class="shop_header">新規店舗作成</h1>
-        <main class="input_contents">
-            <form action="{{ route('makeShop')}}" method = "POST">
+    <div class="under_contents">
+        <div class="all_input_contents">
+            <h1 class="shop_header">新規店舗作成</h1>
+            <main class="input_contents">
+                <form action="{{ route('makeShop')}}" method = "POST">
+                @csrf
+                    <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">
+                    <div class ="select_contents">
+                        <label for="label" class="label">新規店舗名</label>
+                        <input id="name" type="text" class="form" name="name">
+                    </div>
+                    <div class ="select_contents">
+                        <label for="label" class="label">エリア</label>
+                        <select class="select" name="place_id">
+                            <option value="" selected>All area</option>
+                            @foreach ($places as $place)
+                            <option value="{{$place->id}}">{{$place->name}}</option>
+                            @endforeach
+                        </select>
+                        <label for="label" class="label_genre">ジャンル</label>
+                        <select class="select" name="category_id">
+                            <option value="" selected>All genre</option>
+                            @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class ="select_contents">
+                        <label for="label" class="label_comment">コメント</label>
+                        <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
+                    </div>
+                    <p class="label_comment">画像は作成後の編集ページからアップロードできます。</p>
+                    @error('name')
+                    <span class="input_error">
+                        <strong class="input_error_message">{{$errors->first('name')}}</strong>
+                    </span>
+                    @enderror
+                    @error('place_id')
+                    <span class="input_error">
+                        <strong class="input_error_message">{{$errors->first('place_id')}}</strong>
+                    </span>
+                    @enderror
+                    @error('category_id')
+                    <span class="input_error">
+                        <strong class="input_error_message">{{$errors->first('category_id')}}</strong>
+                    </span>
+                    @enderror
+                    @error('comment')
+                    <span class="input_error">
+                        <strong class="input_error_message">{{$errors->first('comment')}}</strong>
+                    </span>
+                    @enderror
+            </main>
+                    <button class="form__button" type="submit">作成する</button>
+                </form>
+        </div>
+        <div class="import_contents">
+            <h2>CSVファイルからインポートする</h2>
+            <form action="{{ route('postImport') }}" method="post" enctype="multipart/form-data">
             @csrf
-                <input type="hidden" name="owner_id" class="owner_id" id="owner_id" value="{{$ownerData->id}}">
-                <div class ="select_contents">
-                    <label for="label" class="label">新規店舗名</label>
-                    <input id="name" type="text" class="form" name="name">
-                </div>
-                <div class ="select_contents">
-                    <label for="label" class="label">エリア</label>
-                    <select class="select" name="place_id">
-                        <option value="" selected>All area</option>
-                        @foreach ($places as $place)
-                        <option value="{{$place->id}}">{{$place->name}}</option>
-                        @endforeach
-                    </select>
-                    <label for="label" class="label_genre">ジャンル</label>
-                    <select class="select" name="category_id">
-                        <option value="" selected>All genre</option>
-                        @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class ="select_contents">
-                    <label for="label" class="label_comment">コメント</label>
-                    <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
-                </div>
-                <p class="label_comment">画像は作成後の編集ページからアップロードできます。</p>
-                @error('name')
-                <span class="input_error">
-                    <strong class="input_error_message">{{$errors->first('name')}}</strong>
-                </span>
+                <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">CSVファイルを選択</label>
+                <input type='file' name='shop' />
+                @error('shop')
+                    <div class="text-red-500 font-bold">{{ $message }}</div>
                 @enderror
-                @error('place_id')
-                <span class="input_error">
-                    <strong class="input_error_message">{{$errors->first('place_id')}}</strong>
-                </span>
-                @enderror
-                @error('category_id')
-                <span class="input_error">
-                    <strong class="input_error_message">{{$errors->first('category_id')}}</strong>
-                </span>
-                @enderror
-                @error('comment')
-                <span class="input_error">
-                    <strong class="input_error_message">{{$errors->first('comment')}}</strong>
-                </span>
-                @enderror
-        </main>
-                <button class="form__button" type="submit">作成する</button>
+                <button type="submit" class='bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 mt-1 rounded'>登録</button>
             </form>
+        </div>
     </div>
-    <form action="{{ route('postImport') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">CSVファイルを選択（必須）</label>
-        <input type='file' name='shop' />
-            @error('shop')
-                <div class="text-red-500 font-bold">{{ $message }}</div>
-            @enderror
-        <button type="submit" class='bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 mt-1 rounded'>登録</button>
-    </form>
 </body>
 </html>

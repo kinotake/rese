@@ -27,7 +27,7 @@ class ShopRequest extends FormRequest
             'name' => 'required|max:50',
             'category_id' => 'required',
             'place_id' => 'required',
-            'comment' => 'required|max:120'
+            'comment' => 'required|max:400'
         ];
     }
 
@@ -38,7 +38,7 @@ class ShopRequest extends FormRequest
             'name.required' => '名前を入力してください',
             'category_id.required' => 'ジャンルを選択してください',
             'place_id.required' => 'エリアを選択してください',
-            'comment.max' => 'コメントを120文字以内で入力してください',
+            'comment.max' => 'コメントを400文字以内で入力してください',
             'comment.required' => 'コメントを入力してください'
         ];
     }

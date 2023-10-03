@@ -415,8 +415,8 @@ class ShopController extends Controller
                     $seachPlaceData = Place::where('name',$row[1])->first();
                     $seachPlaceId = $seachPlaceData->id;
 
-                    $seachCategoryData = Place::where('name',$row[2])->first();
-                    $seachCategoryId = $seachPlaceData->id;
+                    $seachCategoryData = Category::where('name',$row[2])->first();
+                    $seachCategoryId = $seachCategoryData->id;
 
                     $row[1] = $seachPlaceId;
                     $row[2] = $seachCategoryId;
