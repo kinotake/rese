@@ -102,9 +102,10 @@
         <p class="">{{session('message')}}</p>
     </header>
     <nav class="links">
-        <a href="/administrator" class="link">管理店舗一覧</a>
+        <a href="/administrator" class="link">店舗管理者一覧</a>
         <p class="content_name">新規管理者作成</p>
         <a href="/administrator/user/send" class="link">連絡機能</a>
+        <a href="/" class="link">店舗一覧（全て）</a>
     </nav>
     
     <div class="all_input_contents">

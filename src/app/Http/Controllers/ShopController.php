@@ -14,17 +14,23 @@ use App\Models\Owner;
 use App\Models\Price;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ShopsImport;
 
 class ShopController extends Controller
 {
     public function index()
     {
-        $allShops = Shop::all();
+        $shops = Shop::all();
+        $allShops = $shops->sortBy('average');
+        $allShops = $shops->sortByDesc('average');
+        $allShops = $shops->shuffle();
 
         $categories = Category::all();
         $places = Place::all();
+        $sort = "random";
 
-        return view('all', compact('allShops','categories','places'));
+        return view('all', compact('allShops','categories','places','sort'));
     }
 
     public function search(Request $request)
@@ -32,6 +38,7 @@ class ShopController extends Controller
         $category_id = $request->input('category_id');
         $place_id = $request->input('place_id');
         $keyword = $request->input('keyword');
+        $sort = $request->input('sort');
 
         $cond = ['category_id' => $category_id, 'place_id' => $place_id ];
 
@@ -43,53 +50,87 @@ class ShopController extends Controller
 
         if($category_id != "selected" && $place_id != "selected" && $keyword != null)
         {
-            $allShops = Shop::where($cond)->where('name','like','%'.$keyword.'%')->get();
+            $shops = Shop::where($cond)->where('name','like','%'.$keyword.'%')->get();
+            $allShops = $this->sort($shops,$sort);
 
-            return view('all', compact('allShops','categories','places','seachedArea','seachedGenre','keyword'));
+            return view('all', compact('allShops','categories','places','seachedArea','seachedGenre','keyword','sort'));
         }
         elseif($category_id != "selected" && $place_id != "selected" && $keyword == null)
         {
-            $allShops = Shop::where($cond)->get();
+            $shops = Shop::where($cond)->get();
+            $allShops = $this->sort($shops,$sort);
 
-            return view('all', compact('allShops','categories','places','seachedArea','seachedGenre'));
+            return view('all', compact('allShops','categories','places','seachedArea','seachedGenre','sort'));
         }
         elseif($category_id != "selected" && $place_id == "selected" && $keyword != null)
         {   
-            $allShops = Shop::where('category_id','=',$category_id)->where('name','like','%'.$keyword.'%')->get();
+            $shops = Shop::where('category_id','=',$category_id)->where('name','like','%'.$keyword.'%')->get();
+            $allShops = $this->sort($shops,$sort);
 
-            return view('all', compact('allShops','categories','places','seachedGenre','keyword'));
+            return view('all', compact('allShops','categories','places','seachedGenre','keyword','sort'));
         }
         elseif($category_id == "selected" && $place_id != "selected" && $keyword != null)
         {
-            $allShops = Shop::where('place_id','=',$place_id)->where('name','like','%'.$keyword.'%')->get();
+            $shops = Shop::where('place_id','=',$place_id)->where('name','like','%'.$keyword.'%')->get();
+            $allShops = $this->sort($shops,$sort);
 
-            return view('all', compact('allShops','categories','places','seachedArea','keyword'));
+            return view('all', compact('allShops','categories','places','seachedArea','keyword','sort'));
         }
         elseif($category_id != "selected" && $place_id == "selected" && $keyword == null)
         {
-            $allShops = Shop::where('category_id','=',$category_id)->get();
+            $shops = Shop::where('category_id','=',$category_id)->get();
+            $allShops = $this->sort($shops,$sort);
 
-            return view('all', compact('allShops','categories','places','seachedGenre'));
+            return view('all', compact('allShops','categories','places','seachedGenre','sort'));
         }
         elseif($category_id == "selected" && $place_id != "selected" && $keyword == null)
         {
-            $allShops = Shop::where('place_id','=',$place_id)->get();
+            $shops = Shop::where('place_id','=',$place_id)->get();
+            $allShops = $this->sort($shops,$sort);
 
-            return view('all', compact('allShops','categories','places','seachedArea'));
+            return view('all', compact('allShops','categories','places','seachedArea','sort'));
         }
         elseif($category_id == "selected" && $place_id == "selected" && $keyword != null)
         {
-            $allShops = Shop::where('name','like','%'.$keyword.'%')->get();
+            $shops = Shop::where('name','like','%'.$keyword.'%')->get();
+            $allShops = $this->sort($shops,$sort);
 
-            return view('all', compact('allShops','categories','places','keyword'));
+            return view('all', compact('allShops','categories','places','keyword','sort'));
+        }
+        elseif($category_id == "selected" && $place_id == "selected" && $keyword == null && $sort == "random")
+        {
+
+            return redirect('/');
         }
         else
         {
-            $allShops = Shop::all();
-            $noPost = "検索欄に情報を入れてください。";
+            $shops = Shop::all();
+            $allShops = $this->sort($shops,$sort);
 
-            return view('all', compact('allShops','noPost','categories','places'));
+            return view('all', compact('allShops','categories','places','sort'));
         }
+    }
+
+    public function sort($shops,$sort){
+
+        if($sort == "random"){
+
+            $allShops = $shops->sortBy('average');
+
+        }elseif($sort == "high_score"){
+
+            $allShops = $shops->sortByDesc('average');
+
+            return $allShops;
+        }
+        else{
+            
+            $allShops = $shops->sortBy('average');
+
+        }
+
+        return $allShops;
+
     }
 
     public function detail($shop_id)
@@ -200,7 +241,15 @@ class ShopController extends Controller
         $shopId = $ReserveDatas->shop_id;
         $shopData = Shop::where('id',$shopId)->first();
 
-        return view('assessment', compact('shopData','reserveId'));
+        return view('assessment', compact('shopData'));
+    }
+
+    public function getDetailAssessment($shop_id)
+    {
+        $shopId = $shop_id;
+        $shopData = Shop::find($shop_id);
+
+        return view('assessment', compact('shopData'));
     }
 
     public function makeShop(ShopRequest $request)
@@ -315,5 +364,26 @@ class ShopController extends Controller
         $places = Place::all();
         
         return view('owner/add', compact('ownerData','categories','places'));
+    }
+
+    public function getImport()
+    {
+        $UserId = Auth::id();
+        $ownerData = User::find($UserId);
+
+        return view('owner/inport', compact('ownerData'));
+    }
+
+    public function postImport(Request $request)
+    {
+
+        $file = $request->file('shop');
+
+        $import = new ShopsImport();
+        Excel::import($import, $file);
+        
+        $message = "登録が完了しました。「編集する」から画像の登録を行ってください。";
+
+        return redirect('/owner')->with(compact('message'));
     }
 }

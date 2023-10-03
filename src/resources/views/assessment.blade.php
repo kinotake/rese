@@ -333,7 +333,7 @@
         <section class="content_right">
                 <form action="/assessment" method ="POST" enctype="multipart/form-data">
                 @csrf
-                    <input type="hidden" name="reserve_id" class="reserve_id" id="reserve_id" value="{{$reserveId}}">
+                    <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$shopData->id}}">
                     <label for="score_label" class="label">体験を評価してください</label>
                     <div class="rate-form">
                         <input id="star5" type="radio" name="score" value="5" id="score">
@@ -347,10 +347,10 @@
                         <input id="star1" type="radio" name="score" value="1" id="score">
                         <label for="star1" class="font">★</label>
                     </div>
-                    <label for="comment_label" class="label">口コミを投稿</label>
+                    <label for="post_header" class="label">見出し</label>
+                    <input id="post_header" type="post_header" class="form" name="post_header">
                     <textarea cols="30" rows="5" name="comment" class="comment" id="comment" placeholder="カジュアルな夜におすすめのスポット">{{ old('comment') }}</textarea>
-                    <label for="label" class="label_image">画像</label>
-                    <input type="file" name="image" class="image" value="{{$reserveId}}">
+                    <input type="file" name="image" class="image">
             @error('score')
             <span class="input_error">
                 <strong class="input_error_message">{{$errors->first('score')}}</strong>
@@ -361,6 +361,16 @@
                 <strong class="input_error_message">{{$errors->first('comment')}}</strong>
             </span>
             @enderror
+            @error('post_header')
+            <span class="input_error">
+                <strong class="input_error_message">{{$errors->first('post_header')}}</strong>
+            </span>
+            @enderror
+            @if (session('error_message'))
+                <span class="input_error">
+                    <strong class="input_error_message">{{session('error_message')}}</strong>
+                </span>
+            @endif
         </section>
     </div>
     <div class="under_contents">

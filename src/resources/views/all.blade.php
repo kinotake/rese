@@ -39,9 +39,9 @@
         }
     }
     .search_contents{
-        margin-left :400px;
+        margin-left :200px;
         height: 45px;
-        width: 450px;
+        width: 700px;
         border-radius: 5px;
         box-shadow: 3px 3px 3px 3px gray;
     }
@@ -52,6 +52,10 @@
             height: 9vw;
             width: 80vw;
         }
+    }
+    .sort_label{
+        margin-top : 8px;
+        font-size : 13px;
     }
     .form{
             display : flex;
@@ -105,7 +109,7 @@
     }
     .rese{
         margin-left : 23px;
-        color: blue;
+        color : blue;
     }
     @media screen and (max-width: 768px) {
     .rese{
@@ -114,7 +118,7 @@
         }
     }
     .rese_contents{
-            display : flex;
+        display : flex;
     }
     @media screen and (max-width: 768px) {
     .under_contents{
@@ -149,8 +153,14 @@
             margin-left : 1vw;
         }
     }
-    .under_contents{
+    .flex_contents,.under_contents{
         display : flex;
+    }
+    .star{
+        color : gold;
+    }
+    .no_post{
+        font-size : 6px;
     }
     .left_padding_content{
         height: 100%;
@@ -240,12 +250,20 @@
         padding-top : 23vw;
     }
     }
+    .a{
+        display : flex;
+    }
     </style>
 </head>
 <body>
     <header class="top">
         <div class="rese_contents">
-            @if (Auth::check())
+            @if(Auth::check() && Auth::user()->role_id == 3)
+            <a href="/administrator/menu" class="link">
+                <img src="{{asset('/images/adiministrator.png')}}"  alt="reseのアイコン" width="55" height="55" class="icon">
+                <h1 class="rese"><font color=#40e0d0>Rese</font></h1>
+            </a>
+            @elseif(Auth::check())
             <a href="/menu/first" class="link">
                 <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
                 <h1 class="rese">Rese</h1>
@@ -260,7 +278,13 @@
         <div class="search_contents">
             <form action="/search" method = "POST" class="form">
             @csrf
-                <select class="select" name="place_id">
+                <label for="sort" class="sort_label">並び替え：</label>
+                <select class="select" name="sort" class="sort" id="sort">
+                    <option value="random">ランダム</option>
+                    <option value="high_score">評価が高い順</option>
+                    <option value="low_score">評価が低い順</option>
+                </select>
+                <select class="select" name="place_id" class="place_id" id="place_id">
                     <option value="selected">All area</option>
                     @foreach ($places as $place)
                     <option value="{{$place->id}}">{{$place->name}}</option>
@@ -285,6 +309,15 @@
     <p class="error">{{$noPost??''}}</p>
     <div class="searched_contents">
         <p class="searched_data">検索情報 :</p>
+        @if (@isset($sort)&& $sort == "random")
+        <p class="searched_data">”ランダム”</p>
+        @endif
+        @if (@isset($sort)&& $sort == "high_score")
+        <p class="searched_data">”評価の高い順”</p>
+        @endif
+        @if (@isset($sort)&& $sort == "low_score")
+        <p class="searched_data">”評価の低い順”</p>
+        @endif
         @if (@isset($seachedArea))
         <p class="searched_data">”{{$seachedArea->name}}”</p>
         @endif
@@ -305,13 +338,21 @@
             <div class="shop_image">
                 <img src="{{ asset($allShop->getPhoto()) }}"  alt="店内画像" class="shop_photo">
             </div>
-            <table class="shop_information">
-                <th class="name">{{$allShop->name}}</th>
-                <tr>
-                    <td class="information">#{{$allShop->place->name}}</td>
-                    <td class="information">#{{$allShop->category->name}}</td>
-                </tr>
-            </table>
+            <div class="shop_information">
+                <div class="flex_contents">
+                    <h2 class="name">{{$allShop->name}}</h2>
+                    <p class="star">★</p>
+                    @if($allShop->average == null)
+                    <p class="no_post">投稿なし</p>
+                    @else
+                    <p>{{$allShop->average}}</p>
+                    @endif
+                </div>
+                <div class="flex_contents">
+                    <p class="information">#{{$allShop->place->name}}</p>
+                    <p class="information">#{{$allShop->category->name}}</p>
+                </div>
+            </div>
             <div class="bottons">
                 <a href="detail/{{$allShop->id}}" type="submit" class="detail_button">詳しく見る</a>
                 <div>
@@ -332,8 +373,8 @@
             </div>
         </article>
         @endforeach
-    </div>
+        </div>
         @endif
-        </div>  
+    </div>  
 </body>
 </html>

@@ -11,7 +11,9 @@
       margin: 0;
       padding: 0;
     }
-    
+    .rese_contents{
+      display: flex;
+    }
     .icon{
       margin-left : 130px;
       box-shadow: 3px 3px 3px 0px gray;
@@ -303,6 +305,10 @@
             margin-top : -8vw;
         }
     }
+    .error{
+        margin-left : 150px;
+        color : red;
+    }
     </style>
 </head>
 <body>
@@ -318,6 +324,7 @@
       <h1 class="rese">Rese</h1>
     </a>
     @endif
+    <p class="error">{{session('message')}}</p>
   </header>
   <p class="user_name">{{$userData->name}}さん</p>
   <div class="headers">

@@ -311,7 +311,6 @@
         }
     }
     .post_contents{
-        display:flex;
         margin-left : 140px;
         margin-top : 20px;
         height: auto;
@@ -325,9 +324,17 @@
             margin-left : 5vw;
         }
     }
+    .post_header_content{
+        display : flex;
+    }
     .post_hedder{
         margin-top : 15px;
-        margin-left : 30px;
+        margin-left : 10px;
+        width : 300px;
+    }
+    .post_content_buttons{
+        margin-left : 10px;
+        display:flex;
     }
     .post_content{
         margin-top : 10px;
@@ -374,6 +381,7 @@
         }
     }
     .post_button{
+        margin-left : 10px;
         cursor: pointer;
         border: none;
         background: none;
@@ -383,7 +391,12 @@
 </head>
 <body>
     <header class="rese_contents">
-        @if (Auth::check())
+        @if(Auth::check() && Auth::user()->role_id == 3)
+        <a href="/administrator/menu" class="link">
+            <img src="{{asset('/images/adiministrator.png')}}"  alt="reseのアイコン" width="55" height="55" class="icon">
+            <h1 class="rese"><font color=#40e0d0>Rese</font></h1>
+        </a>
+        @elseif(Auth::check())
         <a href="/menu/first" class="link">
             <img src="{{ asset('/images/icon.png') }}"  alt="reseのアイコン" width="55" height="55" class="icon">
             <h1 class="rese">Rese</h1>
@@ -415,10 +428,29 @@
                 </tr>
             </table>
             <p class="font">{{$shopData->comment??''}}</p>
+            @if ($shopData->checkPost() == 0)
+                <a href="/assessment/from/detail/{{$shopData->id}}" type="submit" class="assessment_button">口コミを投稿する</a>
+            @endif
         </article>
         <section class="content_right">
             <h2 class="reserve_header">予約</h2>
-            @if ($checkLogin == true)
+            @if($checkLogin == false)
+            <div class="error_contents">
+            <p class="error">ログインすると予約機能が利用できます。</p>
+            </div>
+            <div class="login_button">
+            <a href="/login" type="submit" class="login">ログインする</a>
+            </div>
+        </section>
+    </div>
+            @elseif(Auth::user()->role_id == 3)
+            <div class="error_contents">
+                <p class="error">現在、管理者ユーザでログインしています。</p>
+                <p class="error">一般ユーザから予約が可能です。</p>
+            </div>
+        </section>
+    </div>
+            @else
             <main class="input_contents">
                 <form action="/detail" method = "POST">
                     @csrf
@@ -530,27 +562,31 @@
             @endif
         </section>
     </div>
-            @else
-            <div class="error_contents">
-            <p class="error">ログインすると予約機能が利用できます。</p>
-            </div>
-            <div class="login_button">
-            <a href="/login" type="submit" class="login">ログインする</a>
-            </div>
-        </section>
-    </div>
     @endif
     <h2 class="post_header">全ての口コミ情報</h2>
     <article class="post_contents">
         @if (@isset($shopPosts))
         @foreach ($shopPosts as $shopPost)
         <div class="post_content">
-            <p class="post_hedder">投稿のヘッダ</p>
-            <form action="/delete/post/{{$shopPost->id}}" method ="POST">
-                @csrf
-                <button class="post_button" type="submit">口コミを削除する</button>
-            </form>
-            <a href="/reassessment/{{$shopPost->shop_id}}" type="submit" class="assessment_button">編集する</a>
+            <div class="post_header_content">
+                <p class="post_hedder">{{$shopPost->post_header}}</p>
+                <div class="post_content_buttons">
+                    @if (Auth::id() == $shopPost->user_id)
+                    <form action="/reassessment/{{$shopPost->shop_id}}" method ="GET">
+                    @csrf
+                        <button class="post_button" type="submit">口コミを編集</button>
+                    </form>
+                    @endif
+                    @if($checkLogin == true)
+                        @if (Auth::id() == $shopPost->user_id || Auth::user()->role_id == 3)
+                        <form action="/delete/post/{{$shopPost->id}}" method ="POST">
+                        @csrf
+                            <button class="post_button" type="submit">口コミを削除</button>
+                        </form>
+                        @endif
+                    @endif
+                </div>
+            </div>
             <div class="star_contents">
             @for ($count = 1; $count <= $shopPost->score; $count++)
                 <p class="star">★</p>
@@ -562,7 +598,9 @@
         <div class="comment_content">
             <p class="font">{{$shopPost->comment}}</p>
         </div>
-        <img src="{{ asset($shopPost->getImage()) }}" class="shop_photo" alt="この投稿に画像はありません。">
+        @if ($shopPost->getImage() != "nothing")
+        <img src="{{ asset($shopPost->getImage()) }}" class="shop_photo" alt="投稿画像">
+        @endif
         </div>
         @endforeach
         @endif

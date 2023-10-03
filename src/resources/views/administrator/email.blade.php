@@ -109,9 +109,10 @@
         <p class="message">{{session('message')}}</p>
     </header>
     <nav class="links">
-        <a href="/administrator" class="link">管理者一覧</a>
+        <a href="/administrator" class="link">店舗管理者一覧</a>
         <a href="/administrator/add" class="link">新規管理者作成</a>
         <p class="content_name">連絡機能</p>
+        <a href="/" class="link">店舗一覧（全て）</a>
     </nav>
     <div class="all_input_contents">
         <h1 class="mail_header">新規メール作成</h1>

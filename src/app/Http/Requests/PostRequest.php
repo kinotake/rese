@@ -25,8 +25,10 @@ class PostRequest extends FormRequest
     {
         return [
             'score' => 'required',
-            'comment' => 'required|max:115',
-       ];
+            'comment' => 'required|max:400',
+            'shop_id' => 'required',
+            'post_header' => 'required|max:15',
+        ];
     }
 
     public function messages()
@@ -34,7 +36,9 @@ class PostRequest extends FormRequest
         return [
             'score.required' => 'スコアを入力してください',
             'comment.required' => 'コメントを入力してください',
-            'comment.max' => 'コメントを115文字以内で入力してください',
+            'comment.max' => 'コメントを400文字以内で入力してください',
+            'post_header.required' => '見出しを入力してください',
+            'post_header.max' => '見出しは15文字以内で入力してください',
         ];
     }
 }

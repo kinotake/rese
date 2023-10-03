@@ -109,6 +109,18 @@ Laravel,Dockerでの開発環境が整っていることが前提です。（開
         <td>qwertyui</td>
     </tr>
     <tr>
+        <td>一般ユーザ</td>
+        <td>津田博</td>
+        <td>test2@test2</td>
+        <td>qwertyui</td>
+    </tr>
+    <tr>
+        <td>一般ユーザ</td>
+        <td>金子優愛</td>
+        <td>test3@test3</td>
+        <td>qwertyui</td>
+    </tr>
+    <tr>
         <td>店舗管理者</td>
         <td>中山美穂</td>
         <td>owner@owner</td>

@@ -24,7 +24,7 @@ class ShopRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:30',
+            'name' => 'required|max:50',
             'category_id' => 'required',
             'place_id' => 'required',
             'comment' => 'required|max:120'
@@ -34,7 +34,7 @@ class ShopRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.max' => '名前は30文字以内で入力してください',
+            'name.max' => '名前は50文字以内で入力してください',
             'name.required' => '名前を入力してください',
             'category_id.required' => 'ジャンルを選択してください',
             'place_id.required' => 'エリアを選択してください',

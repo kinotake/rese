@@ -15,12 +15,6 @@ use App\Http\Livewire\Attendance\Attendancesqrcd;
 
 Route::group(['middleware' => ['verified']], function () 
 {
-    Route::get('/', [ShopController::class, 'index']);
-    Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
-    Route::post('/search', [ShopController::class, 'search']);
-    Route::post('/delete', [LikeController::class, 'deleteLike'])->name('deleteLike');
-    Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
-    Route::post('/detail', [ReserveController::class, 'makeReserve']);
     Route::get('/mypage', [ShopController::class, 'getMypage']);
     Route::get('/reschedule/{shop_id}/{reserve_id}', [ShopController::class, 'getReschedule']);
     Route::post('/reschedule/date', [ReserveController::class, 'postRescheduleDate']);
@@ -30,10 +24,10 @@ Route::group(['middleware' => ['verified']], function ()
     Route::post('/cancel', [ReserveController::class, 'postCancel']);
     Route::get('/went', [ShopController::class, 'getWent']);
     Route::get('/assessment/{reserve_id}', [ShopController::class, 'getAssessment']);
+    Route::get('/assessment/from/detail/{shop_id}', [ShopController::class, 'getDetailAssessment']);
     Route::post('/assessment', [PostController::class, 'postAssessment']);
     Route::get('/reassessment/{shop_id}', [PostController::class, 'getReassessment']);
     Route::post('/reassessment', [PostController::class, 'postReassessment']);
-    Route::post('/delete/post/{post_id}', [PostController::class, 'deletePost'])->name('deletePost');;
     Route::get('/menu/first', function () {
         return view('loginmenu');
     });
@@ -47,6 +41,14 @@ Route::group(['middleware' => ['verified']], function ()
     });
 
 });
+
+    Route::get('/', [ShopController::class, 'index']);
+    Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
+    Route::post('/search', [ShopController::class, 'search']);
+    Route::post('/delete', [LikeController::class, 'deleteLike'])->name('deleteLike');
+    Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
+    Route::post('/detail', [ReserveController::class, 'makeReserve']);
+    Route::post('/delete/post/{post_id}', [PostController::class, 'deletePost'])->name('deletePost');
 
 Route::get('/menu/second', function () {
     return view('logoutmenu');
@@ -103,6 +105,8 @@ Route::group(['prefix' => 'owner', 'middleware' => ['auth', 'can:owner','verifie
     });
     Route::get('/reserve/qr/{reserve_id}', [ReserveController::class, 'getQrData']);
     Route::post('/reserve/qr', [ReserveController::class, 'enterReserve'])->name('enter');
+    Route::get('/shop/import', [ShopController::class, 'getImport']);
+    Route::post('/shop/import', [ShopController::class, 'postImport'])->name('postImport');
 });
 
 Auth::routes(['verify' => true]);

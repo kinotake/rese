@@ -23,6 +23,20 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => null,
         ],
         [    
+            'name' => '津田博',
+            'email' => 'test2@test2',
+            'password' => \Hash::make('qwertyui'),
+            'role_id' => 1,
+            'email_verified_at' => null,
+        ],
+        [    
+            'name' => '金子優愛',
+            'email' => 'test3@test3',
+            'password' => \Hash::make('qwertyui'),
+            'role_id' => 1,
+            'email_verified_at' => null,
+        ],
+        [    
             'name' => '中山美穂',
             'email' => 'owner@owner',
             'password' => \Hash::make('qwertyui'),

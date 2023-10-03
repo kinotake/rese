@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class Shop extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'place_id', 'category_id','comment','user_id'];
+
     public function likes()
     {
       return $this->hasMany('App\Models\Like');
@@ -56,6 +59,7 @@ class Shop extends Model
         return $no_like;
       }
     }
+
     public function getPhoto()
     { 
       if (Photo::where('shop_id','=',$this->id)->exists())
@@ -72,8 +76,28 @@ class Shop extends Model
         return $noPhotoPath;
       }
     }
+
     public function posts()
     {
         return $this->hasMany('App\Models\Post');
+    }
+
+    public function checkPost()
+    { 
+      $authority = Auth::user()->role_id;
+
+      if ($authority != 1 || Post::where('user_id','=',Auth::id())->where('shop_id','=',$this->id)->exists())
+      {
+        $havePost = 1;
+
+        return $havePost;
+      }
+      else{
+
+        $noPost = 0;
+
+        return $noPost;
+
+      }
     }
 }

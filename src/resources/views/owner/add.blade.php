@@ -122,7 +122,7 @@
     </div>
     <nav class="links">
         <a href="/owner" class="link">管理店舗一覧</a>
-        <p class="content_name">新規店舗作成</p>
+        <p class="content_name">新規店舗作成（入力）</p>
         <a href="/owner/send" class="link">連絡機能</a>
     </nav>
     <div class="all_input_contents">
@@ -155,6 +155,7 @@
                     <label for="label" class="label_comment">コメント</label>
                     <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{ old('comment') }}</textarea>
                 </div>
+                <p class="label_comment">画像は作成後の編集ページからアップロードできます。</p>
                 @error('name')
                 <span class="input_error">
                     <strong class="input_error_message">{{$errors->first('name')}}</strong>
@@ -180,3 +181,4 @@
             </form>
     </div>
 </body>
+</html>

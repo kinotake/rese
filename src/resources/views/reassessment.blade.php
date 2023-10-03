@@ -64,7 +64,6 @@
     }
     .middle_contents{
         display:flex;
-	    align-items: center;
     }
     @media screen and (max-width: 768px) {
     .middle_contents{
@@ -77,7 +76,7 @@
         width: 500px;
         padding-right : 20px;
         padding-left : 20px;
-        margin-top : 20px;
+        margin-top : 100px;
         padding-bottom : 20px;
         margin-left : 100px;
         display:block;
@@ -174,6 +173,7 @@
     }
     .content_right{
         margin-left : 650px;
+        margin-top : 100px;
         height: 400px;
         width: 450px;
         position:fixed;
@@ -352,36 +352,42 @@
             </div>
         </div>
         <section class="content_right">
-                <form action="/reassessment" method ="POST" enctype="multipart/form-data">
-                @csrf
-                    <input type="hidden" name="post_id" class="post_id" id="post_id" value="{{$postData->id}}">
-                    <label for="score_label" class="label">変更後の評価を入力してください</label>
-                    <div class="rate-form">
-                        <input id="star5" type="radio" name="score" value="5" id="score" @if($postData->score = '5') checked @endif>
-                        <label for="star5" class="font">★</label>
-                        <input id="star4" type="radio" name="score" value="4" id="score" @if($postData->score = '4') checked @endif>
-                        <label for="star4" class="font">★</label>
-                        <input id="star3" type="radio" name="score" value="3" id="score" @if($postData->score = '3') checked @endif>
-                        <label for="star3" class="font">★</label>
-                        <input id="star2" type="radio" name="score" value="2" id="score" @if($postData->score = '2') checked @endif>
-                        <label for="star2" class="font">★</label>
-                        <input id="star1" type="radio" name="score" value="1" id="score" @if($postData->score = '1') checked @endif>
-                        <label for="star1" class="font">★</label>
-                    </div>
-                    <label for="comment_label" class="label">変更後の口コミ</label>
-                    <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{$postData->comment}}</textarea>
-                    <input type="file" name="image" class="image">
-            @error('score')
-            <span class="input_error">
-                <strong class="input_error_message">{{$errors->first('score')}}</strong>
-            </span>
-            @enderror
-            @error('comment')
-            <span class="input_error">
-                <strong class="input_error_message">{{$errors->first('comment')}}</strong>
-            </span>
-            @enderror
-            <button class="form__button" type="submit">口コミを変更する</button>
+            <form action="/reassessment" method ="POST" enctype="multipart/form-data">
+            @csrf
+                <input type="hidden" name="shop_id" class="shop_id" id="shop_id" value="{{$postData->shop_id}}">
+                <input type="hidden" name="post_id" class="post_id" id="post_id" value="{{$postData->id}}">
+                <label for="score_label" class="label">変更後の評価を入力してください</label>
+                <div class="rate-form">
+                    <input id="star5" type="radio" name="score" value="5" id="score" {{$postData->score == 5 ? 'checked' : '' }}>
+                    <label for="star5" class="font">★</label>
+                    <input id="star4" type="radio" name="score" value="4" id="score" {{$postData->score == 4 ? 'checked' : '' }}>
+                    <label for="star4" class="font">★</label>
+                    <input id="star3" type="radio" name="score" value="3" id="score" {{$postData->score == 3 ? 'checked' : '' }}>
+                    <label for="star3" class="font">★</label>
+                    <input id="star2" type="radio" name="score" value="2" id="score" {{$postData->score == 2 ? 'checked' : '' }}>
+                    <label for="star2" class="font">★</label>
+                    <input id="star1" type="radio" name="score" value="1" id="score" {{$postData->score == 1 ? 'checked' : '' }}>
+                    <label for="star1" class="font">★</label>
+                </div>
+                <textarea cols="20" rows="1" name="post_header" class="post_header" id="post_header">{{$postData->post_header}}</textarea>
+                <textarea cols="30" rows="5" name="comment" class="comment" id="comment">{{$postData->comment}}</textarea>
+                <input type="file" name="image" class="image">
+                @error('score')
+                <span class="input_error">
+                    <strong class="input_error_message">{{$errors->first('score')}}</strong>
+                </span>
+                @enderror
+                @error('comment')
+                <span class="input_error">
+                    <strong class="input_error_message">{{$errors->first('comment')}}</strong>
+                </span>
+                @enderror
+                @error('post_header')
+                <span class="input_error">
+                    <strong class="input_error_message">{{$errors->first('post_header')}}</strong>
+                </span>
+                @enderror
+                    <button class="form__button" type="submit">口コミを変更する</button>
             </form>
         </section>
     </div>

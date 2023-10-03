@@ -20,9 +20,9 @@ class Post extends Model
       }
       else
       {
-        $comment = 'この投稿に画像はありません';
+        $noImage = "nothing";
 
-        return $comment;
+        return $noImage;
       }
     }
     

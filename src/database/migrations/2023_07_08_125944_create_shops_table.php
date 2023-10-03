@@ -19,6 +19,7 @@ class CreateShopsTable extends Migration
             $table->integer('place_id');
             $table->integer('category_id');
             $table->text('comment');
+            $table->decimal('average')->nullable();
             $table->integer('user_id')->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();

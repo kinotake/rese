@@ -16,32 +16,79 @@ class PostController extends Controller
     {   
         $fulled_score = $_POST["score"];
         $fulled_comment = $_POST["comment"];
-        $reserve_id = $_POST["reserve_id"];
-
-        $who = Auth::id();
-        $ReserveData = Reserve::find($reserve_id);
-        
-        $post = new Post();
-        $post->score=$fulled_score;
-        $post->comment=$fulled_comment;
-        $post->shop_id=$ReserveData->shop_id;
-        $post->user_id=$who;
-        $post->save();
+        $shop_id = $_POST["shop_id"];
+        $post_header = $_POST["post_header"];
 
         $dir = 'images';
 
-        if($request->file('image') == null)
-        {
+        if($request->file('image') == null){
+
+            $who = Auth::id();
+        
+            $post = new Post();
+            $post->score=$fulled_score;
+            $post->comment=$fulled_comment;
+            $post->post_header=$post_header;
+            $post->shop_id=$shop_id;
+            $post->user_id=$who;
+            $post->save();
+
+            $calculatePosts = Post::where('shop_id','=',$shop_id)->get();
+            $sum = 0;
+
+            foreach ($calculatePosts as $calculatePost) 
+            {
+                $sum += $calculatePost->score;
+            }
+
+            $postNum = Post::where('shop_id','=',$shop_id)->count();
+            $newAverage = $sum/$postNum;
+            $arrangedNum = round($newAverage,1); 
+
+            $shop = Shop::find($shop_id);
+            $shop->average=$arrangedNum;
+            $shop->save();
+
             $message = "評価いただきありがとうございます。";
 
             return redirect('/went')->with(compact('message')); 
         }
         else{
+            $extension = $request->file('image')->extension();
+        }   
+
+        if($extension == 'jpg'||$extension == 'jpeg'||$extension == 'png')
+        {
+            $who = Auth::id();
+        
+            $post = new Post();
+            $post->score=$fulled_score;
+            $post->comment=$fulled_comment;
+            $post->post_header=$post_header;
+            $post->shop_id=$shop_id;
+            $post->user_id=$who;
+            $post->save();
+
+            $calculatePosts = Post::where('shop_id','=',$shop_id)->get();
+            $sum = 0;
+
+            foreach ($calculatePosts as $calculatePost) 
+            {
+                $sum += $calculatePost->score;
+            }
+
+            $postNum = Post::where('shop_id','=',$shop_id)->count();
+            $newAverage = $sum/$postNum;
+            $arrangedNum = round($newAverage,1); 
+
+            $shop = Shop::find($shop_id);
+            $shop->average=$arrangedNum;
+            $shop->save();
 
             $file_name = $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/' . $dir,'post/'. $file_name);
 
-            $madePostData = Post::where('shop_id',$ReserveData->shop_id)->where('user_id',$who)->first();
+            $madePostData = Post::where('shop_id',$shop_id)->where('user_id',$who)->first();
             $photo = new Image();
             $photo->post_id = $madePostData->id;
             $photo->path = 'storage/' . $dir . '/' .'post/'. $file_name;
@@ -50,7 +97,14 @@ class PostController extends Controller
             $message = "評価、及び画像のアップロードありがとうございます。";
 
             return redirect('/went')->with(compact('message')); 
-        }   
+
+        }else{
+
+            $error_message="画像の形式はjpgかpngを選択してください。";
+
+            return back()->with(compact('error_message'));
+
+        }
     }
 
     public function getReassessment($shop_id)
@@ -66,26 +120,55 @@ class PostController extends Controller
     {   
         $selectedScore = $_POST["score"];
         $reassessmentComment = $_POST["comment"];
+        $shop_id = $_POST["shop_id"];
         $selectedPostId = $_POST["post_id"];
+        $post_header = $_POST["post_header"];
 
-        if($request->file('image') != null)
+        $imageData = Image::where('post_id',$selectedPostId)->first();
+
+        if($request->file('image') != null && $imageData != null)
         {
             $dir = 'images';
             $file_name = $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/' . $dir,'post/'. $file_name);
 
-            $imageData = Image::where('post_id',$selectedPostId)->first();
-
             $image = Image::find($imageData->id);
             $image->path = 'storage/' . $dir . '/' .'post/'. $file_name;
             $image->save();
         }
-        
+        if($request->file('image') != null && $imageData == null)
+        {
+            $dir = 'images';
+            $file_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dir,'post/'. $file_name);
+
+            $photo = new Image();
+            $photo->post_id = $selectedPostId;
+            $photo->path = 'storage/' . $dir . '/' .'post/'. $file_name;
+            $photo->save();
+        }
         
         $post = Post::find($selectedPostId);
         $post->score=$selectedScore;
         $post->comment=$reassessmentComment;
+        $post->post_header=$post_header;
         $post->save();
+
+        $calculatePosts = Post::where('shop_id','=',$shop_id)->get();
+        $sum = 0;
+
+        foreach ($calculatePosts as $calculatePost) 
+        {
+            $sum += $calculatePost->score;
+        }
+
+        $postNum = Post::where('shop_id','=',$shop_id)->count();
+        $newAverage = $sum/$postNum;
+        $arrangedNum = round($newAverage,1); 
+
+        $shop = Shop::find($shop_id);
+        $shop->average=$arrangedNum;
+        $shop->save();
 
         $message="評価が変更されました。";
 
@@ -94,7 +177,26 @@ class PostController extends Controller
 
     public function deletePost($post_id)
     {   
+        $deleteData = Post::find($post_id);
         $reserve = Post::find($post_id)->delete();
+
+        $shop_id = $deleteData->shop_id;
+
+        $calculatePosts = Post::where('shop_id','=',$shop_id)->get();
+        $sum = 0;
+
+        foreach ($calculatePosts as $calculatePost) 
+        {
+            $sum += $calculatePost->score;
+        }
+
+        $postNum = Post::where('shop_id','=',$shop_id)->count();
+        $newAverage = $sum/$postNum;
+        $arrangedNum = round($newAverage,1); 
+
+        $shop = Shop::find($shop_id);
+        $shop->average=$arrangedNum;
+        $shop->save();
 
         $message="投稿が削除されました。";
 

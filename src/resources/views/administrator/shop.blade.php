@@ -24,62 +24,80 @@
         margin-left : 20px;
         color: #40e0d0;
     }
-    .under_content{
+    .links{
+        margin-left : 120px;
         display : flex;
     }
-    .content_left{
-        margin-left : 150px;
+    .content_name{
+        margin-left : 20px;
+        font-weight : bold;
+        font-size :25px;
     }
-    .input_contents{
-        margin-left : 30px;
+    .link{
+        margin-top : 10px;
+        margin-left : 25px;
+        text-decoration: none;
+        color : grey;       
     }
-    .select_contents{
+    .name_header{
+        margin-left : 130px;
+    }
+    .shop_contents{
         display : flex;
-        padding-top : 20px;
+        flex-wrap:wrap;
+    }
+    .shop_content{
+        height: 220px;
+        width: 220px;
+        box-shadow: 5px 5px 4px 2px gray;
+        margin-right : 20px;
+        margin-left : 20px;
+        margin-top : 20px;
         padding-bottom : 20px;
-    }
-    .label{
-        color :white;
-        font-size :20px;
-    }
-    .label_genre{
-        margin-left : 40px;
-        color :white;
-        font-size :20px;
-    }
-    .select{
-        margin-left : 30px;
-    }
-    .form{
-        height: 30px;
-        width: 400px;
-        font-size :20px;
-        border : none;
-    }
-    .form__button{
-        height: 50px;
-        width: 450px;
-        background: #32b39e;
-        color : white;
-        border:none;
-        position: absolute;
-        bottom: 0;
-    }
-    .content_right{
-        margin-left : 100px;
-        background: #40e0d0;
-        height: 300px;
-        width: 450px;
-        box-shadow: 5px 5px 4px 0px gray;
         border-radius: 5px;
-        position: relative;
     }
-    .shop_header{
-        color :white;
-        padding-top : 20px;
-        margin-bottom : 20px;
-        margin-left : 30px;
-        font-size : 30px;
+    
+    .under_contents{
+        display : flex;
+    }
+    .left_padding_content{
+        height: 100%;
+        width: 100px;
+        flex-shrink: 0;
+    }
+    .shop_information{
+        margin-left : 10px;
+    }
+    .bottons{
+        display : flex;
+        justify-content: space-between;
+    }
+    .detail_button{
+        background: blue;
+        display: block;
+        height: 30px;
+        width: 100px;
+        color : white;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+        padding-top : 5px;
+        margin-left : 10px;
+    }
+    @media screen and (max-width: 768px) {
+    .detail_button{
+            height: 12vw;
+            width: 40vw;
+            font-size: 6vw;
+        }
+    }
+    .error{
+        margin-left : 150px;
+        color : red;
+    }
+    .shop_photo{
+        width : 220px;
+        height : 110px;
     }
     .message{
         margin-top : 5px;
@@ -96,28 +114,46 @@
         <h1 class="rese">Rese</h1>
         <p class="message">{{$message??''}}</p>
     </header>
-    <div class="under_content">
-        <div class="content_left">
-            <h2 class="under_content">{{$ownerData->name}}様 管理店舗一覧</h2>
-            <table class="owner_contents" border="1">
-                <tr>
-                    <th>店舗名</th> 
-                    <th>カテゴリ</th>
-                    <th>立地</th>
-                    <th>最終更新日時</th>
-                </tr>
-                @if (@isset($allShops))
-                @foreach ($allShops as $allShop)
-                <tr>
-                    <td class="name">{{$allShop->name}}</td> 
-                    <td class="email">{{$allShop->category->name}}</td>
-                    <td class="num">{{$allShop->place->name}}</td>
-                    <td>{{$allShop->updated_at}}</td>
-                </tr>
-                @endforeach
-                @endif
-            </table>
+    <h2 class="name_header">{{$ownerData->name}}様 管理店舗一覧</h2>
+    <div class="under_contents">
+        <div class="left_padding_content">
         </div>
+        @if (@isset($allShops))
+        <div class="shop_contents">
+            @foreach ($allShops as $allShop)
+            <article class="shop_content">
+                <div class="shop_image">
+                    <img src="{{ asset($allShop->getPhoto()) }}"  alt="店内画像" class="shop_photo">
+                </div>
+                <table class="shop_information">
+                    <th class="name">{{$allShop->name}}</th>
+                    <tr>
+                        <td class="information">#{{$allShop->place->name}}</td>
+                        <td class="information">#{{$allShop->category->name}}</td>
+                    </tr>
+                </table>
+                <div class="bottons">
+                    <a href="/detail/{{$allShop->id}}" type="submit" class="detail_button">詳しく見る</a>
+                    <div>
+                        @if ($allShop->checkLike() == 0)
+                        <form method="POST" action="{{route('makeLike')}}">
+                        @csrf
+                            <input type="hidden" name="shop_id" id="shop_id" value="{{$allShop->id}}">                  
+                            <input type="image" src="{{ asset('/images/heart.png') }}" alt="色なしハート" name="heart" width="50" height="50" class="heart">
+                        </form>
+                        @else
+                        <form method="POST" action="{{route('deleteLike')}}">
+                        @csrf
+                            <input type="hidden" name="shop_id" id="shop_id" value="{{$allShop->id}}">
+                            <input type="image" src="{{ asset('/images/paintedheart.png') }}" alt="色つきハート" name="painted_heart" width="50" height="50" class="heart">
+                        </form>
+                        @endif
+                    </div>
+                </div>
+            </article>
+            @endforeach
+        </div>
+        @endif
     </div>
 </body>
 </html>

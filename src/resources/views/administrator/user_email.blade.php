@@ -109,7 +109,8 @@
         <p class="message">{{session('message')}}</p>
     </header>
     <nav class="links">
-        <a href="/owner" class="link">管理店舗一覧</a>
+        <a href="/owner" class="link">店舗管理者一覧</a>
+        <a href="/" class="link">店舗一覧（全て）</a>
         <a href="/owner/add" class="link">新規店舗作成</a>
         <p class="content_name">連絡機能</p>
     </nav>

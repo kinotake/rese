@@ -88,9 +88,10 @@
         <p class="message">{{session('message')}}</p>
     </header>
     <nav class="links">
-        <p class="content_name">管理店舗一覧</p>
+        <p class="content_name">店舗管理者一覧</p>
         <a href="/administrator/add" class="link">新規管理者作成</a>
         <a href="/administrator/user/send" class="link">連絡機能</a>
+        <a href="/" class="link">店舗一覧（全て）</a>
     </nav>
     <table class="owner_contents" border="1">
         <tr>

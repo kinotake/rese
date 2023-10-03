@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
           RolesTableSeeder::class,
           PhotosTableSeeder::class,
           PricesTableSeeder::class,
+          ImagesTableSeeder::class,
         ]);
     }
 }

@@ -113,8 +113,9 @@
     </div>
     <nav class="links">
         <a href="/owner" class="link">管理店舗一覧</a>
-        <a href="/owner/add" class="link">新規店舗作成</a>
+        <a href="/owner/add" class="link">新規店舗作成（入力）</a>
         <p class="content_name">連絡機能</p>
+        
     </nav>
     <div class="all_input_contents">
         <h1 class="mail_header">新規メール作成</h1>
