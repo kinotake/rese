@@ -180,5 +180,14 @@
                 <button class="form__button" type="submit">作成する</button>
             </form>
     </div>
+    <form action="{{ route('postImport') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">CSVファイルを選択（必須）</label>
+        <input type='file' name='shop' />
+            @error('shop')
+                <div class="text-red-500 font-bold">{{ $message }}</div>
+            @enderror
+        <button type="submit" class='bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 mt-1 rounded'>登録</button>
+    </form>
 </body>
 </html>

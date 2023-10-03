@@ -379,8 +379,23 @@ class ShopController extends Controller
 
         $file = $request->file('shop');
 
-        $import = new ShopsImport();
-        Excel::import($import, $file);
+        
+
+        try {
+            
+           $import = new ShopsImport();
+            Excel::import($import, $file);
+
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+     
+            foreach ($failures as $failure) {
+                $failure->row(); // row that went wrong
+                $failure->attribute(); // either heading key (if using heading row concern) or column index
+                $failure->errors(); // Actual error messages from Laravel validator
+                $failure->values(); // The values of the row that has failed.
+            }
+        }
         
         $message = "登録が完了しました。「編集する」から画像の登録を行ってください。";
 
