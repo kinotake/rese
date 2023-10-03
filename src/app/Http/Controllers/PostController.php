@@ -126,26 +126,38 @@ class PostController extends Controller
 
         $imageData = Image::where('post_id',$selectedPostId)->first();
 
-        if($request->file('image') != null && $imageData != null)
-        {
-            $dir = 'images';
-            $file_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir,'post/'. $file_name);
 
-            $image = Image::find($imageData->id);
-            $image->path = 'storage/' . $dir . '/' .'post/'. $file_name;
-            $image->save();
-        }
-        if($request->file('image') != null && $imageData == null)
+        if($request->file('image') != null)
         {
-            $dir = 'images';
-            $file_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/' . $dir,'post/'. $file_name);
 
-            $photo = new Image();
-            $photo->post_id = $selectedPostId;
-            $photo->path = 'storage/' . $dir . '/' .'post/'. $file_name;
-            $photo->save();
+            $extension = $request->file('image')->extension();
+
+            if($extension == 'jpg'||$extension == 'jpeg'||$extension == 'png' && $imageData != null){
+
+                $dir = 'images';
+                $file_name = $request->file('image')->getClientOriginalName();
+                $request->file('image')->storeAs('public/' . $dir,'post/'. $file_name);
+
+                $image = Image::find($imageData->id);
+                $image->path = 'storage/' . $dir . '/' .'post/'. $file_name;
+                $image->save();
+            }
+            elseif($extension == 'jpg'||$extension == 'jpeg'||$extension == 'png' && $imageData == null)
+            {
+                $dir = 'images';
+                $file_name = $request->file('image')->getClientOriginalName();
+                $request->file('image')->storeAs('public/' . $dir,'post/'. $file_name);
+
+                $photo = new Image();
+                $photo->post_id = $selectedPostId;
+                $photo->path = 'storage/' . $dir . '/' .'post/'. $file_name;
+                $photo->save();
+            }
+            else{
+                $error_message="画像の形式はjpgかpngを選択してください。";
+
+                return back()->with(compact('error_message'));
+            }
         }
         
         $post = Post::find($selectedPostId);

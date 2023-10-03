@@ -387,6 +387,11 @@
                     <strong class="input_error_message">{{$errors->first('post_header')}}</strong>
                 </span>
                 @enderror
+                @if (session('error_message'))
+                <span class="input_error">
+                    <strong class="input_error_message">{{session('error_message')}}</strong>
+                </span>
+                @endif
                     <button class="form__button" type="submit">口コミを変更する</button>
             </form>
         </section>

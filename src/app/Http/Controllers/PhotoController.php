@@ -20,7 +20,13 @@ class PhotoController extends Controller
 
             return redirect('/owner/edit'.'/'.$shop)->with(compact('error'));
         }
-        elseif($photoData === null){
+        else{
+
+            $extension = $request->file('image')->extension();
+        }
+
+
+        if($photoData === null && $extension == 'jpg'||$extension == 'jpeg'||$extension == 'png'){
 
             $file_name = $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/' . $dir, $file_name);
@@ -34,7 +40,7 @@ class PhotoController extends Controller
 
             return redirect('/owner')->with(compact('message'));
         }
-        else
+        elseif($photoData != null && $extension == 'jpg'||$extension == 'jpeg'||$extension == 'png')
         {
             $file_name = $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/' . $dir, $file_name);
@@ -47,6 +53,12 @@ class PhotoController extends Controller
             $message="画像が変更されました。";
 
             return redirect('/owner')->with(compact('message'));
+        }
+        else
+        {
+            $error="画像の形式はjpgかpngを選択してください。";
+
+            return back()->with(compact('error'));
         }
     }
 }

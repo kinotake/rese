@@ -292,9 +292,9 @@ class ShopController extends Controller
             'category_id' => $categoryId,
         ]);
 
-        $message="ジャンルが変更されました。";
+            $message="ジャンルが変更されました。";
 
-        return redirect('/owner')->with(compact('message'));
+            return redirect('/owner')->with(compact('message'));
         }
         
     }

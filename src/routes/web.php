@@ -40,8 +40,6 @@ Route::group(['middleware' => ['verified']], function ()
         Route::post('/store', [PaymentController::class, 'store'])->name('store');
     });
 
-});
-
     Route::get('/', [ShopController::class, 'index']);
     Route::post('/', [LikeController::class, 'makeLike'])->name('makeLike');
     Route::post('/search', [ShopController::class, 'search']);
@@ -49,6 +47,8 @@ Route::group(['middleware' => ['verified']], function ()
     Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
     Route::post('/detail', [ReserveController::class, 'makeReserve']);
     Route::post('/delete/post/{post_id}', [PostController::class, 'deletePost'])->name('deletePost');
+
+});
 
 Route::get('/menu/second', function () {
     return view('logoutmenu');
