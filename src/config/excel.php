@@ -127,7 +127,7 @@ return [
             'enclosure'        => '"',
             'escape_character' => '\\',
             'contiguous'       => false,
-            'input_encoding'   => 'Shift-JIS',
+            'input_encoding'   => 'UTF-8',
         ],
 
         /*
