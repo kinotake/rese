@@ -6,8 +6,9 @@ use App\Models\Shop;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 
-class ShopsImport implements ToModel,WithStartRow
+class ShopsImport implements ToModel,WithStartRow,WithCustomCsvSettings
 {
     /**
     * @param array $row
@@ -30,4 +31,10 @@ class ShopsImport implements ToModel,WithStartRow
         return 2;
     }
 
+    public function getCsvSettings(): array
+    {
+        return [
+            'use_bom' => true
+        ];
+    }
 }

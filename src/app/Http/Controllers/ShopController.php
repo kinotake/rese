@@ -377,28 +377,84 @@ class ShopController extends Controller
     public function postImport(Request $request)
     {
 
-        $file = $request->file('shop');
+        $file = $request->file('shop');    
 
-        
 
-        try {
+        if($request->file('shop')->getClientMimeType() ==='text/csv'){
+            $file = $request->file('shop');
+
+            // ファイル読み込み
+            $input = file_get_contents($file);
+    
+            // 一時ファイルに書き込む
+            $tmp = tmpfile();
+            fwrite($tmp, $input);
+
+            // 一時ファイルから読み込み
+            $meta = stream_get_meta_data($tmp);
+            $csv = new \SplFileObject($meta['uri']);
+    
+            // CSVとしてファイルを読み込ませる
+            $csv->setFlags(
+                \SplFileObject::READ_CSV |
+                \SplFileObject::READ_AHEAD |
+                \SplFileObject::SKIP_EMPTY |
+                \SplFileObject::DROP_NEW_LINE
+            );
+    
+            // 書き出し用のCSVファイル
+            $output = new \SplFileObject($file, 'w');
+            $count = 0;
+    
+            foreach ($csv as $i => $row)
+            {
+                $count++;
+
+                if($count != 1){
+
+                    $seachPlaceData = Place::where('name',$row[1])->first();
+                    $seachPlaceId = $seachPlaceData->id;
+
+                    $seachCategoryData = Place::where('name',$row[2])->first();
+                    $seachCategoryId = $seachPlaceData->id;
+
+                    $row[1] = $seachPlaceId;
+                    $row[2] = $seachCategoryId;
+                
+                }
+                // 書き出し
+                $output->fputcsv($row);
+            }
+            // ファイルを閉じる
+            $csv    = null;
+            $output = null;
+    
+            try {
             
-           $import = new ShopsImport();
+            $import = new ShopsImport();
             Excel::import($import, $file);
 
-        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             $failures = $e->failures();
      
-            foreach ($failures as $failure) {
-                $failure->row(); // row that went wrong
-                $failure->attribute(); // either heading key (if using heading row concern) or column index
-                $failure->errors(); // Actual error messages from Laravel validator
-                $failure->values(); // The values of the row that has failed.
+                foreach ($failures as $failure) {
+                    $failure->row(); // row that went wrong
+                    $failure->attribute(); // either heading key (if using heading row concern) or column index
+                    $failure->errors(); // Actual error messages from Laravel validator
+                    $failure->values(); // The values of the row that has failed.
+                }
             }
+        
+            $message = "登録が完了しました。「編集する」から画像の登録を行ってください。";
+
+            return redirect('/owner')->with(compact('message'));
+
+        } else{
+
+            $message = "ファイルの拡張子が間違っています。お手数ですが、もう一度やり直してください。";
+            
+            return redirect('/owner')->with(compact('message'));
         }
         
-        $message = "登録が完了しました。「編集する」から画像の登録を行ってください。";
-
-        return redirect('/owner')->with(compact('message'));
     }
 }
